@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Ascensor;
 use App\Models\Cliente;
+use App\Models\Equipo;
 use App\Models\ModeloAscensor;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -20,42 +21,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
-        
-        $user = new User();
-        $user->name="Pepe";
-        $user->email="pepe.cerdan@ikasle.egibide.org";
-        $user->password=Hash::make("12345678");
-        $user->rol="admin";
-        $user->save();
-        
-        DB::table('users')->insert([
-            'name'=>"Roberto",
-            'email'=>"roberto.cerdan@ikasle.egibide.org",
-            'password'=>Hash::make("1234"),
-            'rol'=>"admin",
-        ]);
-        DB::table('users')->insert([
-            'name'=>"Raul",
-            'email'=>"raul.melgosa@ikasle.egibide.org",
-            'password'=>Hash::make("12345678"),
-            'rol'=>"tecnico",
-        ]);
-        DB::table('users')->insert([
-            'name'=>"Barbara",
-            'email'=>"barbara.lopez@ikasle.egibide.org",
-            'password'=>Hash::make("12345678"),
-            'rol'=>"operador",
-        ]);
-        DB::table('users')->insert([
-            'name'=>"Nieves",
-            'email'=>"nieves@ikasle.egibide.org",
-            'password'=>Hash::make("12345678"),
-            'rol'=>"jde", //Jefe de equipo
-        ]);
-        
-        
-
         $modelos=[
             [
                 'modelo'=>'Orona-3G-1010',
@@ -115,9 +80,27 @@ class DatabaseSeeder extends Seeder
             $m->carga=$modelo['carga'];
             $m->save();
         }
+
+        DB::table('users')->insert([
+            'name'=>"Roberto",
+            'email'=>"roberto.cerdan@ikasle.egibide.org",
+            'password'=>Hash::make("1234"),
+            'rol'=>"admin",
+        ]);
+        
+        DB::table('users')->insert([
+            'name'=>"Barbara",
+            'email'=>"barbara.lopez@ikasle.egibide.org",
+            'password'=>Hash::make("12345678"),
+            'rol'=>"operador",
+        ]);
+        
         
         function llamadaFactoryAscensor($zonaId) {
             Ascensor::factory(random_int(50,100))->create([
+                'zona_id' => $zonaId,
+            ]);
+            DB::table('equipos')->insertGetId([
                 'zona_id' => $zonaId,
             ]);
         }
@@ -126,6 +109,21 @@ class DatabaseSeeder extends Seeder
             'zona'=>"norte"
         ]);
         llamadaFactoryAscensor($zonaId);
+        DB::table('users')->insert([
+            'name'=>"Raul",
+            'email'=>"raul.melgosa@ikasle.egibide.org",
+            'password'=>Hash::make("12345678"),
+            'rol'=>"tecnico",
+            'equipo_id'=>1,
+        ]);
+
+        $user = new User();
+        $user->name = 'Nieves';
+        $user->email = 'nieves@ikasle.egibide.org';
+        $user->password = 'Hash::make("12345678")';
+        $user->rol = 'jde';
+        $user->equipo_id = '1';
+        $user->save();
 
 
         $zonaId=DB::table('zonas')->insertGetId([

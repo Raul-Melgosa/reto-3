@@ -42,4 +42,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function equipo()
+    {
+        return $this->belongsTo('App\Models\Equipo');
+    }
+
+    public function incidencias()
+    {
+        if($this->rol=='tecnico') {
+            return $this->hasMany('App\Models\Incidencia');
+        }
+    }
+    /*
+    public function equipo()
+    {
+        return $this->belongsTo(User::class,'users')->withPivot('user_id','tecnico_id');;
+    }
+    */
 }

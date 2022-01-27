@@ -20,9 +20,13 @@ class CreateEquiposTable extends Migration
             $table->unsignedBigInteger('zona_id');
             $table->foreign('zona_id')->references('id')->on('zonas');
 
+            /*
             //-----------------------------------------------\\ 
            //FALTA LA FOREIGN KEY DEL TÉCNICO, JEFE DE EQUIPO \\
           //---------------------------------------------------\\
+
+          $table->unsignedBigInteger('jefe_equipo_id');
+          $table->foreign('jefe_equipo_id')->references('id')->on('users');*/
         });
     }
 
