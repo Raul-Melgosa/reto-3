@@ -28,9 +28,8 @@ class CreateIncidenciasTable extends Migration
             $table->unsignedBigInteger('ascensor_id');
             $table->foreign('ascensor_id')->references('id')->on('ascensors');
 
-            //--------------------------------\\ 
-            //FALTA LA FOREIGN KEY DEL TÉCNICO\\
-            //--------------------------------\\
+            $table->unsignedBigInteger('tecnico_id');
+            $table->foreign('tecnico_id')->references('id')->on('users');
         });
     }
 
