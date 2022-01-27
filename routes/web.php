@@ -22,3 +22,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route::get('/mail/{mail}/{contenido}/', [App\Http\Controllers\MailControler::class, 'sendEmailIncidencia', ]);
+
+Route::get('/form', function ()
+{
+    return view('formularios.formularioOperador');
+});
+
+Route::get('/user', function ()
+{
+    return view('formularios.formularioNuevoUser');
+});
