@@ -95,7 +95,6 @@ class DatabaseSeeder extends Seeder
             'rol'=>"operador",
         ]);
         
-        
         function llamadaFactoryAscensor($zonaId) {
             Ascensor::factory(random_int(50,100))->create([
                 'zona_id' => $zonaId,
@@ -109,18 +108,19 @@ class DatabaseSeeder extends Seeder
             'zona'=>"norte"
         ]);
         llamadaFactoryAscensor($zonaId);
-        DB::table('users')->insert([
-            'name'=>"Raul",
-            'email'=>"raul.melgosa@ikasle.egibide.org",
-            'password'=>Hash::make("12345678"),
-            'rol'=>"tecnico",
-            'equipo_id'=>1,
-        ]);
+
+        $user = new User();
+        $user->name = 'Raul';
+        $user->email = 'raul.melgosa@ikasle.egibide.org';
+        $user->password = Hash::make("12345678");
+        $user->rol = 'tecnico';
+        $user->equipo_id = '1';
+        $user->save();
 
         $user = new User();
         $user->name = 'Nieves';
         $user->email = 'nieves@ikasle.egibide.org';
-        $user->password = 'Hash::make("12345678")';
+        $user->password = Hash::make("12345678");
         $user->rol = 'jde';
         $user->equipo_id = '1';
         $user->save();
@@ -148,6 +148,8 @@ class DatabaseSeeder extends Seeder
             'zona'=>"centro"
         ]);
         llamadaFactoryAscensor($zonaId);
+
+        User::factory()->count(5)->create();
 
         Cliente::factory()->count(5)->create();
 
