@@ -76,13 +76,13 @@
                 <div class="col-12 col-sm-11 col-md-10 ">
                    <div class="row justify-content-center"> 
                        <div class="col-6 col-sm-6 col-md-5 col-lg-4 form-switch mb-3">
-                            <label class="col-6 form-check-label" for="urgente" >Urgente</label>
-                            <input class="col-6 form-check-input" type="checkbox" id="urgente" name="urgente" value="true">
+                            <label class="col-6 d-inline-block form-check-label" for="urgente" >Urgente</label>
+                            <input class="col-6 d-inline-block form-check-input" type="checkbox" id="urgente" name="urgente" value="true">
                         </div>
 
                         <div class="col-6 col-sm-6 col-md-5 col-lg-4  mb-3 row g-0">     
-                            <label class="col-6" for="select-tecnico">T&eacute;cnico</label>
-                            <select class="col-6 form-select d-inlineblock" name="" id="select-tecnico">
+                            <label class="col-6 d-inline-block" for="select-tecnico">T&eacute;cnico</label>
+                            <select class="col-6 d-inline-block form-select d-inlineblock" name="" id="select-tecnico">
                             <!-- 
                                 foreach()
                                     <option value=""></option>
