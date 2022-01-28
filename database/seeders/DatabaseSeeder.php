@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Ascensor;
 use App\Models\Cliente;
 use App\Models\Equipo;
+use App\Models\Incidencia;
 use App\Models\ModeloAscensor;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -80,26 +81,12 @@ class DatabaseSeeder extends Seeder
             $m->carga=$modelo['carga'];
             $m->save();
         }
-
-        DB::table('users')->insert([
-            'name'=>"Roberto",
-            'email'=>"roberto.cerdan@ikasle.egibide.org",
-            'password'=>Hash::make("1234"),
-            'rol'=>"admin",
-        ]);
-        
-        DB::table('users')->insert([
-            'name'=>"Barbara",
-            'email'=>"barbara.lopez@ikasle.egibide.org",
-            'password'=>Hash::make("12345678"),
-            'rol'=>"operador",
-        ]);
         
         function llamadaFactoryAscensor($zonaId) {
             Ascensor::factory(random_int(50,100))->create([
                 'zona_id' => $zonaId,
             ]);
-            DB::table('equipos')->insertGetId([
+            DB::table('equipos')->insert([
                 'zona_id' => $zonaId,
             ]);
         }
@@ -108,22 +95,6 @@ class DatabaseSeeder extends Seeder
             'zona'=>"norte"
         ]);
         llamadaFactoryAscensor($zonaId);
-
-        $user = new User();
-        $user->name = 'Raul';
-        $user->email = 'raul.melgosa@ikasle.egibide.org';
-        $user->password = Hash::make("12345678");
-        $user->rol = 'tecnico';
-        $user->equipo_id = '1';
-        $user->save();
-
-        $user = new User();
-        $user->name = 'Nieves';
-        $user->email = 'nieves@ikasle.egibide.org';
-        $user->password = Hash::make("12345678");
-        $user->rol = 'jde';
-        $user->equipo_id = '1';
-        $user->save();
 
 
         $zonaId=DB::table('zonas')->insertGetId([
@@ -149,9 +120,32 @@ class DatabaseSeeder extends Seeder
         ]);
         llamadaFactoryAscensor($zonaId);
 
-        User::factory()->count(5)->create();
+        DB::table('users')->insert([
+            'name'=>"admin",
+            'email'=>"admin@igobide.org",
+            'password'=>Hash::make("admin"),
+            'rol'=>"admin",
+        ]);
+
+        User::factory()->count(25)->create([
+            'rol' => 'operador'
+        ]);
+
+        $equipos = (new Equipo)->all();
+        foreach ($equipos as $equipo) {
+            User::factory()->count(10)->create([
+                'rol' => 'tecnico',
+                'equipo_id' => $equipo->id
+            ]);
+            User::factory()->count(1)->create([
+                'rol' => 'jde',
+                'equipo_id' => $equipo->id
+            ]);
+        }
 
         Cliente::factory()->count(5)->create();
+
+        Incidencia::factory()->count(50)->create();
 
         //Ascensor::factory()->count(5)->create();
     }
