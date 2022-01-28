@@ -19,7 +19,7 @@ class CreateIncidenciasTable extends Migration
             $table->timestamp('fecha-fin')->nullable();
             $table->boolean('urgente');
             $table->string('estado');
-            $table->longText('comentario');
+            $table->longText('comentario')->nullable();
             $table->string('tipoaveria');
 
             $table->unsignedBigInteger('cliente_id');

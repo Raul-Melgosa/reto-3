@@ -17,32 +17,15 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $roles = ['tecnico','jde','operador'];
-        $rol = $roles[random_int(0,count($roles)-1)];
-        if($rol=='operador') {
-            return [
-                'name' => $this->faker->name(),
-                'email' => $this->faker->unique()->safeEmail(),
-                'email_verified_at' => now(),
-                'password' => Hash::make("12345678"), // password
-                'remember_token' => Str::random(10),
-                'rol' => $rol
-            ];
-        } else {
-            $equipos = (new Equipo)->all();
-            $equipo = $equipos[random_int(0,count($equipos)-1)];
-            return [
-                'name' => $this->faker->name(),
-                'email' => $this->faker->unique()->safeEmail(),
-                'email_verified_at' => now(),
-                'password' => Hash::make("12345678"), // password
-                'remember_token' => Str::random(10),
-                'rol' => $rol,
-                'equipo_id' => $equipo->id
-            ];
-        }
-        
+        return [
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => Hash::make("12345678"), // password
+            'remember_token' => Str::random(10)
+        ];
     }
+    
 
     /**
      * Indicate that the model's email address should be unverified.
