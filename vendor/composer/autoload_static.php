@@ -673,6 +673,7 @@ class ComposerStaticInite9d9f24f6bf6af15059929a105144ca3
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\AscensorFactory' => __DIR__ . '/../..' . '/database/factories/AscensorFactory.php',
         'Database\\Factories\\ClienteFactory' => __DIR__ . '/../..' . '/database/factories/ClienteFactory.php',
+        'Database\\Factories\\IncidenciaFactory' => __DIR__ . '/../..' . '/database/factories/IncidenciaFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',

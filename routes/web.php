@@ -2,10 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/features
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +23,22 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+//Ejemplo almacenamiento
+Route::get('/formulario', [App\Http\Controllers\StorageController::class, 'index']);
+Route::post('storage/create', [App\Http\Controllers\StorageController::class, 'store']);
+Route::get('/manuales/{archivo}', function ($archivo) {
+    $public_path = public_path();
+    $url = $public_path.'/storage/manuales/'.$archivo;
+    //verificamos si el archivo existe y lo retornamos
+    if (Storage::exists($archivo))
+    {
+      return response()->download($url);
+    }
+    //si no se encuentra lanzamos un error 404.
+    abort(404);
+});
+
+
+//Ejemplo envio mail
 //Route::get('/mail/{mail}/{contenido}/', [App\Http\Controllers\MailControler::class, 'sendEmailIncidencia', ]);

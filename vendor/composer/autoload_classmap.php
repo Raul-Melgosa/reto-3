@@ -153,6 +153,7 @@ return array(
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\AscensorFactory' => $baseDir . '/database/factories/AscensorFactory.php',
     'Database\\Factories\\ClienteFactory' => $baseDir . '/database/factories/ClienteFactory.php',
+    'Database\\Factories\\IncidenciaFactory' => $baseDir . '/database/factories/IncidenciaFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
