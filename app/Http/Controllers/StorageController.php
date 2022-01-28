@@ -45,9 +45,9 @@ class StorageController extends Controller
        $nombre = $file->getClientOriginalName();
 
        //indicamos que queremos guardar un nuevo archivo en el disco local
-       Storage::disk('local')->put($nombre,  File::get($file));
+       Storage::disk('manuales')->put($nombre,  File::get($file));
 
-       return "archivo guardado";
+       return redirect()->route('manuales.create');
     }
 
     /**
@@ -90,8 +90,8 @@ class StorageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($archivo)
     {
-        //
+        Storage::delete('/manuales/'.$archivo);
     }
 }

@@ -25,19 +25,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //Ejemplo almacenamiento
-Route::get('/formulario', [App\Http\Controllers\StorageController::class, 'index']);
-Route::post('storage/create', [App\Http\Controllers\StorageController::class, 'store']);
+Route::get('/manuales/create', [App\Http\Controllers\StorageController::class, 'index'])->name('manuales.create');
+Route::post('/manuales/store', [App\Http\Controllers\StorageController::class, 'store'])->name('manuales.store');
 Route::get('/manuales/{archivo}', function ($archivo) {
     $public_path = public_path();
     $url = $public_path.'/storage/manuales/'.$archivo;
     //verificamos si el archivo existe y lo retornamos
-    if (Storage::exists($archivo))
+    if (Storage::exists('/manuales/'.$archivo))
     {
       return response()->download($url);
+    }else{
+        //si no se encuentra lanzamos un error 404.
+        abort(404);
     }
-    //si no se encuentra lanzamos un error 404.
-    abort(404);
 });
+Route::get('/manuales/delete/{archivo}', [App\Http\Controllers\StorageController::class, 'destroy'])->name('manuales.destroy');
 
 
 //Ejemplo envio mail

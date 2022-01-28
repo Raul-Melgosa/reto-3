@@ -9,7 +9,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Agregar archivos</div>
         <div class="panel-body">
-          <form method="POST" action="http://igobideapp.test/storage/create" accept-charset="UTF-8" enctype="multipart/form-data">
+          <form method="POST" action="{{route('manuales.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">
             
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             
