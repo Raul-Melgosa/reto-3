@@ -70,8 +70,8 @@
                 </div>
                 <div class="col-12 col-sm-11 col-md-10  border border-light "></div>
                 <div class="col-12 col-sm-11 col-md-10  mb-3">
-                    <h2>Tecnico</h2>
-                    <select name="" id="">
+                    <h2>Incidencia</h2>
+                    <select class="form-select" placeholder="Técnico" name="" id="">
                         <!-- 
                             foreach()
                                 <option value=""></option>
