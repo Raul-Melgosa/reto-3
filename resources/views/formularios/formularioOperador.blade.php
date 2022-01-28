@@ -73,32 +73,33 @@
                     <h2>Incidencia</h2>
                     <div class="row g-0 col-10">
                         <label for="select-tecnico">T&eacute;cnico</label>
-                        <select class="form-select" name="" id="select-tecnico">
-                    </div>
+                        <select class="form-select d-inlineblock" name="" id="select-tecnico">
+                    
                         <!-- 
                             foreach()
                                 <option value=""></option>
                             endforeach
                         -->
-                    </select>
-                    
+                        </select>
+                    </div>
                 </div>
 
                 <div class="col-12 col-sm-11 col-md-10 ">
                    <div class="row justify-content-center"> 
-                       <div class="col-6 col-sm-6 col-md-5 col-lg-4  mb-3">
-                            <label class="me-3 " for="urgencia" >Urgente:  </label>
-                            <input type="radio" id="urgenciaSi" name="urgencia" value="si">
-                            <label for="urgenciaSi">Si</label>
-                            <input type="radio" id="urgenciaNo" name="urgencia" value="no">
-                            <label for="urgenciaNo">No</label>
-                        </div>  
+                       <div class="col-6 col-sm-6 col-md-5 col-lg-4 form-switch mb-3">
+                            <label class="me-3" for="urgente" >Urgente</label>
+                            <input type="checkbox" id="urgente" name="urgente" value="true">
+                        </div>
+
                         <div class="col-6 col-sm-6 col-md-5 col-lg-4  mb-3">     
-                            <label class="me-3 " for="estado" >Estado:  </label>
-                            <select name="" id="">
-                                <option value="Sin Estado">Sin Estado</option>
-                                <option value="En Proceso">En Proceso</option>
-                                <option value="Finalizado">Finalizado</option>
+                            <label class="me-3" for="select-tecnico">T&eacute;cnico</label>
+                            <select class="form-select d-inlineblock" name="" id="select-tecnico">
+                        
+                            <!-- 
+                                foreach()
+                                    <option value=""></option>
+                                endforeach
+                            -->
                             </select>
                         </div> 
                     </div>
