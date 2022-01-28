@@ -121,7 +121,9 @@ class DatabaseSeeder extends Seeder
         llamadaFactoryAscensor($zonaId);
 
         DB::table('users')->insert([
-            'name'=>"admin",
+            'nombre'=>"admin",
+            'apellidos' => "admin",
+            'username' => 'admin',
             'email'=>"admin@igobide.org",
             'password'=>Hash::make("admin"),
             'rol'=>"admin",
