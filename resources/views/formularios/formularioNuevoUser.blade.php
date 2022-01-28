@@ -14,9 +14,12 @@
     <body>
         <div class="container">
             <h1 class="mb-3">Nuevo usuario</h1>
+
             <form class="row justify-content-center" action="" method="post">
                 
-                <div  class="col-10 ">
+                <div  class="col-11 col-lg-10">
+                <div class="rov justify-content-center">
+                    
                     <label class="position-relative">
                         <input type="text" name="" id="nombreCliente" placeholder=" ">
                         <span class="p-2 ">Nombre</span>
@@ -30,7 +33,7 @@
                         <span class="p-2">Email</span>
                     </label>
                 </div>    
-                <div class="col-10">
+                <div class="col-11 col-lg-10">
                     <label class="position-relative">
                         <input type="text" name="" id="username" placeholder=" ">
                         <span class="p-2">Nombre de usuario</span>
@@ -46,46 +49,45 @@
                 
                 </div>
 
-                <div class="col-10  mb-3">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-5 col-lg-4  mb-3"> 
+                <div class="col-11 col-sm-11 col-lg-10 mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3  mb-3"> 
                             <p class="fs-5">Tipo de usuario</p>
-                            <select name="" id="">
-                                <!-- 
-                                    foreach()
-                                        <option value=""></option>
-                                    endforeach
-                                -->
+                            <select name="" id=""> 
+                                <option value="Operador">Operador</option>
+                                <option value="Jefe Equipo">Jefe Equipo</option> 
+                                <option value="Tecnico">Tecnico</option>
                             </select>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-5 col-lg-4 mb-3"> 
-                            <p class="fs-5">Tipo de usuario</p>
-                            <select name="" id="">
-                                <!-- 
-                                    foreach()
-                                        <option value=""></option>
-                                    endforeach
-                                -->
-                            </select>
-                        </div>
-                        <!-- 
-                            if()
-                                <div class="col-6"> 
-                                    <p class="fs-5">Equipo</p>
-                                    <select name="" id="">
-                                        
-                                            foreach()
-                                                <option value=""></option>
-                                            endforeach
+                        
+                        
+                        
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-8 mb-3"> 
+                                <p class="fs-5">Equipo</p>
+                            <!--  if(tipo usuario==jefe equipo || tipo usuario==tecnico)-->
+                                <select name="" id="">
                                     
-                                    </select>
-                                </div>
-                            endif
-                        -->
-                    </div>
+                                        <!--  foreach()-->
+                                            <option value=""></option>
+                                        <!--  endforeach-->
+                                
+                                </select> 
+                            <!--  else
+                            // inactivo
+                                    <select name="" id="">
+                                    
+                                        foreach()
+                                            <option value=""></option>
+                                        endforeach
+                                
+                                </select> 
+                            endif-->
 
+                        </div>
+                    </div>
                 </div>
-                <div class="col-10 ">
+
+                <div class="col-11 col-sm-11 col-lg-10">
                     <input class="btn border mb-3" type="submit" value="Añadir">
                 </div>
 
