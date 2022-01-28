@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-develop',
+        'version' => 'dev-develop',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '8ec985de699aad9653f88c1153f44978e670f154',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -128,7 +128,7 @@
             'install_path' => __DIR__ . '/../fakerphp/faker',
             'aliases' => array(),
             'reference' => '2e77a868f6540695cf5ebf21e5ab472c65f47567',
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'filp/whoops' => array(
             'pretty_version' => '2.14.5',
@@ -395,12 +395,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '8ec985de699aad9653f88c1153f44978e670f154',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -563,12 +563,12 @@
             'dev_requirement' => true,
         ),
         'opis/closure' => array(
-            'pretty_version' => '3.6.2',
-            'version' => '3.6.2.0',
+            'pretty_version' => '3.6.3',
+            'version' => '3.6.3.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../opis/closure',
             'aliases' => array(),
-            'reference' => '06e2ebd25f2869e54a306dda991f7db58066f7f6',
+            'reference' => '3d81e4309d2a927abbe66df935f4bb60082805ad',
             'dev_requirement' => false,
         ),
         'phar-io/manifest' => array(
