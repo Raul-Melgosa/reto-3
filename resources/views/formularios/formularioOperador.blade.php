@@ -14,82 +14,93 @@
     <body>
         <div class="container">
             <h1>Incidencia</h1>
-            <form class="row justify-content-center" action="" method="post">
-                
-                <div  class="col-12 col-sm-11 col-md-10 ">
+            <form class="row justify-content-center" action="{{ route('store') }}" method="post">
+                @csrf
+                <div  class="col-11 col-md-10 ">
                     <h2>Cliente</h2>
-                    <label class="position-relative">
-                        <input type="text" name="" id="nombreCliente" placeholder=" ">
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="nombreCliente" placeholder=" ">
                         <span class="p-2 ">Nombre</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="apellidoCliente" placeholder=" ">
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="apellidoCliente" placeholder=" ">
                         <span class="p-2">Apellido</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="emailCliente" placeholder=" ">
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="emailCliente" placeholder=" ">
                         <span class="p-2">Email</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="telefono" placeholder=" ">
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="telefono" placeholder=" ">
                         <span class="p-2">Telefono</span>
                     </label>
                     <h3 class="fs-5">Direccion</h3>
-                    <label class="position-relative">
-                        <input type="text" name="" id="calle" placeholder=" ">
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="calle" placeholder=" ">
                         <span class="p-2">Calle</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="numero" placeholder=" ">
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="numero" placeholder=" ">
                         <span class="p-2">Numero</span>
                     </label>
                 </div>
-                <div class="col-12 col-sm-11 col-md-10 border border-light "></div>
-                <div class="col-12 col-sm-11 col-md-10 ">
+                <div class="col-12 col-sm-11 col-md-10 border border-light my-3"></div>
+                <div class="col-11 col-md-10">
                     <h2>Ascensor</h2>
-                    <label class="position-relative">
-                        <input type="text" name="" id="numeroSerie" placeholder=" " disabled>
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="numeroSerie" placeholder=" " disabled>
                         <span class="p-2">Numero de serie</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="modeloAscensor" placeholder=" " disabled>
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="modeloAscensor" placeholder=" " disabled>
                         <span class="p-2">Modelo</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="carga" placeholder=" " disabled>
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="carga" placeholder=" " disabled>
                         <span class="p-2">Carga (Kg)</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="recorrido" placeholder=" " disabled>
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="recorrido" placeholder=" " disabled>
                         <span class="p-2">Recorrido</span>
                     </label>
-                    <label class="position-relative">
-                        <input type="text" name="" id="numParadas" placeholder=" " disabled>
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" name="" id="numParadas" placeholder=" " disabled>
                         <span class="p-2">Numero de paradas</span>
                     </label>
                 </div>
-                <div class="col-12 col-sm-11 col-md-10  border border-light "></div>
-                <div class="col-12 col-sm-11 col-md-10  mb-3">
+                <div class="col-12 col-sm-11 col-md-10  border border-light my-3"></div>
+                <div class="col-11 col-md-10 ">
                     <h2>Incidencia</h2>
-                </div>
-
-                <div class="col-12 col-sm-11 col-md-10 ">
-                   <div class="row justify-content-center"> 
-                       <div class="col-6 col-sm-6 col-md-5 col-lg-4 form-switch mb-3">
-                            <label class="col-6 d-inline-block form-check-label" for="urgente" >Urgente</label>
-                            <input class="col-6 d-inline-block form-check-input" type="checkbox" id="urgente" name="urgente" value="true">
-                        </div>
-
-                        <div class="col-6 col-sm-6 col-md-5 col-lg-4  mb-3 row g-0">     
-                            <label class="col-6 d-inline-block" for="select-tecnico">T&eacute;cnico</label>
-                            <select class="col-6 d-inline-block form-select d-inlineblock" name="" id="select-tecnico">
-                            <!-- 
-                                foreach()
-                                    <option value=""></option>
-                                endforeach
-                            -->
+                
+                   <div class="row "> 
+                        <div class="col-11 col-lg-9 mb-3 row g-0 ms-3">     
+                            <label class="form-label col-6 d-inline-block" for="select-tecnico">T&eacute;cnico</label>
+                            <select class="form-label col-6 d-inline-block form-select d-inlineblock" name="" id="select-tecnico">
+                                @foreach($tecnicos as $tecnico)
+                                    <option value="{{ $tecnico->id }}">{{ $tecnico->id }} {{ $tecnico->nombre }}</option>
+                                @endforeach
                             </select>
                         </div> 
+                        <div class="col-11  ms-3">     
+                            <label class="form-label me-3 " for="estado" >Tivo averia</label>
+                            <select name="" id="">
+                                <option value="">Sin datos</option>
+                                <optgroup label="Bandalismo">
+                                    <option value="Bandalismo (estético)">Est&eacute;tico</option>
+                                </optgroup>
+                                
+                                <optgroup label="Funcionamiento">
+                                    <option value="Funcionamiento (mecánico)">Mec&aacute;nico</option>
+                                    <option value="Funcionamiento (eléctrico)">El&eacute;ctrico</option>
+                                </optgroup>
+                            </select>
+                        </div> 
+
+                        <div class="col-11  form-switch mb-3">
+                            <label class="form-label col-6 d-inline-block form-check-label" for="urgente" >Urgente</label>
+                            <input class="form-control" class="col-6 d-inline-block form-check-input" type="checkbox" id="urgente" name="urgente" value="true">
+                        </div>
+
                     </div>
                 </div>
 

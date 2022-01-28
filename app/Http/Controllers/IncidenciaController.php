@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Incidencia;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class IncidenciaController extends Controller
 {
     /**
@@ -14,7 +14,9 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        //
+        $tecnicos=User::where('rol','tecnico');
+
+        return view('formularios.formularioOperador', compact('tecnicos'));
     }
 
     /**
@@ -35,7 +37,18 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $nombre=request('nombreCliente');
+        $apellido=request('apellidoCliente');
+        $email=request('emailCliente');
+
+        
+
+
+
+
+
+        return redirect()->route('index');
     }
 
     /**

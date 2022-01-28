@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\ClienteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,12 +24,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Route::get('/mail/{mail}/{contenido}/', [App\Http\Controllers\MailControler::class, 'sendEmailIncidencia', ]);
 
-Route::get('/form', function ()
+/*Route::get('/form', function ()
 {
     return view('formularios.formularioOperador');
 });
-
+*/
 Route::get('/user', function ()
 {
     return view('formularios.formularioNuevoUser');
 });
+
+
+Route::get('/cliente',[ClienteController::class, 'index'])->name('index');
+
+Route::post('/cliente',[ClienteController::class, 'store'])->name('store');
+
+
+
