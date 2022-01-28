@@ -86,7 +86,7 @@
 
                 </div>
                 <div class="col-10 ">
-                    <input class="btn border" type="submit" value="Añadir">
+                    <input class="btn border mb-3" type="submit" value="Añadir">
                 </div>
 
             </form>

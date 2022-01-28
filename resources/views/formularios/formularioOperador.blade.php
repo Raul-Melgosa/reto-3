@@ -16,7 +16,7 @@
             <h1>Incidencia</h1>
             <form class="row justify-content-center" action="" method="post">
                 
-                <div  class="col-10 ">
+                <div  class="col-12 col-sm-11 col-md-10 ">
                     <h2>Cliente</h2>
                     <label class="position-relative">
                         <input type="text" name="" id="nombreCliente" placeholder=" ">
@@ -44,8 +44,8 @@
                         <span class="p-2">Numero</span>
                     </label>
                 </div>
-                <div class="col-10 border border-light "></div>
-                <div class="col-10 ">
+                <div class="col-12 col-sm-11 col-md-10 border border-light "></div>
+                <div class="col-12 col-sm-11 col-md-10 ">
                     <h2>Ascensor</h2>
                     <label class="position-relative">
                         <input type="text" name="" id="numeroSerie" placeholder=" " disabled>
@@ -68,8 +68,8 @@
                         <span class="p-2">Numero de paradas</span>
                     </label>
                 </div>
-                <div class="col-10 border border-light "></div>
-                <div class="col-10 mb-3">
+                <div class="col-12 col-sm-11 col-md-10  border border-light "></div>
+                <div class="col-12 col-sm-11 col-md-10  mb-3">
                     <h2>Tecnico</h2>
                     <select name="" id="">
                         <!-- 
@@ -81,19 +81,31 @@
                     
                 </div>
 
-                <div class="col-10 ">
-                   
-                    <label class="me-3 " for="urgencia" >Urgente:  </label>
-                
-                    <input type="radio" id="urgenciaSi" name="urgencia" value="si">
-                    <label for="urgenciaSi">Si</label>
-                    <input type="radio" id="urgenciaNo" name="urgencia" value="no">
-                    <label for="urgenciaNo">No</label>
-                        
-                    
+                <div class="col-12 col-sm-11 col-md-10 ">
+                   <div class="row justify-content-center"> 
+                       <div class="col-6 col-sm-6 col-md-5 col-lg-4  mb-3">
+                            <label class="me-3 " for="urgencia" >Urgente:  </label>
+                            <input type="radio" id="urgenciaSi" name="urgencia" value="si">
+                            <label for="urgenciaSi">Si</label>
+                            <input type="radio" id="urgenciaNo" name="urgencia" value="no">
+                            <label for="urgenciaNo">No</label>
+                        </div>  
+                        <div class="col-6 col-sm-6 col-md-5 col-lg-4  mb-3">     
+                            <label class="me-3 " for="estado" >Estado:  </label>
+                            <select name="" id="">
+                                <option value="Sin Estado">Sin Estado</option>
+                                <option value="En Proceso">En Proceso</option>
+                                <option value="Finalizado">Finalizado</option>
+                            </select>
+                        </div> 
+                    </div>
                 </div>
-                <div class="col-10">
-                    <input class="btn border" type="submit" value="Añadir">
+
+                <div class="col-12 col-sm-11 col-md-10 ">
+                    
+                    <label for="comentarioOperador">Comentario Operador: </label>
+                    <textarea class="col-12 mb-3" name="" id="comentarioOperador" cols="30" rows="10"></textarea>
+                    <input class="btn border mb-3" type="submit" value="Añadir">
                 </div>
 
             </form>
