@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\IncidenciaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,9 +35,9 @@ Route::get('/user', function ()
 });
 
 
-Route::get('/cliente',[ClienteController::class, 'index'])->name('index');
+Route::get('/cliente',[IncidenciaController::class, 'index'])->name('index');
 
-Route::post('/cliente',[ClienteController::class, 'store'])->name('store');
+Route::post('/cliente',[IncidenciaController::class, 'store'])->name('store');
 
 
 

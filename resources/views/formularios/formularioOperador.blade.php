@@ -19,28 +19,28 @@
                 <div  class="col-11 col-md-10 ">
                     <h2>Cliente</h2>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="nombreCliente" placeholder=" ">
+                        <input class="form-control" type="text" name="nombreCliente" id="nombreCliente" placeholder=" ">
                         <span class="p-2 ">Nombre</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="apellidoCliente" placeholder=" ">
+                        <input class="form-control" type="text" name="apellidoCliente" id="apellidoCliente" placeholder=" ">
                         <span class="p-2">Apellido</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="emailCliente" placeholder=" ">
+                        <input class="form-control" type="text" name="emailCliente" id="emailCliente" placeholder=" ">
                         <span class="p-2">Email</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="telefono" placeholder=" ">
+                        <input class="form-control" type="text" name="telefono" id="telefono" placeholder=" ">
                         <span class="p-2">Telefono</span>
                     </label>
                     <h3 class="fs-5">Direccion</h3>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="calle" placeholder=" ">
+                        <input class="form-control" type="text" name="calle" id="calle" placeholder=" ">
                         <span class="p-2">Calle</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="numero" placeholder=" ">
+                        <input class="form-control" type="text" name="numero" id="numero" placeholder=" ">
                         <span class="p-2">Numero</span>
                     </label>
                 </div>
@@ -48,23 +48,23 @@
                 <div class="col-11 col-md-10">
                     <h2>Ascensor</h2>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="numeroSerie" placeholder=" " disabled>
+                        <input class="form-control" type="text" name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
                         <span class="p-2">Numero de serie</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="modeloAscensor" placeholder=" " disabled>
+                        <input class="form-control" type="text" name="modeloAscensor" id="modeloAscensor" placeholder=" " disabled>
                         <span class="p-2">Modelo</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="carga" placeholder=" " disabled>
+                        <input class="form-control" type="text" name="carga" id="carga" placeholder=" " disabled>
                         <span class="p-2">Carga (Kg)</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="recorrido" placeholder=" " disabled>
+                        <input class="form-control" type="text" name="recorrido" id="recorrido" placeholder=" " disabled>
                         <span class="p-2">Recorrido</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="" id="numParadas" placeholder=" " disabled>
+                        <input class="form-control" type="text" name="numParadas" id="numParadas" placeholder=" " disabled>
                         <span class="p-2">Numero de paradas</span>
                     </label>
                 </div>
@@ -75,15 +75,15 @@
                    <div class="row "> 
                         <div class="col-11 col-lg-9 mb-3 row g-0 ms-3">     
                             <label class="form-label col-6 d-inline-block" for="select-tecnico">T&eacute;cnico</label>
-                            <select class="form-label col-6 d-inline-block form-select d-inlineblock" name="" id="select-tecnico">
+                            <select class="form-label col-6 d-inline-block form-select d-inlineblock" name="tecnico" id="select-tecnico">
                                 @foreach($tecnicos as $tecnico)
-                                    <option value="{{ $tecnico->id }}">{{ $tecnico->id }} {{ $tecnico->nombre }}</option>
+                                    <option value="{{ $tecnico->id }}">Nº: {{ $tecnico->id }}, {{ $tecnico->name }}</option>
                                 @endforeach
                             </select>
                         </div> 
                         <div class="col-11  ms-3">     
                             <label class="form-label me-3 " for="estado" >Tivo averia</label>
-                            <select name="" id="">
+                            <select name="averia" id="">
                                 <option value="">Sin datos</option>
                                 <optgroup label="Bandalismo">
                                     <option value="Bandalismo (estético)">Est&eacute;tico</option>
@@ -98,7 +98,7 @@
 
                         <div class="col-11  form-switch mb-3">
                             <label class="form-label col-6 d-inline-block form-check-label" for="urgente" >Urgente</label>
-                            <input class="form-control" class="col-6 d-inline-block form-check-input" type="checkbox" id="urgente" name="urgente" value="true">
+                            <input class="form-control col-6 d-inline-block " type="checkbox" id="urgente" name="urgente" value="true">
                         </div>
 
                     </div>
@@ -107,7 +107,7 @@
                 <div class="col-12 col-sm-11 col-md-10 ">
                     
                     <label for="comentarioOperador">Comentario Operador: </label>
-                    <textarea class="col-12 mb-3" name="" id="comentarioOperador" cols="30" rows="10"></textarea>
+                    <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10"></textarea>
                     <input class="btn border mb-3" type="submit" value="Añadir">
                 </div>
 

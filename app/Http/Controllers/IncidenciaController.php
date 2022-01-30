@@ -14,7 +14,7 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $tecnicos=User::where('rol','tecnico');
+        $tecnicos=User::all()->where('rol','=','tecnico');
 
         return view('formularios.formularioOperador', compact('tecnicos'));
     }
