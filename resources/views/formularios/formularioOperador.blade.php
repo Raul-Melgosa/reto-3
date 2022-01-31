@@ -14,7 +14,7 @@
     <body>
         <div class="container">
             <h1>Incidencia</h1>
-            <form class="row justify-content-center" action="{{ route('store') }}" method="post">
+            <form class="row justify-content-center" action="{{ route('incidencia.store') }}" method="post">
                 @csrf
                 <div  class="col-11 col-md-10 ">
                     <h2>Cliente</h2>
@@ -43,6 +43,28 @@
                         <input class="form-control" type="text" name="numero" id="numero" placeholder=" ">
                         <span class="p-2">Numero</span>
                     </label>
+                     <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Confirmar
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-sm-11 col-md-10 border border-light my-3"></div>
                 <div class="col-11 col-md-10">
@@ -77,7 +99,7 @@
                             <label class="form-label col-6 d-inline-block" for="select-tecnico">T&eacute;cnico</label>
                             <select class="form-label col-6 d-inline-block form-select d-inlineblock" name="tecnico" id="select-tecnico">
                                 @foreach($tecnicos as $tecnico)
-                                    <option value="{{ $tecnico->id }}">Nº: {{ $tecnico->id }}, {{ $tecnico->name }}</option>
+                                    <option value="{{ $tecnico->id }}">Nº: {{ $tecnico->id }}, {{ $tecnico->name }}, {{ $tecnico->email }} </option>
                                 @endforeach
                             </select>
                         </div> 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\FiltrosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,9 +36,10 @@ Route::get('/user', function ()
 });
 
 
-Route::get('/cliente',[IncidenciaController::class, 'index'])->name('index');
+Route::get('/incidencia',[IncidenciaController::class, 'index'])->name('incidencia.index');
 
-Route::post('/cliente',[IncidenciaController::class, 'store'])->name('store');
+Route::post('/incidencia',[IncidenciaController::class, 'store'])->name('incidencia.store');
 
+Route::get('/filtros',[FiltrosController::class, 'index'])->name('filtros.index');
 
-
+Route::get('/filtros/{id}',[FiltrosController::class, 'show'])->name('filtros.show');

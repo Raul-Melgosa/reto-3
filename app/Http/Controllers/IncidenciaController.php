@@ -41,9 +41,9 @@ class IncidenciaController extends Controller
         $nombre=request('nombreCliente');
         $apellido=request('apellidoCliente');
         $email=request('emailCliente');
-
+        $id_tecnico=request('tecnico');
         
-
+        $tecnico=User::all()->where('id','=',$id_tecnico);
 
 
 
