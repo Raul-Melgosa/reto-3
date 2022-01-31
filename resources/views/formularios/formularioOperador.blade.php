@@ -57,7 +57,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    
+                                    <a href="" data-bs-dismiss="modal" aria-label="Close">hidbv8yefrg9ufwm</a>
                                 </div>
                                 <div class="modal-footer">
                                     
@@ -95,7 +95,7 @@
                     <h2>Incidencia</h2>
                 
                    <div class="row "> 
-                        <div class="col-11 col-lg-9 mb-3 row g-0 ms-3">     
+                        <div class="col-11 col-lg-9 mb-3 row g-0 ms-4">     
                             <label class="form-label col-6 d-inline-block" for="select-tecnico">T&eacute;cnico</label>
                             <select class="form-label col-6 d-inline-block form-select d-inlineblock" name="tecnico" id="select-tecnico">
                                 @foreach($tecnicos as $tecnico)

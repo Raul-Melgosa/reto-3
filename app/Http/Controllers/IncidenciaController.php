@@ -48,7 +48,7 @@ class IncidenciaController extends Controller
 
 
 
-        return redirect()->route('index');
+        return redirect()->route('incidencia.index');
     }
 
     /**

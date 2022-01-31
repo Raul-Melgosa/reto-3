@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Incidencia;
+use App\Models\ModeloAscensor;
 
 class FiltrosController extends Controller
 {
@@ -29,7 +30,8 @@ class FiltrosController extends Controller
     public function show($id)
     {
         $incidencia=Incidencia::find($id);
-        return view('filtros.detalles', compact('incidencia'));
+        $modelo=ModeloAscensor::find($incidencia->ascensor->modeloAscensor_id);
+        return view('filtros.detalles', compact('incidencia','modelo'));
     }
 
     public function edit()
