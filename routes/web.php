@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/prueba', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZona']);
+
 
 //Ejemplo almacenamiento
 Route::get('/manuales/create', [App\Http\Controllers\StorageController::class, 'index'])->name('manuales.create');

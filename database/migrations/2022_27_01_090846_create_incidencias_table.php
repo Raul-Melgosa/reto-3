@@ -16,7 +16,8 @@ class CreateIncidenciasTable extends Migration
         Schema::create('incidencias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('fecha-fin')->nullable();
+            $table->timestamp('fecha_inicio')->nullable();
+            $table->timestamp('fecha_fin')->nullable();
             $table->boolean('urgente');
             $table->string('estado');
             $table->longText('comentario')->nullable();
@@ -28,8 +29,8 @@ class CreateIncidenciasTable extends Migration
             $table->unsignedBigInteger('ascensor_id');
             $table->foreign('ascensor_id')->references('id')->on('ascensors');
 
-            $table->unsignedBigInteger('tecnico_id');
-            $table->foreign('tecnico_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');                      //cambio de ''tecnico_id'' a ''user_id'' por respetar los convencionalismos
+            $table->foreign('user_id')->references('id')->on('users'); //sino algunas relaciones no funcionan
         });
     }
 

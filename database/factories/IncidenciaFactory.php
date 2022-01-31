@@ -7,6 +7,8 @@ use \App\Models\Cliente;
 use \App\Models\Ascensor;
 use \App\Models\Equipo;
 use \App\Models\User;
+use DateTime;
+use Faker\Provider\cs_CZ\DateTime as Cs_CZDateTime;
 
 class IncidenciaFactory extends Factory
 {
@@ -42,20 +44,22 @@ class IncidenciaFactory extends Factory
                 return [
                     'urgente' => true,
                     'estado' => $estado,
-                    'fecha-fin' => $this->faker->date(),
+                    'fecha_inicio' => date('Y-m-d', time()),
+                    'fecha_fin' => $this->faker->dateTimeBetween('0 week', '+1 week'),
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'user_id' => $tecnico->id
                 ];
             } else { //Es urgente y no ha finalizado
                 return [
                     'urgente' => true,
                     'estado' => $estado,
+                    'fecha_inicio' => date('Y-m-d', time()),
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'user_id' => $tecnico->id
                 ];
             }
             
@@ -64,20 +68,22 @@ class IncidenciaFactory extends Factory
                 return [
                     'urgente' => false,
                     'estado' => $estado,
-                    'fecha-fin' => $this->faker->date(),
+                    'fecha_inicio' => date('Y-m-d', time()),
+                    'fecha_fin' => $this->faker->dateTimeBetween('0 week', '+1 week'),
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'user_id' => $tecnico->id
                 ];
             } else { // No es urgente y esta sin finalizar
                 return [
                     'urgente' => false,
                     'estado' => $estado,
+                    'fecha_inicio' => date('Y-m-d', time()),
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'user_id' => $tecnico->id
                 ];
             }
         }
