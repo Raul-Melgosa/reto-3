@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Formulario</title>
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('js/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    </head>
-    <body>
-        <div class="container">
+@extends('layouts.app')
+
+@section('content')
+        <div class="col-10">
             <h1 class="mb-3">Nuevo usuario</h1>
             <form class="row justify-content-center" action="" method="post">
                 @csrf
@@ -89,5 +80,4 @@
 
             </form>
         </div>
-    </body>
-</html>
+@endsection

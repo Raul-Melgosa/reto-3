@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Index Operario</title>
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('js/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            
-            <div class="row">
+@extends('layouts.app')
+
+@section('content')
+            <div class="row justify-content-center">
                 <div  class="col-11 col-md-10 ">
                     <h1>Descripcion de la incidencia</h1>
 
@@ -132,6 +121,4 @@
                     <button class="btn border mb-3"><a href="{{ route('filtros.index') }}">Volver</a></button>
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+@endsection

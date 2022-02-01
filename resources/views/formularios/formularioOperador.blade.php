@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Formulario</title>
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('js/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    </head>
-    <body>
-        <div class="container">
+@extends('layouts.app')
+
+@section('content')
+        <div class="col-10">
             <h1>Incidencia</h1>
             <form class="row justify-content-center" action="{{ route('incidencia.store') }}" method="post">
                 @csrf
@@ -64,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-11 col-md-10 border border-light my-3"></div>
+                <div class="col-11 col-sm-11 col-md-10 border border-light my-3"></div>
                 <div class="col-11 col-md-10">
                     <h2>Ascensor</h2>
                     <label class="form-label position-relative">
@@ -88,7 +79,7 @@
                         <span class="p-2">Numero de paradas</span>
                     </label>
                 </div>
-                <div class="col-12 col-sm-11 col-md-10  border border-light my-3"></div>
+                <div class="col-11 col-sm-11 col-md-10  border border-light my-3"></div>
                 <div class="col-11 col-md-10 ">
                     <h2>Incidencia</h2>
                 
@@ -102,7 +93,7 @@
                             </select>
                         </div> 
                         <div class="col-11  ms-3">     
-                            <label class="form-label me-3 " for="estado" >Tivo averia</label>
+                            <label class="form-label me-3 " for="estado" >Tipo averia</label>
                             <select name="averia" id="">
                                 <option value="">Sin datos</option>
                                 <optgroup label="Bandalismo">
@@ -116,9 +107,9 @@
                             </select>
                         </div> 
 
-                        <div class="col-11  form-switch mb-3">
-                            <label class="form-label col-6 d-inline-block form-check-label" for="urgente" >Urgente</label>
-                            <input class="form-control col-6 d-inline-block " type="checkbox" id="urgente" name="urgente" value="true">
+                        <div class="form-check form-switch ms-5">
+                            <label class="form-check-label fs-5 my-0" for="urgente">Urgente</label>
+                            <input class="form-check-input" type="checkbox" id="urgente">
                         </div>
 
                     </div>
@@ -133,5 +124,4 @@
 
             </form>
         </div>
-    </body>
-</html>
+@endsection         
