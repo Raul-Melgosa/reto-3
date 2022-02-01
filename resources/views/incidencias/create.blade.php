@@ -32,28 +32,59 @@
                         <input class="form-control" type="text" name="numero" id="numero" placeholder=" ">
                         <span class="p-2">Numero</span>
                     </label>
-                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Confirmar
+                    
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Comprobar
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <a href="" data-bs-dismiss="modal" aria-label="Close">hidbv8yefrg9ufwm</a>
-                                </div>
-                                <div class="modal-footer">
-                                    
-                                </div>
-                            </div>
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Posibles ascensores</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 p-0 my-1">
+                                    <input type="radio" class="btn-check" name="ascensores" id="primero" autocomplete="off" value="primero">
+                                    <label class="btn btn-outline-primary m-0 w-100" for="primero">61f7a0517b75f</label>
+                                </li>
+                                <li class="list-group-item border-0 p-0 my-1">
+                                    <input type="radio" class="btn-check" name="ascensores" id="segundo" autocomplete="off" value="segundo">
+                                    <label class="btn btn-outline-primary m-0 w-100" for="segundo">61f7a0517cc73</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Posibles t&eacute;cnicos</h5>
+                        </div>
+
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                <li class="list-group-item border-0 p-0 my-1">
+                                    <input type="radio" class="btn-check" name="tecnicos" id="t-1" autocomplete="off" value="primero">
+                                    <label class="btn btn-outline-dark m-0 w-100" for="t-1">Arancha</label>
+                                </li>
+                                <li class="list-group-item border-0 p-0 my-1">
+                                    <input type="radio" class="btn-check" name="tecnicos" id="t-2" autocomplete="off" value="segundo">
+                                    <label class="btn btn-outline-dark m-0 w-100" for="t-2">Aitor</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success">Aceptar</button>
+                        </div>
                         </div>
                     </div>
+                    </div>
+
                 </div>
                 <div class="col-11 col-sm-11 col-md-10 border border-light my-3"></div>
                 <div class="col-11 col-md-10">
@@ -83,18 +114,10 @@
                 <div class="col-11 col-md-10 ">
                     <h2>Incidencia</h2>
                 
-                   <div class="row "> 
-                        <div class="col-11 col-lg-9 mb-3 row g-0 ms-4">     
-                            <label class="form-label col-6 d-inline-block" for="select-tecnico">T&eacute;cnico</label>
-                            <select class="form-label col-6 d-inline-block form-select d-inlineblock" name="tecnico" id="select-tecnico">
-                                @foreach($tecnicos as $tecnico)
-                                    <option value="{{ $tecnico->id }}">Nº: {{ $tecnico->id }}, {{ $tecnico->name }}, {{ $tecnico->email }} </option>
-                                @endforeach
-                            </select>
-                        </div> 
-                        <div class="col-11  ms-3">     
-                            <label class="form-label me-3 " for="estado" >Tipo averia</label>
-                            <select name="averia" id="">
+                   <div class="row ">
+                        <div class="col-11 ms-3">     
+                            <label class="form-label me-3 " for="estado" >Tipo aver&iacute;a</label>
+                            <select class="form-select d-inlineblock col-4" name="averia" id="">
                                 <option value="">Sin datos</option>
                                 <optgroup label="Bandalismo">
                                     <option value="Bandalismo (estético)">Est&eacute;tico</option>
@@ -105,7 +128,7 @@
                                     <option value="Funcionamiento (eléctrico)">El&eacute;ctrico</option>
                                 </optgroup>
                             </select>
-                        </div> 
+                        </div>
 
                         <div class="form-check form-switch ms-5">
                             <label class="form-check-label fs-5 my-0" for="urgente">Urgente</label>

@@ -14,10 +14,11 @@
                 </thead>
                 <tbody>
                     @foreach($incidencias as $incidencia)
-                        <tr>
+                      
+                        <tr style="cursor: pointer;" class="tr-enlace" data-href="{{ route('incidencias.show',$incidencia->id) }}">
                             <th scope="row">{{ $incidencia->created_at }}</th>
                             <td>{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}</td>
-                            <th scope="row">{{ $incidencia->ascensor->zona->zona }}</th>
+                            <th>{{ $incidencia->ascensor->zona->zona }}</th>
                             
                                 <td class="text-center">
                                     @if($incidencia->urgente =="1")
@@ -38,16 +39,18 @@
                                     @else
                                         bg-success 
                                     @endif
-                                text-center">
+                                        text-center">
                                     {{ $incidencia->estado }}
-                            </div>
-                            </td>
-                            <td>
-                                <a href="{{ route('filtros.show',$incidencia->id) }}"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Mas iformation</title><path d="M248 64C146.39 64 64 146.39 64 248s82.39 184 184 184 184-82.39 184-184S349.61 64 248 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M220 220h32v116"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M208 340h88"/><path d="M248 130a26 26 0 1026 26 26 26 0 00-26-26z"/></svg></a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        <script>
+            document.querySelectorAll('.tr-enlace').forEach(element => {
+                element.addEventListener('click',() => {window.location=element.getAttribute('data-href');})
+            });
+        </script>
 @endsection

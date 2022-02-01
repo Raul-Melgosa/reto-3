@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Incidencia;
+use App\Models\ModeloAscensor;
 use Illuminate\Http\Request;
 use App\Models\User;
 class IncidenciaController extends Controller
@@ -14,9 +15,9 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $tecnicos=User::all()->where('rol','=','tecnico');
 
-        return view('formularios.formularioOperador', compact('tecnicos'));
+        $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->get();
+        return view('incidencias.index', compact('incidencias'));
     }
 
     /**
@@ -26,7 +27,7 @@ class IncidenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('incidencias.create');
     }
 
     /**
@@ -37,18 +38,12 @@ class IncidenciaController extends Controller
      */
     public function store(Request $request)
     {
-        
         $nombre=request('nombreCliente');
         $apellido=request('apellidoCliente');
         $email=request('emailCliente');
         $id_tecnico=request('tecnico');
-        
         $tecnico=User::all()->where('id','=',$id_tecnico);
-
-
-
-
-        return redirect()->route('incidencia.index');
+        return redirect()->route('incidencias.index');
     }
 
     /**
@@ -57,9 +52,11 @@ class IncidenciaController extends Controller
      * @param  \App\Models\Incidencia  $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function show(Incidencia $incidencia)
+    public function show($id)
     {
-        //
+        $incidencia=Incidencia::find($id);
+        $modelo=ModeloAscensor::find($incidencia->ascensor->modeloAscensor_id);
+        return view('incidencias.show', compact('incidencia','modelo'));
     }
 
     /**

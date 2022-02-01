@@ -31,7 +31,7 @@
 
                                     <td>{{ $incidencia->estado }}</td>
                                     <td>
-                                        <a href="{{ route('filtros.index') }}">Volver</a>
+                                        <a href="{{ route('incidencias.index') }}">Volver</a>
                                     </td>
                                 </tr>
                                 
@@ -92,6 +92,14 @@
                         <input class="form-control" type="text" value="{{ $incidencia->ascensor->paradas }}"  name="numParadas" id="numParadas" placeholder=" " disabled>
                         <span class="p-2">Numero de paradas</span>
                     </label>
+
+                    <label class="form-label position-relative">
+                        <input class="form-control" type="text" value="{{ $modelo->manual }}"  name="manual" id="manual" placeholder=" " disabled>
+                        <span class="p-2">Manual</span>
+                    </label>
+                    <div>
+                        {{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}
+                    </div>
                 </div>
                 <div class="col-12 col-sm-11 col-md-10  border border-light my-3"></div>
                 <div class="col-11 col-md-10 ">
@@ -99,7 +107,7 @@
                         
                         <div class="col-11 col-lg-9 mb-3 row g-0 ms-4">     
                             <label class="form-label position-relative">
-                                <input class="form-control" type="text" value="Nº: {{  $incidencia->tecnico->id  }}, {{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
+                                <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
                                 <span class="p-2">T&eacute;cnico</span>
                             </label>
                             
@@ -118,7 +126,7 @@
                         <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10" disabled>{{ $incidencia->comentarioTecnico }}</textarea>
                     @endif
                     
-                    <button class="btn border mb-3"><a href="{{ route('filtros.index') }}">Volver</a></button>
+                    <button class="btn border mb-3"><a href="{{ route('incidencias.index') }}">Volver</a></button>
                 </div>
             </div>
 @endsection
