@@ -16,7 +16,7 @@
                     @foreach($incidencias as $incidencia)
                         <tr>
                             <th scope="row">{{ $incidencia->created_at }}</th>
-                            <td>{{ $incidencia->tecnico->name }}</td>
+                            <td>{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}</td>
                             <th scope="row">{{ $incidencia->ascensor->zona->zona }}</th>
                             
                                 <td class="text-center">
