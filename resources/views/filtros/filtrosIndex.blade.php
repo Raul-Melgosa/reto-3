@@ -36,7 +36,7 @@
                                     @elseif( $incidencia->estado=='En proceso' )
                                         bg-warning
                                     @else
-                                        bg-custom 
+                                        bg-success 
                                     @endif
                                 text-center">
                                     {{ $incidencia->estado }}
