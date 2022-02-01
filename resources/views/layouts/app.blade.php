@@ -21,7 +21,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app gx-0">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -76,7 +76,7 @@
             </div>
         </nav>
 
-        <main class="py-4 row justify-content-center">
+        <main class="py-4 row justify-content-center gx-0">
             @yield('content')
         </main>
     </div>
