@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -75,7 +76,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 row justify-content-center">
             @yield('content')
         </main>
     </div>

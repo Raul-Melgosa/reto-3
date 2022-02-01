@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\FiltrosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,12 +46,21 @@ Route::get('/manuales/delete/{archivo}', [App\Http\Controllers\StorageController
 //Ejemplo envio mail
 //Route::get('/mail/{mail}/{contenido}/', [App\Http\Controllers\MailControler::class, 'sendEmailIncidencia', ]);
 
-Route::get('/form', function ()
+/*Route::get('/form', function ()
 {
     return view('formularios.formularioOperador');
 });
-
+*/
 Route::get('/user', function ()
 {
     return view('formularios.formularioNuevoUser');
 });
+
+
+Route::get('/incidencia',[IncidenciaController::class, 'index'])->name('incidencia.index');
+
+Route::post('/incidencia',[IncidenciaController::class, 'store'])->name('incidencia.store');
+
+Route::get('/filtros',[FiltrosController::class, 'index'])->name('filtros.index');
+
+Route::get('/filtros/{id}',[FiltrosController::class, 'show'])->name('filtros.show');
