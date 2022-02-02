@@ -23,6 +23,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//WebService ascensores
+Route::get('/ola', [App\Http\Controllers\AscensorController::class, 'filtrarAscensores']);
+
 
 //Ejemplo almacenamiento
 Route::get('/manuales/create', [App\Http\Controllers\StorageController::class, 'index'])->name('manuales.create');
@@ -54,3 +57,5 @@ Route::get('/user', function ()
 {
     return view('formularios.formularioNuevoUser');
 });
+
+
