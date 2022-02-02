@@ -119,7 +119,7 @@
                 <div class="col-11 col-sm-11 col-md-10 ">
                     
                     <label for="comentarioOperador">Comentario Operador: </label>
-                    <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10" disable>{{ $incidencia->comentarioOperador }}</textarea>
+                    <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10" disabled>{{ $incidencia->comentarioOperador }}</textarea>
 
                     <label for="comentarioTecnico">Comentario Tecnico: </label>
                     @if(auth()->user()->rol=='tecnico') 
