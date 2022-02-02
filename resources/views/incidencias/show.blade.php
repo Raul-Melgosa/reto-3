@@ -65,7 +65,7 @@
                         <span class="p-2">Numero</span>
                     </label>
                 </div>
-                <div class="col-12 col-sm-11 col-md-10 border border-light my-3"></div>
+                <div class="col-11 col-sm-11 col-md-10 border border-light my-3"></div>
                 <div class="col-11 col-md-10">
                     <h2>Ascensor</h2>
                     <label class="form-label position-relative">
@@ -102,7 +102,7 @@
                         <iframe src="{{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}" width="75%" height="650vh"></iframe>
                     </div>
                 </div>
-                <div class="col-12 col-sm-11 col-md-10  border border-light my-3"></div>
+                <div class="col-11 col-sm-11 col-md-10  border border-light my-3"></div>
                 <div class="col-11 col-md-10 ">
                     <h2 class="mb-5">Incidencia</h2>
                         
@@ -116,7 +116,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-11 col-md-10 ">
+                <div class="col-11 col-sm-11 col-md-10 ">
                     
                     <label for="comentarioOperador">Comentario Operador: </label>
                     <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10" disable>{{ $incidencia->comentarioOperador }}</textarea>
