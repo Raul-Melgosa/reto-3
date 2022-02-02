@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/prueba', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZona']);
+Route::get('/prueba', [App\Http\Controllers\EstadisticasController::class, 'prueba']);
+Route::get('/datos', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZonaId']);
 
 
 //Ejemplo almacenamiento
