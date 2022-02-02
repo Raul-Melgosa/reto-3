@@ -106,7 +106,7 @@
                 <div class="col-11 col-md-10 ">
                     <h2 class="mb-5">Incidencia</h2>
                         
-                        <div class="col-11 col-lg-9 mb-3 row g-0 ms-4">     
+                        <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
                             <label class="form-label position-relative">
                                 <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
                                 <span class="p-2">T&eacute;cnico</span>
