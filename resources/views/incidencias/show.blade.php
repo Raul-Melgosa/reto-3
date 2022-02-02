@@ -99,6 +99,7 @@
                     </label>
                     <div>
                         {{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}
+                        <iframe src="{{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}" width="75%" height="650vh"></iframe>
                     </div>
                 </div>
                 <div class="col-12 col-sm-11 col-md-10  border border-light my-3"></div>
