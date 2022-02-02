@@ -10006,3 +10006,22 @@ Did you mean one of these?
 #53 /home/vagrant/code/reto-3/public/index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle()
 #54 {main}
 "} 
+[2022-02-02 09:53:17] local.ERROR: Command "route" is not defined.
+
+Did you mean one of these?
+    route:cache
+    route:clear
+    route:list {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"route\" is not defined.
+
+Did you mean one of these?
+    route:cache
+    route:clear
+    route:list at /home/vagrant/code/reto-3/vendor/symfony/console/Application.php:709)
+[stacktrace]
+#0 /home/vagrant/code/reto-3/vendor/symfony/console/Application.php(259): Symfony\\Component\\Console\\Application->find()
+#1 /home/vagrant/code/reto-3/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#2 /home/vagrant/code/reto-3/vendor/laravel/framework/src/Illuminate/Console/Application.php(94): Symfony\\Component\\Console\\Application->run()
+#3 /home/vagrant/code/reto-3/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 /home/vagrant/code/reto-3/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 

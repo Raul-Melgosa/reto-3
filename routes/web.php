@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/prueba', [App\Http\Controllers\EstadisticasController::class, 'prueba']);
-Route::get('/datos', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZonaId']);
+Route::get('/datos', [App\Http\Controllers\EstadisticasController::class, 'numTipoIncidenciasPorZona']);
 
 
 //Ejemplo almacenamiento
