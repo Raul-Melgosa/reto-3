@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
         <div class="col-10">
             <h1>Incidencia</h1>
             <form class="row justify-content-center" action="{{ route('incidencia.store') }}" method="post">
@@ -34,7 +36,7 @@
                     </label>
                     
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button id="bModal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Comprobar
                     </button>
 
@@ -48,15 +50,8 @@
                         </div>
 
                         <div class="modal-body">
-                            <ul class="list-group">
-                                <li class="list-group-item border-0 p-0 my-1">
-                                    <input type="radio" class="btn-check" name="ascensores" id="primero" autocomplete="off" value="primero">
-                                    <label class="btn btn-outline-primary m-0 w-100" for="primero">61f7a0517b75f</label>
-                                </li>
-                                <li class="list-group-item border-0 p-0 my-1">
-                                    <input type="radio" class="btn-check" name="ascensores" id="segundo" autocomplete="off" value="segundo">
-                                    <label class="btn btn-outline-primary m-0 w-100" for="segundo">61f7a0517cc73</label>
-                                </li>
+                            <ul id="modalNumeroAscensor"class="list-group">
+                                
                             </ul>
                         </div>
 
@@ -65,7 +60,7 @@
                         </div>
 
                         <div class="modal-body">
-                            <ul class="list-group">
+                            <ul id="modalNombreTecnico" class="list-group">
                                 <li class="list-group-item border-0 p-0 my-1">
                                     <input type="radio" class="btn-check" name="tecnicos" id="t-1" autocomplete="off" value="primero">
                                     <label class="btn btn-outline-dark m-0 w-100" for="t-1">Arancha</label>
@@ -147,4 +142,5 @@
 
             </form>
         </div>
+        <script src="{{ asset('js/direccionAscensores.js') }}" ></script>
 @endsection         

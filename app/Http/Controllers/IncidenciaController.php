@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ascensor;
 use App\Models\Incidencia;
 use App\Models\ModeloAscensor;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 class IncidenciaController extends Controller
 {
     /**
@@ -91,5 +93,21 @@ class IncidenciaController extends Controller
     public function destroy(Incidencia $incidencia)
     {
         //
+    }
+    public function verificarDireccion()
+    {
+        $calle=request('calle');
+        $numero=request('numero');
+        
+        $ascensor = Ascensor::where('calle','like','%'.$calle.'%');
+        
+        if($ascensor){
+            return json_encode($ascensor);
+            
+        }
+        
+        //   $zona=$ascensor->zona->zona; $tecnico=User::all()->where();
+
+        
     }
 }
