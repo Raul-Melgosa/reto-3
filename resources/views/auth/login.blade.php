@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <div class="col-10 row m-auto shadow mb-5 bg-body rounded">
-        <div class="position-fixed p-2">Ascensores Igobide</div>
         <div class="col-6 d-none d-sm-block text-center g-0"><img style="max-width: 100%; overflow:hidden;" src="{{ asset('img/login-pcs.svg') }}" alt=""></div>
         <div class="col-12 col-sm-6 row g-0 text-center">
             
