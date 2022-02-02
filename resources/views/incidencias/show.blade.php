@@ -92,13 +92,15 @@
                         <input class="form-control" type="text" value="{{ $incidencia->ascensor->paradas }}"  name="numParadas" id="numParadas" placeholder=" " disabled>
                         <span class="p-2">Numero de paradas</span>
                     </label>
-
+                    <!--
                     <label class="form-label position-relative">
                         <input class="form-control" type="text" value="{{ $modelo->manual }}"  name="manual" id="manual" placeholder=" " disabled>
                         <span class="p-2">Manual</span>
-                    </label>
+                    </label>-->
                     <div>
+                        <!--
                         {{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}
+-->
                         <iframe src="{{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}" width="75%" height="650vh"></iframe>
                     </div>
                 </div>
