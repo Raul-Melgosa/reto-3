@@ -121,6 +121,7 @@
                     <label for="comentarioOperador">Comentario Operador: </label>
                     <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10" disable>{{ $incidencia->comentarioOperador }}</textarea>
 
+                    <label for="comentarioTecnico">Comentario Tecnico: </label>
                     @if(auth()->user()->rol=='tecnico') 
                         <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10">{{  $incidencia->comentarioTecnico }}</textarea>
                     @else
