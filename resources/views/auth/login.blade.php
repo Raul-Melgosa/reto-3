@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-<img class="position-absolute" style="max-width: 100%; top:30px; z-index: -1;" src="{{asset('/img/Abstract-3d-art-background.png')}}" alt="">
-    <div class="col-6 row justify-content-center m-auto shadow mb-5 rounded">
+<img class="position-absolute" style="max-width: 100%; max-height: 100vh; top:0px; z-index: -1;" src="{{asset('/img/Abstract-3d-art-background.png')}}" alt="">
+    <div class="col-6 row justify-content-center align-items-center m-auto shadow mb-5 rounded">
         <form class="col-12 m-auto justify-content-center" action="{{ route('login') }}" method="POST">
             @csrf
             <h3 class="display-6 mb-3 text-center fw-bold">Bienvenido</h3>
