@@ -16,12 +16,15 @@ use App\Http\Controllers\IncidenciaController;
 */
 
 Route::get('/', function () {
+    return redirect(route('home'));
+});
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\UserController::class, 'index'])->name('home');
 
 
 //Ejemplo almacenamiento
@@ -50,10 +53,6 @@ Route::get('/manuales/delete/{archivo}', [App\Http\Controllers\StorageController
     return view('formularios.formularioOperador');
 });
 */
-Route::get('/user', function ()
-{
-    return view('formularios.formularioNuevoUser');
-});
 
 Route::get('/incidencias',[IncidenciaController::class, 'index'])->name('incidencias.index');
 Route::get('/incidencias/create',[IncidenciaController::class, 'create'])->name('incidencia.create');
