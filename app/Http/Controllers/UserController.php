@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Incidencia;
 use App\Models\User;
+use App\Models\Indicencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -18,7 +20,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function home()
     {
         if (Gate::allows('isAdmin')) {
             return view('admin.home');
@@ -27,7 +29,9 @@ class UserController extends Controller
             return view('jefeDeEquipo.home');
         }
         elseif (Gate::allows('isTecnico')) {
-            return view('tecnico.home');
+            $pendientes=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','!=','resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->get();
+            $resueltas=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','=','resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->get();
+            return view('tecnico.home', compact('pendientes','resueltas'));
         }
         elseif (Gate::allows('isOperador')) {
             return view('operador.home');

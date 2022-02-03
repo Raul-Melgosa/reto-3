@@ -24,7 +24,7 @@ Route::get('/welcome', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\UserController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
 
 //Ejemplo almacenamiento

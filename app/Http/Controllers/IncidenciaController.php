@@ -15,7 +15,6 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-
         $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->get();
         return view('incidencias.index', compact('incidencias'));
     }
