@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ascensor;
+use App\Models\Equipo;
 use App\Models\Incidencia;
 use App\Models\ModeloAscensor;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Mockery\Undefined;
 
 class IncidenciaController extends Controller
 {
@@ -94,20 +96,28 @@ class IncidenciaController extends Controller
     {
         //
     }
-    public function verificarDireccion()
+    public function firltarAscensores()
     {
         $calle=request('calle');
         $numero=request('numero');
-        
-        $ascensor = Ascensor::where('calle','like','%'.$calle.'%');
-        
-        if($ascensor){
-            return json_encode($ascensor);
-            
+        $nSerie=request('numeroserie');
+        if(strlen($nSerie)>12) {
+            $ascensoresNum = Ascensor::where('numeroserie','like','%'.$nSerie.'%')->get();
+            return json_encode($ascensoresNum);
         }
-        
-        //   $zona=$ascensor->zona->zona; $tecnico=User::all()->where();
+        else {
+            $ascensores = Ascensor::where('calle','like','%'.$calle.'%')->get();
+            if(count($ascensores)>0){
+                $ascensor=$ascensores->where('bloque',$numero);
+                //dd($ascensores);
+                if(count($ascensor)>0){
+                    return json_encode($ascensor); 
 
-        
+                }
+                else{
+                    return json_encode($ascensores);
+                }
+            }
+        }
     }
 }
