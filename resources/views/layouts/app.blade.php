@@ -22,8 +22,8 @@
 </head>
 <body>
     <div id="app gx-0">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="--bs-bg-opacity: .8;">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light" style="--bs-bg-opacity: .8;">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -58,8 +58,8 @@
                                     {{ Auth::user()->email }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-end w-auto" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item " href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}

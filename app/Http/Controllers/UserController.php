@@ -21,16 +21,16 @@ class UserController extends Controller
     public function index()
     {
         if (Gate::allows('isAdmin')) {
-            return '<h1>Hola, Admin</h1>';
-        } 
+            return view('admin.home');
+        }
         elseif (Gate::allows('isJde')) {
-            return '<h1>Hola, Jefe de Equipo</h1>';
-        } 
+            return view('jefeDeEquipo.home');
+        }
         elseif (Gate::allows('isTecnico')) {
-            return '<h1>Hola, Técnico</h1>';
-        } 
+            return view('tecnico.home');
+        }
         elseif (Gate::allows('isOperador')) {
-            return '<h1>Hola, Operador</h1>';
+            return view('operador.home');
         }
     }
 
