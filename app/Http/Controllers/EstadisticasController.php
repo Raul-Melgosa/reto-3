@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Zona;
 use App\Models\ModeloAscensor;
 use App\Models\Equipo;
-use Illuminate\Support\Facades\DB;
 
 class EstadisticasController extends Controller
 {
@@ -176,9 +175,12 @@ class EstadisticasController extends Controller
         }
         
 
-        return [ 'titulo' => 'Tipos de incidencia por modelo id:',
-                        'nombrecolumnas' => ['Modelo', 'Total','Averias Electricas', 'Averias Mecanicas', 'Averias Esteticas'],
-                        'datos' => $incidenciasModelo];
+        return [ 'titulo' => 'Tipos de incidencia por modelo ID:',
+                        'nombrecolumnas' => ['Tipo averia', 'Numero de averias'],
+                        'datos' => $incidenciasTipo];
+
+
+        
     }
 
 
@@ -368,10 +370,9 @@ class EstadisticasController extends Controller
                 $incidenciasTotales['Electrica']=$incidencias_electricas;
                 
             }
-            return [ 'titulo' => 'Tipos de incidencia en la zona: ' . strtoupper($zona->zona),
-                                                'tipo' => 'Tipo de averias',
-                                                'numero' => 'Numero de averias',
-                                                'datos' => $incidenciasTotales,];
+            return [ 'titulo' => 'Tipos de incidencia por modelo ID:',
+                        'nombrecolumnas' => ['Tipo averia', 'Numero de averias'],
+                        'datos' => $incidenciasTotales];
 
         }
 
@@ -383,7 +384,7 @@ class EstadisticasController extends Controller
 
 
         public function prueba(){
-            return view('estadisticas.columnas');
+            return view('estadisticas.estadisticas');
         }
 
 

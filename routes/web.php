@@ -24,8 +24,18 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
 Route::get('/prueba', [App\Http\Controllers\EstadisticasController::class, 'prueba']);
-Route::get('/datos', [App\Http\Controllers\EstadisticasController::class, 'numTipoIncidenciasPorZona']);
+//Rutas webservice-datos-estadisticas
+Route::get('/estadisticas/numIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorZona']);
+Route::get('/estadisticas/numTipoIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numTipoIncidenciasPorZona']);
+Route::get('/estadisticas/numIncidenciasPorModelo', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorModelo']);
+Route::get('/estadisticas/numIncidenciasPorModeloId', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorModeloId']);
+Route::get('/estadisticas/tiempoMedioIncidenciaEquipo', [App\Http\Controllers\EstadisticasController::class, 'tiempoMedioIncidenciaEquipo']);
+Route::get('/estadisticas/tiempoMedioIncidenciaTecnico', [App\Http\Controllers\EstadisticasController::class, 'tiempoMedioIncidenciaTecnico']);
+Route::get('/estadisticas/tipoDeIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZona']);
+Route::get('/estadisticas/tipoDeIncidenciasPorZonaId', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZonaId']);
 
 
 //Ejemplo almacenamiento
