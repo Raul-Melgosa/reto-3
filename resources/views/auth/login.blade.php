@@ -14,9 +14,9 @@
                     <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                     @error('username')
-                        <span class="invalid-feedback" role="alert">
+                        <p class="invalid-feedback m-0" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                        </p>
                     @enderror
                 </div>
             </div>
@@ -28,9 +28,9 @@
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                     @error('password')
-                        <span class="invalid-feedback" role="alert">
+                        <p class="invalid-feedback m-0" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                        </p>
                     @enderror
                 </div>
             </div>

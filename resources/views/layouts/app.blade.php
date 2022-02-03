@@ -22,16 +22,16 @@
 </head>
 <body>
     <div id="app gx-0">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="--bs-bg-opacity: .8;">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#layoutNavbar" aria-controls="layoutNavbar" aria-expanded="false" aria-label="Mostrar más">
+                    <p class="navbar-toggler-icon m-0"></p>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="layoutNavbar">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
