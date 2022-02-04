@@ -71,13 +71,13 @@ $("#bModal").click(function () {
 
 $('#bModalAceptar').click(function () {
     let ascensor=$('input:radio[name=ascensores]:checked').val();
-    
-    let tecnico=$('input:radio[name=tecnicos]:checked').val();console.log(tecnico);
+    let tecnico=$('input:radio[name=tecnicos]:checked').val();
+    console.log(tecnico);
     if(ascensor==null || tecnico==null) {
         
     } else {
-        ascensor =gAscensores.find(a => a.id = ascensor);
-        tecnico =gTecnicos.find(a => a.id = tecnico);console.log(tecnico);
+        ascensor =gAscensores.find(a => a.id == ascensor);
+        tecnico =gTecnicos.find(a => a.id == tecnico);console.log(tecnico);
         $('#numeroSerie').val(ascensor.numeroserie);
         $('#modeloAscensor').val(ascensor.modelo.modelo);
         $('#carga').val(ascensor.modelo.carga);
