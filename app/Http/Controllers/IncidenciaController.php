@@ -69,7 +69,8 @@ class IncidenciaController extends Controller
         $incidencia->cliente_id = $cliente->id;
         $incidencia->ascensor_id = request('idAscensor');
         $incidencia->tecnico_id=request('idTecnico');
-        if(request('urgente')==1){
+        dd(request('urgente'));
+        if(request('urgente')=="1"){
             $incidencia->urgente=1;
         } else {
             $incidencia->urgente=0;
@@ -78,7 +79,8 @@ class IncidenciaController extends Controller
 
         $tecnico=User::find(request('idTecnico'));
         (new MailControler)->sendEmail($tecnico->email,'Nueva incidencia asignada','Este correo es meramente informativo, por favor no responda, se le ha asignado una nueva incidencia; mire la app para obtener más información');
-        return redirect()->route('incidencias.index');
+        $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->get();
+        return view('incidencias.index', compact('incidencias'));
     }
 
     /**
