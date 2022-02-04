@@ -113,7 +113,6 @@
                                 <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
                                 <span class="p-2">T&eacute;cnico</span>
                             </label>
-                            
                         </div> 
                     </div>
                 </div>

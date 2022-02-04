@@ -43,4 +43,13 @@ class MailControler extends Controller
         Mail::to($email)->send(new MailIncidencia($details));
         return "Correo enviado";
     }
+
+    public function sendEmail($email, $titulo, $contenido)
+    {
+        $details = [
+            'title' => $titulo,
+            'body'=>$contenido
+        ];
+        Mail::to($email)->send(new MailIncidencia($details));
+    }
 }

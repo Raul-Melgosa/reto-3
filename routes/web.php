@@ -64,5 +64,4 @@ Route::post('/incidencias/create',[IncidenciaController::class, 'store'])->name(
 Route::get('/incidencias/{id}',[IncidenciaController::class, 'show'])->name('incidencias.show');
 
 Route::get('/incidencias/create/direccion',[IncidenciaController::class, 'firltarAscensores'])->name('webservice.ascensores');
-
 Route::get('/manuales',[ManualController::class, 'index'])->name('manual.index');
