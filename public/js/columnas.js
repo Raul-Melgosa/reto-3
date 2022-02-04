@@ -1,13 +1,13 @@
 $(document).ready(function(){ 
-  crearGrafica("numTipoIncidenciasPorZona");
+  //crearGraficaColumna("numTipoIncidenciasPorZona");
 });
 
-var rutasDatosEstadisticas={
-  "tiempoMedioIncidenciaTecnico" : "http://igobideapp.test/datos",
-}
-function crearGrafica(tipoEstadistica){
-  //url=rutasDatosEstadisticas[tipoEstadistica];
-  url="http://igobideapp.test/datos";
+
+
+
+
+function crearGraficaColumna(tipoEstadistica){
+  url=rutasDatosEstadisticas[tipoEstadistica];
   $.ajax({
     type: "GET", 
     url:  url, // AQUI apuntamos al PHP
@@ -15,7 +15,7 @@ function crearGrafica(tipoEstadistica){
     success: function(datos){
         console.log(datos);
         google.charts.load('current', {'packages':['bar']});
-        google.charts.setOnLoadCallback(function(){ drawChart(tipoEstadistica,datos) });
+        google.charts.setOnLoadCallback(function(){ drawChartColumna(tipoEstadistica,datos) });
     },
     error: function(){
         console.log("Algo salio mal");
@@ -23,7 +23,7 @@ function crearGrafica(tipoEstadistica){
   });
 }
 
-function drawChart(estadistica, datos) {
+function drawChartColumna(estadistica, datos) {
   var data = new Array();
   switch(estadistica){
     case "tipoDeIncidenciasPorZona":
@@ -79,7 +79,7 @@ function drawChart(estadistica, datos) {
     }
   };
 
-  var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+  var chart = new google.charts.Bar(document.getElementById('contenedor_estadistica')); //hacer referncia al contenedor
 
   chart.draw(data, google.charts.Bar.convertOptions(options));
 }

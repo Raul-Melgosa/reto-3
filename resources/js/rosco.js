@@ -1,5 +1,5 @@
 $(document).ready(function(){ 
-    //crearGraficaRosco("tipoDeIncidenciasPorZonaId");
+    crearGraficaRosco("tipoDeIncidenciasPorZonaId");
   });
   
   var rutasDatosEstadisticas ={

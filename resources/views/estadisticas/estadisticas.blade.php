@@ -5,6 +5,7 @@
   </head>
   <body>
     <div id="contenedor_estadistica" style="width: 900px; height: 500px;"></div>
-    <script type="text/javascript" src=" {{ asset('js/app.js') }} "></script>
+    <script type="text/javascript" src=" {{ asset('js/rosco.js') }} "></script>
+    <script type="text/javascript" src=" {{ asset('js/columnas.js') }} "></script>
   </body>
 </html>

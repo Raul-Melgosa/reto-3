@@ -15,6 +15,13 @@ class EstadisticasController extends Controller
                     //por modelo
 
 
+    public function index(){
+        return view('estadisticas.estadisticas');
+    }
+
+
+
+
     public function numIncidenciasPorZona(/*$fechaMin, $fechaMax*/){
         $fechaMin=null;
         $fechaMax=null;
@@ -383,9 +390,7 @@ class EstadisticasController extends Controller
 
 
 
-        public function prueba(){
-            return view('estadisticas.estadisticas');
-        }
+        
 
 
 

@@ -26,7 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-Route::get('/prueba', [App\Http\Controllers\EstadisticasController::class, 'prueba']);
+Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'index']);
 //Rutas webservice-datos-estadisticas
 Route::get('/estadisticas/numIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorZona']);
 Route::get('/estadisticas/numTipoIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numTipoIncidenciasPorZona']);
