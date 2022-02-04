@@ -1,5 +1,5 @@
 $(document).ready(function(){ 
-  //crearGraficaColumna("numTipoIncidenciasPorZona");
+  crearGraficaColumna("numIncidenciasPorZona");
 });
 
 
@@ -7,7 +7,14 @@ $(document).ready(function(){
 
 
 function crearGraficaColumna(tipoEstadistica){
-  url=rutasDatosEstadisticas[tipoEstadistica];
+  let fechaInicio=$('#fechaInicio').val();
+  let fechaFin=$('#fechaFin').val();
+  if(fechaInicio != ""){
+    url=rutasDatosEstadisticas[tipoEstadistica]+"?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin;
+  }
+  else{
+    url=rutasDatosEstadisticas[tipoEstadistica];
+  }
   $.ajax({
     type: "GET", 
     url:  url, // AQUI apuntamos al PHP

@@ -36,6 +36,10 @@ Route::get('/estadisticas/tiempoMedioIncidenciaEquipo', [App\Http\Controllers\Es
 Route::get('/estadisticas/tiempoMedioIncidenciaTecnico', [App\Http\Controllers\EstadisticasController::class, 'tiempoMedioIncidenciaTecnico']);
 Route::get('/estadisticas/tipoDeIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZona']);
 Route::get('/estadisticas/tipoDeIncidenciasPorZonaId', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZonaId']);
+Route::get('/estadisticas/getZonas', [App\Http\Controllers\EstadisticasController::class, 'getZonas']);
+Route::get('/estadisticas/getTecnicos', [App\Http\Controllers\EstadisticasController::class, 'getTecnicos']);
+Route::get('/estadisticas/getModelos', [App\Http\Controllers\EstadisticasController::class, 'getModelos']);
+
 
 
 //Ejemplo almacenamiento
