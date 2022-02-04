@@ -45,9 +45,14 @@
                             </td>
                         </tr>
                     @endforeach
+                    
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {!! $incidencias->links() !!}
+            </div>
         </div>
+        
         <script>
             document.querySelectorAll('.tr-enlace').forEach(element => {
                 element.addEventListener('click',() => {window.location=element.getAttribute('data-href');})

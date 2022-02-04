@@ -147,7 +147,7 @@ class DatabaseSeeder extends Seeder
 
         Cliente::factory()->count(5)->create();
 
-        Incidencia::factory()->count(50)->create();
+        Incidencia::factory()->count(1000)->create();
 
         //Ascensor::factory()->count(5)->create();
     }

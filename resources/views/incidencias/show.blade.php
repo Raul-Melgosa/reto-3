@@ -31,7 +31,7 @@
 
                                     <td>{{ $incidencia->estado }}</td>
                                     <td>
-                                        <a href="{{ route('incidencias.index') }}">Volver</a>
+                                        <a href="{{ url()->previous() }}">Volver</a>
                                     </td>
                                 </tr>
                                 
@@ -130,7 +130,7 @@
                         <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10" disabled>{{ $incidencia->comentarioTecnico }}</textarea>
                     @endif
                     
-                    <button class="btn border mb-3"><a href="{{ route('incidencias.index') }}">Volver</a></button>
+                    <button class="btn border mb-3"><a href="{{ url()->previous() }}">Volver</a></button>
                 </div>
             </div>
 @endsection
