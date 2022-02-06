@@ -92,44 +92,74 @@
                         <input class="form-control" type="text" value="{{ $incidencia->ascensor->paradas }}"  name="numParadas" id="numParadas" placeholder=" " disabled>
                         <span class="p-2">Numero de paradas</span>
                     </label>
-                    <!--
-                    <label class="form-label position-relative">
-                        <input class="form-control" type="text" value="{{ $modelo->manual }}"  name="manual" id="manual" placeholder=" " disabled>
-                        <span class="p-2">Manual</span>
-                    </label>-->
                     <div>
                         <!--
-                        {{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}
--->
+                        {{ asset('storage/manuales/') }}{{'/'.$modelo->manual}} = direccion donde estan los manuales
+                        -->
                         <iframe src="{{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}" width="75%" height="650vh"></iframe>
                     </div>
                 </div>
                 <div class="col-11 col-sm-11 col-md-10  border border-light my-3"></div>
-                <div class="col-11 col-md-10 ">
-                    <h2 class="mb-5">Incidencia</h2>
+                <form action="" method="post">  
+                    <div class="col-11 col-md-10 ">
+                        <h2 class="mb-5">Incidencia</h2>
                         
-                        <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
-                            <label class="form-label position-relative">
-                                <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
-                                <span class="p-2">T&eacute;cnico</span>
-                            </label>
-                        </div> 
+                            <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
+                                <label class="form-label position-relative">
+                                    <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
+                                    <span class="p-2">T&eacute;cnico</span>
+                                </label>
+                            </div> 
+
+                            @if(auth()->user()->rol=='tecnico') 
+                            <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
+                                <label class="form-label position-relative">
+                                    <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
+                                    <span class="p-2">T&eacute;cnico</span>
+                                </label>
+                            </div> 
+                            @endif
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-11 col-sm-11 col-md-10 ">
-                    
-                    <label for="comentarioOperador">Comentario Operador: </label>
-                    <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10" disabled>{{ $incidencia->comentarioOperador }}</textarea>
+                    <div class="col-11 col-sm-11 col-md-10 ">
+                        
+                        <label for="comentarioOperador">Comentario Operador: </label>
+                        <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10" disabled>{{ $incidencia->comentarioOperador }}</textarea>
 
-                    <label for="comentarioTecnico">Comentario Tecnico: </label>
-                    @if(auth()->user()->rol=='tecnico') 
-                        <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10">{{  $incidencia->comentarioTecnico }}</textarea>
-                    @else
-                        <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10" disabled>{{ $incidencia->comentarioTecnico }}</textarea>
-                    @endif
+                        <label for="comentarioTecnico">Comentario Tecnico: </label>
+                        @if(auth()->user()->rol=='tecnico') 
+                            <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10">{{  $incidencia->comentarioTecnico }}</textarea>
+                            <div class="col-11 ms-3">     
+                                <label class="form-label me-3 " for="averia" >Tipo aver&iacute;a</label>
+                                <select class="form-select d-inlineblock col-4" name="averia" id="averia">
+                                    <optgroup label="Bandalismo">
+                                        <option value="Bandalismo (estético)">Est&eacute;tico</option>
+                                    </optgroup>
+                                    
+                                    <optgroup label="Funcionamiento">
+                                        <option value="Funcionamiento (mecánico)">Mec&aacute;nico</option>
+                                        <option value="Funcionamiento (eléctrico)">El&eacute;ctrico</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="col-11 ms-3">     
+                                <label class="form-label me-3 " for="estado" >Estado</label>
+                                <select class="form-select d-inlineblock col-4" name="estado" id="estado">
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="En proceso">En proceso</option>
+                                    <option value="Resuelta">Resuelta</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="cliente" value="{{ $incidencia->cliente->id }}">
+                            <input type="submit" value="Actualizar">
+                        @else
+                            <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10" disabled>{{ $incidencia->comentarioTecnico }}</textarea>
+                        @endif
                     
-                    <button class="btn border mb-3"><a href="{{ route('incidencias.index') }}">Volver</a></button>
-                </div>
+                        <button class="btn border mb-3"><a href="{{ route('incidencias.index') }}">Volver</a></button>
+                    </div>    
+            
+                </form>
             </div>
 @endsection

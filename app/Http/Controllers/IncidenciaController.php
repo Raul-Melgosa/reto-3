@@ -97,8 +97,10 @@ class IncidenciaController extends Controller
     public function show($id)
     {
         $incidencia=Incidencia::find($id);
+        $equipo_id=$incidencia->tecnico->equipo_id;
+        $tecnicos=User::all()->where('equipo_id','=',$equipo_id);
         $modelo=ModeloAscensor::find($incidencia->ascensor->modeloAscensor_id);
-        return view('incidencias.show', compact('incidencia','modelo'));
+        return view('incidencias.show', compact('incidencia','modelo','tecnicos'));
     }
 
     /**
@@ -119,9 +121,26 @@ class IncidenciaController extends Controller
      * @param  \App\Models\Incidencia  $incidencia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Incidencia $incidencia)
+    public function update($id)
     {
-        //
+        $incidencia=Incidencia::find($id);
+
+        if(request('estado')==""){
+            $incidencia->estado = 'Pendiente';
+        }else {
+            $incidencia->estado = request('estado');
+        }
+        $incidencia->tipoaveria=request('averia');
+        $incidencia->comentarioTecnico=request('comentarioTecnico');
+
+        $incidencia->save();
+        if(request('estado')=="Resuelta"){
+            $cliente=Cliente::find(request('cliente'));
+            (new MailControler)->sendEmail($cliente->email,'Incidencia Resuelta','');
+        }
+        
+        
+        
     }
 
     /**

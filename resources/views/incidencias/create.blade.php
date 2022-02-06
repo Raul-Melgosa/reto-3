@@ -102,8 +102,8 @@
                 
                    <div class="row " id="incidencia">
                         <div class="col-11 ms-3">     
-                            <label class="form-label me-3 " for="estado" >Tipo aver&iacute;a</label>
-                            <select class="form-select d-inlineblock col-4" name="averia" id="">
+                            <label class="form-label me-3 " for="averia" >Tipo aver&iacute;a</label>
+                            <select class="form-select d-inlineblock col-4" name="averia" id="averia">
                                 <option value="">Sin datos</option>
                                 <optgroup label="Bandalismo">
                                     <option value="Bandalismo (estético)">Est&eacute;tico</option>
