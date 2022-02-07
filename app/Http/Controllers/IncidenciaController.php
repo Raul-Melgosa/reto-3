@@ -124,10 +124,12 @@ class IncidenciaController extends Controller
     public function update($id)
     {
         $incidencia=Incidencia::find($id);
+        if(auth()->user()->rol=='jde'){
+            request('tecnicos');
+        }
+        
 
-        if(request('estado')==""){
-            $incidencia->estado = 'Pendiente';
-        }else {
+        if(request('estado')!=""){
             $incidencia->estado = request('estado');
         }
         $incidencia->tipoaveria=request('averia');
@@ -139,7 +141,7 @@ class IncidenciaController extends Controller
             (new MailControler)->sendEmail($cliente->email,'Incidencia Resuelta','');
         }
         
-        
+        return redirect(route('home'));
         
     }
 

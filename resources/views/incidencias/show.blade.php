@@ -100,24 +100,38 @@
                     </div>
                 </div>
                 <div class="col-11 col-sm-11 col-md-10  border border-light my-3"></div>
-                <form action="" method="post">  
+                <form action="{{ route('incidencias.update',$incidencia->id) }}" method="post">  
+                    @csrf
+                    @method("PUT")
                     <div class="col-11 col-md-10 ">
                         <h2 class="mb-5">Incidencia</h2>
-                        
+                        @if(auth()->user()->rol=='operador')
                             <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
                                 <label class="form-label position-relative">
                                     <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
                                     <span class="p-2">T&eacute;cnico</span>
                                 </label>
                             </div> 
+                        @endif
 
-                            @if(auth()->user()->rol=='tecnico') 
+                            @if(auth()->user()->rol=='jde')
+                            
                             <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
-                                <label class="form-label position-relative">
-                                    <input class="form-control" type="text" value="{{ $incidencia->tecnico->nombre.' '.$incidencia->tecnico->apellidos }}, {{ $incidencia->tecnico->email }} " name="numeroSerie" id="numeroSerie" placeholder=" " disabled>
-                                    <span class="p-2">T&eacute;cnico</span>
-                                </label>
-                            </div> 
+                                <label for="teccnicos">T&eacute;cnicos</label>
+                                <select class="form-select" name="tecnicos" id="tecnicos">
+                                    @foreach($tecnicos as $tecnico)
+                                        @if($incidencia->tecnico->id == $tecnico->id)
+                                            <option value="{{$tecnico->id}}" selected>
+                                        @else
+                                            <option value="{{$tecnico->id}}">
+                                        @endif
+                                            {{ $tecnico->nombre.' '.$tecnico->apellidos.', '.$tecnico->email }}
+                                        </option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Actualizar">
                             @endif
                         </div>
                     </div>
@@ -145,19 +159,40 @@
                             </div>
                             <div class="col-11 ms-3">     
                                 <label class="form-label me-3 " for="estado" >Estado</label>
-                                <select class="form-select d-inlineblock col-4" name="estado" id="estado">
-                                    <option value="Pendiente">Pendiente</option>
-                                    <option value="En proceso">En proceso</option>
-                                    <option value="Resuelta">Resuelta</option>
-                                </select>
+                                <div class="col-4">
+                                    @if($incidencia->estado=='Pendiente')
+                                        <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="pendiente" checked>
+                                    @else
+                                        <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="pendiente">
+                                    @endif
+                                    <label class="btn btn-outline-danger m-0 w-100" for="pendiente">Pendiente</label>
+                                </div>
+
+                                <div class="col-4">
+                                    @if($incidencia->estado=='En Proceso')
+                                        <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso" checked>
+                                    @else
+                                        <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso">
+                                    @endif
+                                    <label class="btn btn-outline-warning m-0 w-100" for="proceso">En proceso</label>
+                                </div>
+
+                                <div class="col-4">
+                                    @if($incidencia->estado=='Resuelta')
+                                        <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="resuelta" checked>
+                                    @else
+                                        <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="resuelta">
+                                    @endif
+                                    <label class="btn btn-outline-success m-0 w-100" for="resuelta">Resuelta</label>
+                                </div>
                             </div>
                             <input type="hidden" name="cliente" value="{{ $incidencia->cliente->id }}">
-                            <input type="submit" value="Actualizar">
+                            <input type="submit" class="btn btn-primary" value="Actualizar">
                         @else
                             <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10" disabled>{{ $incidencia->comentarioTecnico }}</textarea>
                         @endif
                     
-                        <button class="btn border mb-3"><a href="{{ route('incidencias.index') }}">Volver</a></button>
+                        <a class="btn btn-secondary mb-3" href="{{ route('incidencias.index') }}">Volver</a>
                     </div>    
             
                 </form>
