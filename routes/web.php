@@ -28,9 +28,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
-//WebService ascensores
-Route::get('/ola', [App\Http\Controllers\AscensorController::class, 'filtrarAscensores']);
-
 
 //Ejemplo almacenamiento
 Route::get('/manuales/create', [App\Http\Controllers\StorageController::class, 'index'])->name('manuales.create');
