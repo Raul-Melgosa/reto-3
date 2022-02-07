@@ -22,10 +22,10 @@
         </div>
         <br>
         <button type="button" id="cargarGrafica">Cargar</button>
-        <select id="tipoEstadistica">
+        <select name="tipoEstadistica" id="tipoEstadistica">
           
         </select>
-        <select id="id">
+        <select name="id" id="id">
           
         </select>
     </div>

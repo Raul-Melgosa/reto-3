@@ -1,6 +1,5 @@
 $(document).ready(function(){ 
     rellenarSelectEstadisticas();
-    gestionarSelectId();
     $('#cargarGrafica').click(crearGrafica)
     $('#tipoEstadistica').change(gestionarSelectId)
     crearGrafica("numIncidenciasPorZona");
@@ -19,27 +18,44 @@ $(document).ready(function(){
     "tipoDeIncidenciasPorZonaId" : "http://igobideapp.test/estadisticas/tipoDeIncidenciasPorZonaId",
   }
 
+
+
+  var nombreEstadisticas ={     //El nombre para meter en la select
+    "numIncidenciasPorZona" : "Numero de incidencias por zona",
+    "numTipoIncidenciasPorZona" : "Numero tipo de incidencias por zona",
+    "numIncidenciasPorModelo" : "Numero tipo de incidencias por modelo",
+    "tiempoMedioIncidenciaEquipo" : "Tiempo medio incidencias equipo",
+    "tiempoMedioIncidenciaTecnico" : "Tiempo medio incidencias tecnicos por equipo",
+    "tipoDeIncidenciasPorZona" : "Tipo de incidencias por zona",
+    "numIncidenciasPorModeloId" : "Numero de tipo de incidencias por modelo id",
+    "tipoDeIncidenciasPorZonaId" : "Numero de tipo de incidencias por zona id",
+  }
+
 //--------------Gestion select por id----------
 function gestionarSelectId(){
-  if(rutasDatosEstadisticasRosco[$('#tipoEstadistica').val()]==undefined){
-    $('#id').addClass('d-none');
+  if(rutasDatosEstadisticasRosco[$('#tipoEstadistica').val()]==undefined && $('#tipoEstadistica').val()!='tiempoMedioIncidenciaTecnico'){
+    $('#id').addClass('invisible');
   }
   else{
-    $('#id').removeClass('d-none');
+    $('#id').removeClass('invisible');
     let datos;
-    if(rutasDatosEstadisticasRosco[$('#tipoEstadistica').val()]=="numIncidenciasPorModeloId"){
+    if($('#tipoEstadistica').val()=="numIncidenciasPorModeloId"){
       datos=llamadaAjaxIds('modelos');
     }
-    else if(rutasDatosEstadisticasRosco[$('#tipoEstadistica').val()]=="tipoDeIncidenciasPorZonaId"){
+    else if($('#tipoEstadistica').val()=="tipoDeIncidenciasPorZonaId"){
       datos=llamadaAjaxIds('zonas');
+    }
+    else if($('#tipoEstadistica').val()=="tiempoMedioIncidenciaTecnico"){
+      datos=llamadaAjaxIds('equipos');
     }
   }
 }
 
-//-----------Llamada webservice ids-------
+//-----------Llamada webservice ids-------  problema con
 function llamadaAjaxIds(tipo){
+  let url = new Array();
   url['modelos']='http://igobideapp.test/estadisticas/getModelos';
-  url['tecnicos']='http://igobideapp.test/estadisticas/getTecnicos';
+  url['equipos']='http://igobideapp.test/estadisticas/getEquipos';
   url['zonas']='http://igobideapp.test/estadisticas/getZonas';
   $.ajax({
     type: "GET", 
@@ -49,7 +65,7 @@ function llamadaAjaxIds(tipo){
       console.log(datos);
       rellenarSelectIds(datos);
     },
-    error: function(){
+    error: function(e){
         console.log("Algo salio mal");
     }       
   });
@@ -58,11 +74,7 @@ function llamadaAjaxIds(tipo){
 function rellenarSelectIds(datos){
   let opciones="";
   for (const [key, value] of Object.entries(datos)) {
-    let opcion="<option value='"+key+"'>"+key+"</option>";
-    opciones+=opcion;
-  };
-  for (const [key, value] of Object.entries(datos)) {
-    let opcion="<option value='"+key+"'>"+key+"</option>";
+    let opcion="<option value='"+key+"'>"+value+"</option>";
     opciones+=opcion;
   };
   $('#id').html(opciones);
@@ -72,45 +84,65 @@ function rellenarSelectIds(datos){
 //-----------Rellenar select tipos estadisticas--------
 function rellenarSelectEstadisticas(){
   let opciones="";
-  for (const [key, value] of Object.entries(rutasDatosEstadisticasColumnas)) {
-    let opcion="<option value='"+key+"'>"+key+"</option>";
+  for (const [key, value] of Object.entries(nombreEstadisticas)) {
+    let opcion="<option value='"+key+"'>"+value+"</option>";
     opciones+=opcion;
   };
-  for (const [key, value] of Object.entries(rutasDatosEstadisticasRosco)) {
-    let opcion="<option value='"+key+"'>"+key+"</option>";
-    opciones+=opcion;
-  };
+  
   $('#tipoEstadistica').html(opciones);
 }
 
 
 
-  //---------Estadisticas rosco-------------
+  //---------Estadisticas -------------
   function crearGrafica(){
     let fechaInicio=$('#fechaInicio').val();
     let fechaFin=$('#fechaFin').val();
     let tipoEstadistica=$('#tipoEstadistica').val()
+    let id=$('#id').val()
     let tipoGrafico="";
     url="";
     
+
     if(rutasDatosEstadisticasColumnas[tipoEstadistica]!=undefined){
       tipoGrafico="columnas";
-      if(fechaInicio != ""){
-        url=rutasDatosEstadisticasColumnas[tipoEstadistica]+"?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin;
+      if(id!=undefined){
+        if(fechaInicio != ""){
+          url=rutasDatosEstadisticasColumnas[tipoEstadistica]+"?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin+"&id="+id;
+        }
+        else{
+          url=rutasDatosEstadisticasColumnas[tipoEstadistica]+"?id="+id;
+        }
       }
       else{
-        url=rutasDatosEstadisticasColumnas[tipoEstadistica];
+        if(fechaInicio != ""){
+          url=rutasDatosEstadisticasColumnas[tipoEstadistica]+"?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin+"&id=all";
+        }
+        else{
+          url=rutasDatosEstadisticasColumnas[tipoEstadistica]+"?id=all";
+        }
       }
     }
     else if(rutasDatosEstadisticasRosco[tipoEstadistica]!=undefined){
       tipoGrafico="rosco";
-      if(fechaInicio != ""){
-        url=rutasDatosEstadisticasRosco[tipoEstadistica]+"?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin;
+      if(id!=undefined){
+        if(fechaInicio != ""){
+          url=rutasDatosEstadisticasRosco[tipoEstadistica]+"?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin+"&id="+id;
+        }
+        else{
+          url=rutasDatosEstadisticasRosco[tipoEstadistica]+"?id="+id;
+        }
       }
       else{
-        url=rutasDatosEstadisticasRosco[tipoEstadistica];
+        if(fechaInicio != ""){
+          url=rutasDatosEstadisticasRosco[tipoEstadistica]+"?fechaInicio="+fechaInicio+"&fechaFin="+fechaFin+"&id=all";
+        }
+        else{
+          url=rutasDatosEstadisticasRosco[tipoEstadistica]+"?id=all";
+        }
       }
     }
+    
     
     $.ajax({
       type: "GET", 

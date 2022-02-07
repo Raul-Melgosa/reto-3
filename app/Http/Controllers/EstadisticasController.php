@@ -161,7 +161,7 @@ class EstadisticasController extends Controller
             $fechaMin=null;
             $fechaMax=null;
         }
-        $modeloId=1;
+        $modeloId=request('id'); 
         $modelos=ModeloAscensor::all()->where('id',$modeloId);
         $incidencias=[];
         foreach ($modelos as $modelo) {
@@ -250,8 +250,8 @@ class EstadisticasController extends Controller
             $fechaMin=null;
             $fechaMax=null;
         }
-        $equipoId=1;
-        $equipo=Equipo::get('id',$equipoId)->first();
+        $equipoId=request('id');
+        $equipo=Equipo::where('id',$equipoId)->first();
         $tecnicos=$equipo->tecnicos();
         $incidenciasTecnico=[];
         $tiempoMedioIncidenciaTecnicos=[];
@@ -361,7 +361,14 @@ class EstadisticasController extends Controller
                 $fechaMin=null;
                 $fechaMax=null;
             }
-            $zonas=Zona::all()->where('id', 1);
+            $zonaId = request('id');
+            $zonas=null;
+            if($zonaId!='all'){
+                $zonas=Zona::all()->where('id', $zonaId);
+            }else{
+                $zonas=Zona::all();
+            }
+            $incidenciasTotales=[];
             foreach ($zonas as $zona) {
                 $incidencias=[];
                 $incidencias_bandalismo=0;
@@ -412,8 +419,9 @@ class EstadisticasController extends Controller
             $zonas=Zona::all();
             $nombreZonas=[];
             foreach($zonas as $key => $value){
-                $nombreZonas[$key]=$value;
+                $nombreZonas[$value['id']]=$value['zona'];
             }
+            //dd(json_encode($nombreZonas));
             return json_encode($nombreZonas);
         }
 
@@ -421,21 +429,31 @@ class EstadisticasController extends Controller
             $modelos=ModeloAscensor::all();
             $nombreModelos=[];
             foreach($modelos as $key => $value){
-                $nombreModelos[$key]=$value;
+                $nombreModelos[$value['id']]=$value['modelo'];
             }
             return json_encode($nombreModelos);
         }
 
         public function getTecnicos(){
             $idEquipo=request('id_equipo');
-            $modelos=User::all()->where('rol', 'tecnico')
+            $tecnicos=User::all()->where('rol', 'tecnico')
                                 ->where('equipo_id', $idEquipo);
 
-            $nombreModelos=[];
-            foreach($modelos as $key => $value){
-                $nombreModelos[$key]=$value;
+            $nombreTecnicos=[];
+            foreach($tecnicos as $key => $value){
+                $nombreTecnicos[$value['id']]=$value['id'] . "-" + $value['nombre'];
             }
-            return json_encode($nombreModelos);
+            return json_encode($nombreTecnicos);
+        }
+
+        public function getEquipos(){
+            $equipos=Equipo::all();
+            $nombreEquipos=[];
+            foreach($equipos as $key => $value){
+                $nombreEquipos[$value['id']]="Equipo:" . $value['id'];
+            }
+            //dd(json_encode($nombreZonas));
+            return json_encode($nombreEquipos);
         }
 
 

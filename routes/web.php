@@ -39,6 +39,7 @@ Route::get('/estadisticas/tipoDeIncidenciasPorZonaId', [App\Http\Controllers\Est
 Route::get('/estadisticas/getZonas', [App\Http\Controllers\EstadisticasController::class, 'getZonas']);
 Route::get('/estadisticas/getTecnicos', [App\Http\Controllers\EstadisticasController::class, 'getTecnicos']);
 Route::get('/estadisticas/getModelos', [App\Http\Controllers\EstadisticasController::class, 'getModelos']);
+Route::get('/estadisticas/getEquipos', [App\Http\Controllers\EstadisticasController::class, 'getEquipos']);
 
 
 
