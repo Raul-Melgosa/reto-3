@@ -55,9 +55,9 @@ function gestionarSelectId(){
 //-----------Llamada webservice ids-------  problema con
 function llamadaAjaxIds(tipo){
   let url = new Array();
-  url['modelos']= window.location.href+"/estadisticas/getModelos';
-  url['equipos']= window.location.href+"/estadisticas/getEquipos';
-  url['zonas']= window.location.href+"/estadisticas/getZonas';
+  url['modelos']= window.location.href+"/getModelos';
+  url['equipos']= window.location.href+"/getEquipos';
+  url['zonas']= window.location.href+"/getZonas';
   $.ajax({
     type: "GET", 
     url:  url[tipo], // AQUI apuntamos al PHP
