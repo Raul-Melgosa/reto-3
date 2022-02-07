@@ -37,6 +37,13 @@ class IncidenciaFactory extends Factory
         $tecnicos = $equipo->tecnicos();
         $tecnico = $tecnicos[random_int(0,(count($tecnicos)-1))];
 
+        $comentarioOperador = $this->faker->realTextBetween('200','300');
+        $comentarioTecnico=null;
+
+        if($estado=='En proceso' || $estado=='Resuelta') {
+            $comentarioTecnico = $this->faker->realTextBetween('200','300');
+        }
+
         if ($urgente == 1) { //Es urgente
             if($estado == 'Resuelta') { //Es urgente y ha finalizado
                 return [
@@ -46,7 +53,9 @@ class IncidenciaFactory extends Factory
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'tecnico_id' => $tecnico->id,
+                    'comentarioOperador' => $comentarioOperador,
+                    'comentarioTecnico' => $comentarioTecnico
                 ];
             } else { //Es urgente y no ha finalizado
                 return [
@@ -55,7 +64,9 @@ class IncidenciaFactory extends Factory
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'tecnico_id' => $tecnico->id,
+                    'comentarioOperador' => $comentarioOperador,
+                    'comentarioTecnico' => $comentarioTecnico
                 ];
             }
             
@@ -68,7 +79,9 @@ class IncidenciaFactory extends Factory
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'tecnico_id' => $tecnico->id,
+                    'comentarioOperador' => $comentarioOperador,
+                    'comentarioTecnico' => $comentarioTecnico
                 ];
             } else { // No es urgente y esta sin finalizar
                 return [
@@ -77,7 +90,9 @@ class IncidenciaFactory extends Factory
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
-                    'tecnico_id' => $tecnico->id
+                    'tecnico_id' => $tecnico->id,
+                    'comentarioOperador' => $comentarioOperador,
+                    'comentarioTecnico' => $comentarioTecnico
                 ];
             }
         }

@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\ManualController;
+use App\Http\Controllers\AscensorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +18,15 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () {
+    return redirect(route('home'));
+});
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
 //WebService ascensores
 Route::get('/ola', [App\Http\Controllers\AscensorController::class, 'filtrarAscensores']);
@@ -48,14 +53,18 @@ Route::get('/manuales/delete/{archivo}', [App\Http\Controllers\StorageController
 //Ejemplo envio mail
 //Route::get('/mail/{mail}/{contenido}/', [App\Http\Controllers\MailControler::class, 'sendEmailIncidencia', ]);
 
-Route::get('/form', function ()
+/*Route::get('/form', function ()
 {
     return view('formularios.formularioOperador');
 });
+*/
 
-Route::get('/user', function ()
-{
-    return view('formularios.formularioNuevoUser');
-});
+Route::get('/incidencias',[IncidenciaController::class, 'index'])->name('incidencias.index');
+Route::get('/incidencias/create',[IncidenciaController::class, 'create'])->name('incidencia.create');
 
+Route::post('/incidencias/create',[IncidenciaController::class, 'store'])->name('incidencia.store');
+Route::get('/incidencias/{id}',[IncidenciaController::class, 'show'])->name('incidencias.show');
+Route::put('/incidencias/{id}',[IncidenciaController::class, 'update'])->name('incidencias.update');
 
+Route::get('/incidencias/create/direccion',[IncidenciaController::class, 'firltarAscensores'])->name('webservice.ascensores');
+Route::get('/manuales',[ManualController::class, 'index'])->name('manual.index');
