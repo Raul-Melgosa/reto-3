@@ -46,7 +46,8 @@ class UserController extends Controller
             return view('tecnico.home', compact('pendientes','resueltas'));
         }
         elseif (Gate::allows('isOperador')) {
-            return view('operador.home');
+            $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            return view('operador.home', compact('incidencias'));
         }
     }
 

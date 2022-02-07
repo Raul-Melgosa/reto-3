@@ -41,11 +41,19 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @auth
+                            @if(auth()->user()->rol=='operador')
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{{ route('incidencia.create') }}">
+                                        {{ __('Nueva incidencia') }}
+                                    </a>
+                            </li>
+                            @else
                             <li class="nav-item">
                                 <a class="btn btn-link" href="{{ route('manuales.index') }}">
                                         {{ __('Manuales') }}
                                     </a>
                             </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->email }}

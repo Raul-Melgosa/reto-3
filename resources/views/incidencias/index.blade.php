@@ -49,7 +49,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                {!! $pendientes->links() !!}
+                {!! $incidencias->links() !!}
             </div>
         </div>
         

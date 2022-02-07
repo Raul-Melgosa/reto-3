@@ -20,7 +20,7 @@ $("#bModal").click(function () {
         "numeroserie":"&numeroserie="+numeroserie
     };
     $.ajax({
-        url: "http://reto3.test/incidencias/create/direccion?" + direccion['calle']+direccion['numero']+direccion['numeroserie'],
+        url: window.location.href+"/direccion?" + direccion['calle']+direccion['numero']+direccion['numeroserie'],
         type: 'get'
     })
     .done(function (arrayAscensores) {

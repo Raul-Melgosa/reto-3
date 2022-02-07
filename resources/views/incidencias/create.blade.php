@@ -118,7 +118,7 @@
 
                         <div class="form-check form-switch ms-5">
                             <label class="form-check-label fs-5 my-0" for="urgente">Urgente</label>
-                            <input class="form-check-input" value="1" type="checkbox" id="urgente">
+                            <input class="form-check-input" value="1" name="urgente" type="checkbox" id="urgente">
                         </div>
 
                     </div>
