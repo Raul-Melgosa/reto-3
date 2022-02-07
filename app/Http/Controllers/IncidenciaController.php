@@ -12,6 +12,7 @@ use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Mockery\Undefined;
+use Illuminate\Support\Facades\Gate;
 
 class IncidenciaController extends Controller
 {
@@ -123,21 +124,21 @@ class IncidenciaController extends Controller
     public function update($id)
     {
         $incidencia=Incidencia::find($id);
-        if(auth()->user()->rol=='jde'){
+        if(Gate::allows('isJde')){
             request('tecnicos');
+            $incidencia->save();
         }
-        
+        if (Gate::allows('isTecnico')) {
+            $incidencia->estado = request('estados');
+            
+            $incidencia->tipoaveria=request('averia');
+            $incidencia->comentarioTecnico=request('comentarioTecnico');
 
-        if(request('estado')!=""){
-            $incidencia->estado = request('estado');
-        }
-        $incidencia->tipoaveria=request('averia');
-        $incidencia->comentarioTecnico=request('comentarioTecnico');
-
-        $incidencia->save();
-        if(request('estado')=="Resuelta"){
-            $cliente=Cliente::find(request('cliente'));
-            (new MailControler)->sendEmail($cliente->email,'Incidencia Resuelta','');
+            $incidencia->save();
+            if(request('estados')=="Resuelta"){
+                $cliente=Cliente::find(request('cliente'));
+                (new MailControler)->sendEmail($cliente->email,'Incidencia Resuelta','La incidencia con su ascensor ha sido resuelta, que tenga un buen dia');
+            }
         }
         
         return redirect(route('home'));
