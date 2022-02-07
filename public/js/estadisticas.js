@@ -56,7 +56,7 @@ function gestionarSelectId(){
 function llamadaAjaxIds(tipo){
   let url = new Array();
   url['modelos']= window.location.href+"/estadisticas/getModelos';
-  url['equipos']= window.location.href+"http://igobideapp.test/estadisticas/getEquipos';
+  url['equipos']= window.location.href+"/estadisticas/getEquipos';
   url['zonas']= window.location.href+"/estadisticas/getZonas';
   $.ajax({
     type: "GET", 
