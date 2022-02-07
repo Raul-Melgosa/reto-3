@@ -64,4 +64,8 @@ Route::get('/incidencias/{id}',[IncidenciaController::class, 'show'])->name('inc
 Route::put('/incidencias/{id}',[IncidenciaController::class, 'update'])->name('incidencias.update');
 
 Route::get('/incidencias/create/direccion',[IncidenciaController::class, 'firltarAscensores'])->name('webservice.ascensores');
+
 Route::get('/manuales',[ManualController::class, 'index'])->name('manual.index');
+Route::get('/manuales/buscar',[ManualController::class, 'filtrarNombre'])->name('manual.filtrarNombre');
+
+

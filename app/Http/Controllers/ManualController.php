@@ -45,4 +45,13 @@ class ManualController extends Controller
     {
         //
     }
+    public function filtrarNombre()
+    {
+        $manual=ModeloAscensor::where('modelo','like','%'.request('ascensor').'%')->get();
+        
+        if(count($manual)>0){
+            return $manual;
+        }
+        
+    }
 }
