@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\ManualController;
+use App\Http\Controllers\AscensorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,5 +58,10 @@ Route::get('/manuales/delete/{archivo}', [App\Http\Controllers\StorageController
 
 Route::get('/incidencias',[IncidenciaController::class, 'index'])->name('incidencias.index');
 Route::get('/incidencias/create',[IncidenciaController::class, 'create'])->name('incidencia.create');
+
 Route::post('/incidencias/create',[IncidenciaController::class, 'store'])->name('incidencia.store');
 Route::get('/incidencias/{id}',[IncidenciaController::class, 'show'])->name('incidencias.show');
+Route::put('/incidencias/{id}',[IncidenciaController::class, 'update'])->name('incidencias.update');
+
+Route::get('/incidencias/create/direccion',[IncidenciaController::class, 'firltarAscensores'])->name('webservice.ascensores');
+Route::get('/manuales',[ManualController::class, 'index'])->name('manual.index');

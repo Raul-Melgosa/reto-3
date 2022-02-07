@@ -82,4 +82,32 @@ class AscensorController extends Controller
     {
         //
     }
+    public function filtrarAscensores(){  //busca ascensores coincidentes por nSerie, calle y bloque 
+        $nSerie=request('numeroserie');   //en ese orden respectivamente
+        $calle=request('calle');
+        $bloque=request('bloque');
+
+        if($nSerie){
+            $ascensores=Ascensor::where('numeroserie', $nSerie)->get();
+            dd($ascensores);
+            if(count($ascensores)>0)
+                return json_encode($ascensores);
+            else{
+                $ascensores=Ascensor::where('numeroserie', 'like', '%'.$nSerie.'%')->get();
+                return json_encode($ascensores);
+            }
+        }
+        elseif($calle){
+            $ascensores=Ascensor::where('calle', 'like', '%'.$calle.'%')->get();  
+            if(count($ascensores)>0 && $bloque){
+                $ascensores->where('bloque','=',$bloque)->get();
+               
+                return json_encode($ascensores);
+            }
+            elseif($ascensores){
+                return json_encode($ascensores);
+            }
+        }
+        return null;
+    }
 }

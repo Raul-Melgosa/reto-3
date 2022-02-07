@@ -18,7 +18,7 @@ class CreateIncidenciasTable extends Migration
             $table->timestamps();
             $table->timestamp('fecha-fin')->nullable();
             $table->boolean('urgente');
-            $table->string('estado');
+            $table->string('estado')->default('Pendiente');
             $table->longText('comentarioOperador')->nullable();
             $table->longText('comentarioTecnico')->nullable();
             $table->string('tipoaveria');
