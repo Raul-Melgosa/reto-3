@@ -25,7 +25,7 @@ class AscensorFactory extends Factory
             'bloque' => $this->faker->buildingNumber(),
             'paradas' => $paradas,
             'recorrido' => ($paradas * (random_int(23,28)/10)),
-            'modeloAscensor_id' => $modelo_id
+            'modelo_ascensor_id' => $modelo_id
         ];
     }
 }

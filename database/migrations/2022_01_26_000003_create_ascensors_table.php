@@ -25,8 +25,8 @@ class CreateAscensorsTable extends Migration
             $table->unsignedBigInteger('zona_id');
             $table->foreign('zona_id')->references('id')->on('zonas');
 
-            $table->unsignedBigInteger('modeloAscensor_id');
-            $table->foreign('modeloAscensor_id')->references('id')->on('modelo_ascensors');
+            $table->unsignedBigInteger('modelo_ascensor_id');
+            $table->foreign('modelo_ascensor_id')->references('id')->on('modelo_ascensors');
         });
     }
 

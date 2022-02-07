@@ -29,6 +29,24 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
 
+
+Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'index']);
+//Rutas webservice-datos-estadisticas
+Route::get('/estadisticas/numIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorZona']);
+Route::get('/estadisticas/numTipoIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numTipoIncidenciasPorZona']);
+Route::get('/estadisticas/numIncidenciasPorModelo', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorModelo']);
+Route::get('/estadisticas/numIncidenciasPorModeloId', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorModeloId']);
+Route::get('/estadisticas/tiempoMedioIncidenciaEquipo', [App\Http\Controllers\EstadisticasController::class, 'tiempoMedioIncidenciaEquipo']);
+Route::get('/estadisticas/tiempoMedioIncidenciaTecnico', [App\Http\Controllers\EstadisticasController::class, 'tiempoMedioIncidenciaTecnico']);
+Route::get('/estadisticas/tipoDeIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZona']);
+Route::get('/estadisticas/tipoDeIncidenciasPorZonaId', [App\Http\Controllers\EstadisticasController::class, 'tipoDeIncidenciasPorZonaId']);
+Route::get('/estadisticas/getZonas', [App\Http\Controllers\EstadisticasController::class, 'getZonas']);
+Route::get('/estadisticas/getTecnicos', [App\Http\Controllers\EstadisticasController::class, 'getTecnicos']);
+Route::get('/estadisticas/getModelos', [App\Http\Controllers\EstadisticasController::class, 'getModelos']);
+Route::get('/estadisticas/getEquipos', [App\Http\Controllers\EstadisticasController::class, 'getEquipos']);
+
+
+
 //Ejemplo almacenamiento
 Route::get('/manuales/create', [App\Http\Controllers\StorageController::class, 'index'])->name('manuales.create');
 Route::post('/manuales/store', [App\Http\Controllers\StorageController::class, 'store'])->name('manuales.store');

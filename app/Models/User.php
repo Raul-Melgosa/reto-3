@@ -52,9 +52,7 @@ class User extends Authenticatable
 
     public function incidencias()
     {
-        if($this->rol=='tecnico') {
-            return $this->hasMany('App\Models\Incidencia');
-        }
+        return $this->hasMany('App\Models\Incidencia');
     }
     /*
     public function equipo()
