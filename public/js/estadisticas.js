@@ -7,16 +7,16 @@ $(document).ready(function(){
   });
                                             //Como los datos depende de la grafica reciben un tratamiento diferente
   var rutasDatosEstadisticasColumnas ={     //los calsifico aqui depende en que array estan
-    "numIncidenciasPorZona" : "http://igobideapp.test/estadisticas/numIncidenciasPorZona",
-    "numTipoIncidenciasPorZona" : "http://igobideapp.test/estadisticas/numTipoIncidenciasPorZona",
-    "numIncidenciasPorModelo" : "http://igobideapp.test/estadisticas/numIncidenciasPorModelo",
-    "tiempoMedioIncidenciaEquipo" : "http://igobideapp.test/estadisticas/tiempoMedioIncidenciaEquipo",
-    "tiempoMedioIncidenciaTecnico" : "http://igobideapp.test/estadisticas/tiempoMedioIncidenciaTecnico",
-    "tipoDeIncidenciasPorZona" : "http://igobideapp.test/estadisticas/tipoDeIncidenciasPorZona",
+    "numIncidenciasPorZona" : window.location.href+"/numIncidenciasPorZona",
+    "numTipoIncidenciasPorZona" : window.location.href+"/numTipoIncidenciasPorZona",
+    "numIncidenciasPorModelo" : window.location.href+"/numIncidenciasPorModelo",
+    "tiempoMedioIncidenciaEquipo" : window.location.href+"/tiempoMedioIncidenciaEquipo",
+    "tiempoMedioIncidenciaTecnico" : window.location.href+"/tiempoMedioIncidenciaTecnico",
+    "tipoDeIncidenciasPorZona" : window.location.href+"/tipoDeIncidenciasPorZona",
   }
   var rutasDatosEstadisticasRosco ={
-    "numIncidenciasPorModeloId" : "http://igobideapp.test/estadisticas/numIncidenciasPorModeloId",
-    "tipoDeIncidenciasPorZonaId" : "http://igobideapp.test/estadisticas/tipoDeIncidenciasPorZonaId",
+    "numIncidenciasPorModeloId" : window.location.href+"/numIncidenciasPorModeloId",
+    "tipoDeIncidenciasPorZonaId" : window.location.href+"/tipoDeIncidenciasPorZonaId",
   }
 
 
