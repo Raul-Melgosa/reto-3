@@ -1,5 +1,6 @@
 $(document).ready(function(){ 
     rellenarSelectEstadisticas();
+    gestionarSelectId();
     $('#cargarGrafica').click(crearGrafica)
     $('#tipoEstadistica').change(gestionarSelectId)
     crearGrafica("numIncidenciasPorZona");

@@ -30,8 +30,8 @@ class CreateIncidenciasTable extends Migration
             $table->unsignedBigInteger('ascensor_id');
             $table->foreign('ascensor_id')->references('id')->on('ascensors');
 
-            $table->unsignedBigInteger('user_id');                      //cambio de ''tecnico_id'' a ''user_id'' por respetar los convencionalismos
-            $table->foreign('user_id')->references('id')->on('users'); //sino algunas relaciones no funcionan
+            $table->unsignedBigInteger('tecnico_id');                      //cambio de ''tecnico_id'' a ''user_id'' por respetar los convencionalismos
+            $table->foreign('tecnico_id')->references('id')->on('users'); //sino algunas relaciones no funcionan
         });
     }
 
