@@ -220,7 +220,8 @@ class EstadisticasController extends Controller
             $tecnicos=$equipo->tecnicos();
             foreach($tecnicos as $tecnico){
                 if($fechaMin!=null && $fechaMax!=null){
-                    $incidenciasTecnico=array_merge($incidenciasTecnico, $tecnico->incidencias->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->toArray());
+                    $incidenciasTecnico=array_merge($incidenciasTecnico, $tecnico->incidencias->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])
+                                                                                                ->whereNotNull('fecha_fin')->toArray());
                 }
                 else{
                     $incidenciasTecnico=array_merge($incidenciasTecnico, $tecnico->incidencias
@@ -257,15 +258,19 @@ class EstadisticasController extends Controller
         $tiempoMedioIncidenciaTecnicos=[];
         foreach($tecnicos as $tecnico){
             if($fechaMin!=null && $fechaMax!=null){
-                $incidenciasTecnico=$tecnico->incidencias->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->toArray();
+                $incidenciasTecnico=$tecnico->incidencias->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])
+                                                            ->whereNotNull('fecha_fin');
                 $tiempoIncidencias=0;
                 $contador=0;
                 foreach($incidenciasTecnico as $incidencia){ 
                     $tiempoIncidencias+=(strtotime($incidencia->fecha_fin) - strtotime($incidencia->fecha_inicio));
                     $contador++;
                 }
+                if($contador==0){
+                    $contador=1;
+                }
                 $tiempoMedioIncidencia=($tiempoIncidencias/$contador)/(60 * 60); //devuelve horas
-                $tiempoMedioIncidenciaTecnicos[$tecnico->id] = $tiempoMedioIncidencia;
+                $tiempoMedioIncidenciaTecnicos[$tecnico->id . ":" . $tecnico->nombre] = $tiempoMedioIncidencia;
                 } 
             else{
                 $incidenciasTecnico=$tecnico->incidencias->where('fecha_fin', '!=', null );
@@ -277,11 +282,11 @@ class EstadisticasController extends Controller
                         $contador++;
                     }
                     $tiempoMedioIncidencia=($tiempoIncidencias/$contador)/(60 * 60); //devuelve horas
-                    $tiempoMedioIncidenciaTecnicos[$tecnico->nombre] = round($tiempoMedioIncidencia, 1);
+                    $tiempoMedioIncidenciaTecnicos[$tecnico->id . ":" . $tecnico->nombre] = round($tiempoMedioIncidencia, 1);
                 }
                 else{
                     //$tiempoMedioIncidenciaTecnicos[$tecnico->nombre] = "Tecnico sin incidencias";
-                    $tiempoMedioIncidenciaTecnicos[$tecnico->nombre] = 0;
+                    $tiempoMedioIncidenciaTecnicos[$tecnico->id . ":" . $tecnico->nombre] = 0;
                 }
             }
         }
