@@ -2,12 +2,24 @@
 
 @section('content')
             <div class="row justify-content-center">
-                
-                @foreach($manuales as $manual)
-                    <div class="col-11 col-sm-6">
-                        <iframe src="{{ asset('storage/manuales/') }}{{'/'.$manual->manual}}" width="75%" height="400vh"></iframe>
+
+                <div class="accordion" id="acordeonManuales">
+                    @foreach($manuales as $manual)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ $manual->id }}">
+                            
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $manual->id }}" aria-expanded="true" aria-controls="collapse{{ $manual->id }}">
+                                {{ $manual->modelo }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ $manual->id }}" class="accordion-collapse collapse  "  data-bs-parent="#acordeonManuales">
+                            <div class="accordion-body">
+                                <iframe src="{{ asset('storage/manuales/') }}{{'/'.$manual->manual}}" width="100%" height="400vh"></iframe>
+                            </div>
+                        </div>
                     </div>
-                @endforeach
-                
+                        
+                    @endforeach
+                </div>
             </div>
 @endsection

@@ -94,8 +94,8 @@
             </table>
         </div>
         <div class="d-flex justify-content-center">
-                {!! $pendientes->links() !!}
-            </div>
+            {!! $pendientes->links() !!}
+        </div>
         <script>
             document.querySelectorAll('.tr-enlace').forEach(element => {
                 element.addEventListener('click',() => {window.location=element.getAttribute('data-href');})

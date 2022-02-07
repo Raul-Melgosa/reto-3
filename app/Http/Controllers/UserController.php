@@ -41,8 +41,8 @@ class UserController extends Controller
             return view('jefeDeEquipo.home', compact('pendientes','resueltas'));
         }
         elseif (Gate::allows('isTecnico')) {
-            $pendientes=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','!=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->get();
-            $resueltas=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->get();
+            $pendientes=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','!=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->paginate(20);
+            $resueltas=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->paginate(20);
             return view('tecnico.home', compact('pendientes','resueltas'));
         }
         elseif (Gate::allows('isOperador')) {

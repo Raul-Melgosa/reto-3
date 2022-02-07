@@ -41,6 +41,11 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @auth
+                            <li class="nav-item">
+                                <a class="btn btn-link" href="{{ route('manuales.index') }}">
+                                        {{ __('Manuales') }}
+                                    </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->email }}

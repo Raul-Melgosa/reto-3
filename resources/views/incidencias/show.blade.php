@@ -40,10 +40,10 @@
                 </div>
 
 
-                <form action="{{ route('incidencias.update',$incidencia->id) }}" method="post">  
+                <form class="col-11 col-md-10" action="{{ route('incidencias.update',$incidencia->id) }}" method="post">  
                     @csrf
                     @method("PUT")
-                    <div class="col-11 col-md-10 ">
+                    <div class="col-12 ">
                         <h2 class="text-center mb-5">Incidencia</h2>
                         @if(auth()->user()->rol=='operador')
                             <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
@@ -56,7 +56,7 @@
 
                             @if(auth()->user()->rol=='jde')
                             
-                            <div class="col-12 col-sm-11 col-lg-9 mb-3 row g-0 ms-4">     
+                            <div class="col-12 mb-3 row g-0 ms-4">     
                                 <label for="teccnicos">T&eacute;cnicos</label>
                                 <select class="form-select" name="tecnicos" id="tecnicos">
                                     @foreach($tecnicos as $tecnico)
@@ -73,10 +73,9 @@
                             </div>
                             <input type="submit" class="btn btn-primary" value="Actualizar">
                             @endif
-                        </div>
                     </div>
-                    <div class="col-11 col-sm-11 col-md-10  border border-light my-3"></div>
-                    <div class="col-11 col-sm-11 col-md-10 ">
+                    
+                    <div class="col-12">
                         
                         <label for="comentarioOperador">Comentario Operador: </label>
                         <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10" disabled>{{ $incidencia->comentarioOperador }}</textarea>
@@ -84,7 +83,7 @@
                         <label for="comentarioTecnico">Comentario Tecnico: </label>
                         @if(auth()->user()->rol=='tecnico') 
                             <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10">{{  $incidencia->comentarioTecnico }}</textarea>
-                            <div class="col-11 ms-3">     
+                            <div class="col-12 ms-3">     
                                 <label class="form-label me-3 " for="averia" >Tipo aver&iacute;a</label>
                                 <select class="form-select d-inlineblock col-4" name="averia" id="averia">
                                     <optgroup label="Bandalismo">
@@ -97,37 +96,41 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            <div class="col-11 ms-3">     
-                                <label class="form-label me-3 " for="estado" >Estado</label>
-                                <div class="col-4">
-                                    @if($incidencia->estado=='Pendiente')
-                                        <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="Pendiente" checked>
-                                    @else
-                                        <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="Pendiente">
-                                    @endif
-                                    <label class="btn btn-outline-danger m-0 w-100" for="pendiente">Pendiente</label>
-                                </div>
 
-                                <div class="col-4">
-                                    @if($incidencia->estado=='En proceso')
-                                        <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso" checked>
-                                    @else
-                                        <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso">
-                                    @endif
-                                    <label class="btn btn-outline-warning m-0 w-100" for="proceso">En proceso</label>
-                                </div>
+                            <div class="col-12 ms-3">     
+                                <label class="form-label me-3 col-12" for="estado" >Estado</label>
+                                <div class="row">
+                                    <div class="col-12 col-sm-4 d-sm-inline-block m-1 m-sm-0">
+                                        @if($incidencia->estado=='Pendiente')
+                                            <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="Pendiente" checked>
+                                        @else
+                                            <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="Pendiente">
+                                        @endif
+                                        <label class="btn btn-outline-danger m-0 w-100" for="pendiente">Pendiente</label>
+                                    </div>
 
-                                <div class="col-4">
-                                    @if($incidencia->estado=='Resuelta')
-                                        <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="Resuelta" checked>
-                                    @else
-                                        <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="Resuelta">
-                                    @endif
-                                    <label class="btn btn-outline-success m-0 w-100" for="resuelta">Resuelta</label>
+                                    <div class="col-12 col-sm-4 d-sm-inline-block m-1 m-sm-0">
+                                        @if($incidencia->estado=='En proceso')
+                                            <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso" checked>
+                                        @else
+                                            <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso">
+                                        @endif
+                                        <label class="btn btn-outline-warning m-0 w-100" for="proceso">En proceso</label>
+                                    </div>
+
+                                    <div class="col-12 col-sm-4 d-sm-inline-block m-1 m-sm-0">
+                                        @if($incidencia->estado=='Resuelta')
+                                            <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="Resuelta" checked>
+                                        @else
+                                            <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="Resuelta">
+                                        @endif
+                                        <label class="btn btn-outline-success m-0 w-100" for="resuelta">Resuelta</label>
+                                    </div>
                                 </div>
                             </div>
+
                             <input type="hidden" name="cliente" value="{{ $incidencia->cliente->id }}">
-                            <input type="submit" class="btn btn-primary m-3" value="Actualizar">
+                            <input type="submit" class="btn btn-primary m-3 col-12 col-sm-auto" value="Actualizar">
                         @else
                             <textarea class="col-12 mb-3" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10" disabled>{{ $incidencia->comentarioTecnico }}</textarea>
                         @endif
@@ -136,10 +139,6 @@
                     </div>   
             
                 </form>
-
-                <div class="col-11 col-sm-11 col-md-10  border border-light my-3"></div>
-
-
 
                 <div  class="col-11 col-md-10 ">
                     <h2>Cliente</h2>
@@ -170,6 +169,7 @@
                     </label>
                 </div>
                 <div class="col-11 col-sm-11 col-md-10 border border-light my-3"></div>
+
                 <div class="col-11 col-md-10">
                     <h2>Ascensor</h2>
                     <label class="form-label position-relative">
@@ -200,7 +200,7 @@
                         <!--
                         {{ asset('storage/manuales/') }}{{'/'.$modelo->manual}} = direccion donde estan los manuales
                         -->
-                        <iframe src="{{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}" width="75%" height="650vh"></iframe>
+                        <iframe src="{{ asset('storage/manuales/') }}{{'/'.$modelo->manual}}" width="100%" height="300vh"></iframe>
                     </div>
                     <a class="btn btn-primary mb-3" href="{{ url()->previous() }}">Volver</a>
                 </div>

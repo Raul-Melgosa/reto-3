@@ -45,13 +45,15 @@
                             </td>
                         </tr>
                     @endforeach
+                    @if( count($resueltas)!=0 )
                     <tr>
                         <td class="text-center" colspan="5">
-                            <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#resueltas" aria-expanded="false" aria-controls="resueltas">
-                                Mostrar/ocultar incidencias ya resueltas
+                            <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#resueltas" aria-expanded="false" aria-controls="resueltas">    
+                            Mostrar/ocultar incidencias ya resueltas
                             </button>
                         </td>
                     </tr>
+                    @endif
                 </tbody>
             </table>
             <p >
@@ -90,6 +92,9 @@
                     </tr>
                 @endforeach
             </table>
+        </div>
+        <div class="d-flex justify-content-center">
+            {!! $pendientes->links() !!}
         </div>
         <script>
             document.querySelectorAll('.tr-enlace').forEach(element => {
