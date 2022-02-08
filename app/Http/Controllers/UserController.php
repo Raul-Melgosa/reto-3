@@ -8,6 +8,7 @@ use App\Models\Indicencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
+
 class UserController extends Controller
 {
     /**
@@ -58,7 +59,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**

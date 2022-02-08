@@ -28,9 +28,9 @@ Route::get('/welcome', function () {
 });
 
 Auth::routes();
-
+Route::post('/registro', [RegistroController::class, 'create'])->name('crearUsuario');
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
-Route::post('/registro', [RegisterController::class, 'create'])->name('register');
+
 Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
 Route::get('/manuales',[ManualController::class, 'index'])->name('manuales.index');
