@@ -11,7 +11,7 @@ use App\Models\ModeloAscensor;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Mockery\Undefined;
+use Illuminate\Support\Facades\DB;
 
 class IncidenciaController extends Controller
 {
@@ -26,6 +26,50 @@ class IncidenciaController extends Controller
         return view('incidencias.index', compact('incidencias'));
     }
 
+    public function filtroWhereInIds($item, $list){
+        foreach($list as $listItem){
+            if($item->id==$listItem){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public function filtrar()
+    {
+        $nombreTecnico=request('nombre');
+        $zona=request('zona');
+        $estado=request('estado');
+        $incidencias=null;
+        $idTecnicosNombre=[];
+        $idTecnicosZona=[];
+        $idIncidenciasEstado=[];
+        if($nombreTecnico!=""){
+            $tecnicos=User::where('rol','tecnico')->where('nombre', 'LIKE', '%'.$nombreTecnico.'%')->get();
+            foreach($tecnicos as $tecnico){
+                array_push($idTecnicosNombre, $tecnico->id);
+            }
+            //$incidencias=Incidencia::whereIn('tecnico_id', $idTecnicosNombre);
+        }
+        if($zona!=null){
+            $zonaId=Zona::where('zona', $zona)->first();
+            $equipo=Equipo::where('zona_id', $zonaId->id)->first();
+            $tecnicos=User::where('rol', 'tecnico')->where('equipo_id', $equipo->id)->get();
+            foreach($tecnicos as $tecnico){
+                array_push($idTecnicosZona, $tecnico->id);
+            }
+        }
+        $idTecnicos=array_intersect($idTecnicosNombre, $idTecnicosZona);
+        if($estado!=null){
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+        }
+        else{
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+
+        }
+        return view('incidencias.index', compact('incidencias'));
+    }
     /**
      * Show the form for creating a new resource.
      *

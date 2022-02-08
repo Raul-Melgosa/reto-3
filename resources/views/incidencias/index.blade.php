@@ -1,6 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+        <div id="filtros">
+            <div id="app">
+                <Datepicker></Datepicker>
+            </div>
+            <label for="inputNombre">Nombre técnico:</label>
+            <input type="text" id="inputNombre" name="inputNombre" value="{{ request('nombre') }}"/>
+            <label for="selectZonas">Zona:</label>
+            <select id="selectZonas" name="selectZonas">
+                <option selected value="undefined">--Selecciona una zona--</option>
+                <option value="norte">norte</option>
+                <option value="sur">sur</option>
+                <option value="este">este</option>
+                <option value="oeste">oeste</option>
+                <option value="centro">centro</option>
+            </select>
+            <label for="selectEstado">Estados:</label>
+            <select id="selectEstado" name="selectEstado">
+                <option value="undefined">--Estado--</option>
+                <option value="En proceso">En proceso</option>
+                <option value="Resuelta">Resuelta</option>
+                <option value="Pendiente">Pendiente</option>
+            </select>
+            <button type="button" id="bFiltar">Filtar</button>
+        </div>
         <div class="col-11">
             <table class="table table-hover">
                 <thead>
@@ -52,7 +76,7 @@
                 {!! $incidencias->links() !!}
             </div>
         </div>
-        
+        <script type="text/javascript" src=" {{ asset('js/filtro.js') }} "></script>
         <script>
             document.querySelectorAll('.tr-enlace').forEach(element => {
                 element.addEventListener('click',() => {window.location=element.getAttribute('data-href');})
