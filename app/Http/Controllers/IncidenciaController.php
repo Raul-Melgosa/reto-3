@@ -100,8 +100,8 @@ class IncidenciaController extends Controller
     {
         $incidencia=Incidencia::find($id);
         $equipo_id=$incidencia->tecnico->equipo_id;
-        $tecnicos=User::all()->where('equipo_id','=',$equipo_id);
-        $modelo=ModeloAscensor::find($incidencia->ascensor->modeloAscensor_id);
+        $tecnicos=User::all()->where('equipo_id','=',$equipo_id)->orderBy('nombre');
+        $modelo=$incidencia->ascensor->modeloascensor;
         if(auth()->user()->rol=='tecnico'||auth()->user()->rol=='jde') {
             if ($incidencia->tecnico->equipo->zona->zona!=auth()->user()->equipo->zona->zona) {
                 return view('errors.403');  
