@@ -19,6 +19,7 @@
                         </h2>
                         <div id="collapse{{ $manual->id }}" class="accordion-collapse collapse  "  data-bs-parent="#acordeonManuales">
                             <div class="accordion-body">
+
                                 <iframe src="{{ asset('storage/manuales/') }}{{'/'.$manual->manual}}" width="100%" height="400vh"></iframe>
                             </div>
                         </div>
@@ -27,6 +28,7 @@
                     @endforeach
                 </div>
                 <a class="mt-3 btn btn-primary mb-3 col-4" href="{{ url()->previous() }}">Volver</a>
+                    <input type="hidden" name="" value="{{ asset('storage/manuales/') }}" id="ruta">
             </div>            
             <script src="{{ asset('js/filtrarManualAscensores.js') }}" ></script>
 
