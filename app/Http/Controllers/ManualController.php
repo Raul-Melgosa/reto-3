@@ -50,15 +50,10 @@ class ManualController extends Controller
         
         $ascensor=request('ascensor');
         
-        if(strlen($ascensor)>0){
             $manual=ModeloAscensor::where('modelo','like','%'.$ascensor.'%')->get();
             if(count($manual)>0){
                 return json_encode($manual);
             }
-        }else{
-            $manual="null";
-            return json_encode($manual);
-        }
         
         
     }
