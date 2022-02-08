@@ -108,7 +108,7 @@
     </div>
     <script src="{{ mix('/js/app.js') }}"></script>
 
-    <div id="contenedor_estadistica" style="width: 900px; height: 500px;"></div>
+    <div id="contenedor_estadistica" style="width: 100%; height: auto;"></div>
     <script type="text/javascript" src=" {{ asset('js/estadisticas.js') }} "></script>
     </body>
 </html>
