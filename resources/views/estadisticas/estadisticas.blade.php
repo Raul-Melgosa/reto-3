@@ -101,8 +101,8 @@
 
   customElements.define('date-picker',DatePicker);
 </script>
-    <date-picker class="col-12 d-flex justify-content-center"></date-picker>
-    <div class="row gx-0 gy-3 mt-3 col-12 col-md-6">
+    <date-picker id="fechas" class="col-12 d-flex justify-content-center"></date-picker>
+    <div class="row gx-0 gy-3 my-3 col-12 col-md-6">
       <button type="button" class="btn btn-primary" id="cargarGrafica">Cargar</button>
       <select name="tipoEstadistica" class="form-select" id="tipoEstadistica"></select>
       <select name="id" class="form-select" id="id"></select>

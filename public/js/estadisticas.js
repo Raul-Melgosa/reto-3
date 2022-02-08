@@ -109,8 +109,8 @@ function rellenarSelectEstadisticas(){
 
   //---------Estadisticas -------------
   function crearGrafica(){
-    let fechaInicio=$('#fechaInicio').val();
-    let fechaFin=$('#fechaFin').val();
+    let fechaInicio = document.getElementById('fechas').shadowRoot.getElementById('fechaInicio').value;
+    let fechaFin = document.getElementById('fechas').shadowRoot.getElementById('fechaFin').value;
     let tipoEstadistica=$('#tipoEstadistica').val()
     let id=$('#id').val()
     let tipoGrafico="";
