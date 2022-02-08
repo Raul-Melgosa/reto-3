@@ -1,13 +1,13 @@
 $(document).ready(function(){
 
-    var doit;
+    var recarga;
     function resizedw(){
       document.getElementById('cargarGrafica').click();
     }
     window.onresize = function() {
-      clearTimeout(doit);
-      doit = setTimeout(function() {
-          resizedw();
+      clearTimeout(recarga);
+      recarga = setTimeout(function() {
+        resizedw();
       }, 500);
     };
 
