@@ -2,7 +2,7 @@ $(document).ready(function(){
     rellenarSelectEstadisticas();
     gestionarSelectId();
     $('#cargarGrafica').click(crearGrafica)
-    window.addEventListener('resize', function() { $('#cargarGrafica').trigger('click'); }, false);
+    window.addEventListener('resize', console.log('chufa'));
     $('#tipoEstadistica').change(gestionarSelectId)
     crearGrafica("numIncidenciasPorZona");
   });
