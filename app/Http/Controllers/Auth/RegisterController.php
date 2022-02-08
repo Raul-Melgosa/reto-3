@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Equipo;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 class RegisterController extends Controller
 {
@@ -55,6 +57,8 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'rol' => ['required'],
+            'equipo_id' => ['required'],
+            'zona' => ['required'],
         ]);
     }
 
@@ -74,5 +78,57 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'rol' => $data['rol']
         ]);
+        /*if (Gate::allows('isAdmin')) {
+            if ($data['rol']=="operador") {
+                return User::create([
+                    'username' => $data['username'],
+                    'nombre' => $data['name'],
+                    'apellidos' => $data['apellidos'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'rol' => $data['rol']
+                ]);
+            }elseif ($data['rol']=="jde") {
+
+                $equipo = new Equipo();
+                $equipo->zona_id=$data['zona'];
+                $equipo->save();
+
+                return User::create([
+                    'username' => $data['username'],
+                    'nombre' => $data['name'],
+                    'apellidos' => $data['apellidos'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'rol' => $data['rol'],
+                    'equipo_id' => $equipo->id
+                ]);
+                
+            }else {
+                return User::create([
+                    'username' => $data['username'],
+                    'nombre' => $data['name'],
+                    'apellidos' => $data['apellidos'],
+                    'email' => $data['email'],
+                    'password' => Hash::make($data['password']),
+                    'rol' => $data['rol'],
+                    'equipo_id' => $data['equipo_id']
+                ]);
+            }
+                
+        }
+        elseif (Gate::allows('isJde')) {
+            return User::create([
+                'username' => $data['username'],
+                'nombre' => $data['name'],
+                'apellidos' => $data['apellidos'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'rol' => $data['rol'],
+                'equipo_id' => auth()->user()->id
+            ]);
+            
+        }*/
+        
     }
 }

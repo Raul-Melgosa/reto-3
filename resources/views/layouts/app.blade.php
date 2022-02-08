@@ -66,7 +66,16 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </a>
-
+                                    @if(auth()->user()->rol=='jde')
+                                    <a class="dropdown-item " href="{{ route('registro') }}">
+                                        Registar usuarios
+                                    </a>
+                                    @endif
+                                    @if(auth()->user()->rol=='admin')
+                                    <a class="dropdown-item " href="{{ route('registro') }}">
+                                        Registar usuarios
+                                    </a>
+                                    @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

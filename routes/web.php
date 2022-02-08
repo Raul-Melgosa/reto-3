@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\AscensorController;
+use App\Http\Controllers\RegistroController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,7 @@ Route::get('/welcome', function () {
 
 Auth::routes();
 
+Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
 Route::get('/manuales',[ManualController::class, 'index'])->name('manuales.index');
