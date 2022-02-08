@@ -2,7 +2,7 @@
 
 @section('content')
             <div class="row justify-content-center">
-                <div  class="col-11 col-md-10 ">
+                <div  class="col-12 col-sm-11">
                     <h1>Descripcion de la incidencia</h1>
                     <div class="table-responsive">
                         <table class="table table-hover">
