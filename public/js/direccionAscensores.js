@@ -4,15 +4,7 @@ $("#bModal").click(function () {
     var calle = String($('#calle').val());
     var numero = String($('#numero').val());
     var numeroserie = String($('#numeroserie').val());
-    if(calle==""){
-        calle=""
-    }
-    if(numero==""){
-        numero=""
-    }
-    if(numeroserie==""){
-        numeroserie=""
-    }
+    
 
     var direccion = {
         "calle": "calle=" + calle,
@@ -73,10 +65,8 @@ $('#bModalAceptar').click(function () {
     let ascensor=$('input:radio[name=ascensores]:checked').val();
     let tecnico=$('input:radio[name=tecnicos]:checked').val();
     console.log(tecnico);
-    if(ascensor==null || tecnico==null) {
-        
-    } else {
-        ascensor =gAscensores.find(a => a.id == ascensor);
+    if(ascensor!=null || tecnico!=null) {
+         ascensor =gAscensores.find(a => a.id == ascensor);
         tecnico =gTecnicos.find(a => a.id == tecnico);console.log(tecnico);
         $('#numeroSerie').val(ascensor.numeroserie);
         $('#modeloAscensor').val(ascensor.modelo.modelo);
@@ -93,5 +83,5 @@ $('#bModalAceptar').click(function () {
         $('#idAscensor').val(ascensor.id);
         $('#idTecnico').val(tecnico.id);
         $('#btnSubmit').attr("disabled",false);
-    }
+    } 
 })
