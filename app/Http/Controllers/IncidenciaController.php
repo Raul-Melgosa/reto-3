@@ -182,7 +182,7 @@ class IncidenciaController extends Controller
         if(strlen($nSerie)>12) {
             $ascensoresNum = Ascensor::where('numeroserie','=',$nSerie)->get();
             foreach ($ascensoresNum as $ascensor) {
-                $ascensor->modelo = ModeloAscensor::find($ascensor->modeloAscensor_id);
+                $ascensor->modelo = $ascensor->modeloascensor;
             }
             $tecnicos = $this->getTecnicos($ascensoresNum[0]->zona_id);
             array_push($datos,$ascensoresNum);
@@ -192,7 +192,7 @@ class IncidenciaController extends Controller
         else {
             $ascensores = Ascensor::where('calle','like','%'.$calle.'%')->get();
             foreach ($ascensores as $ascensor) {
-                $ascensor->modelo = ModeloAscensor::find($ascensor->modeloAscensor_id);
+                $ascensor->modelo = $ascensor->modeloascensor;
             }
             if(count($ascensores)>0){
                 $ascensor=$ascensores->where('bloque',$numero);
