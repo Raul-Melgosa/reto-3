@@ -1,8 +1,10 @@
-$(document).ready(function(){ 
+$(document).ready(function(){
+    window.addEventListener('resize', function() {
+      document.getElementById('cargarGrafica').click();
+    })
     rellenarSelectEstadisticas();
     gestionarSelectId();
     $('#cargarGrafica').click(crearGrafica)
-    window.onresize(() => console.log('chufa'));
     $('#tipoEstadistica').change(gestionarSelectId)
     crearGrafica("numIncidenciasPorZona");
   });
