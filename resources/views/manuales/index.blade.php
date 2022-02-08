@@ -4,9 +4,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
             <div class="row justify-content-center">
-                <div>
-                    <input type="text" name="buscarAscensor" id="buscarAscensor">
-                    <input type="button" value="Filtrar" id="filtrar">
+                <div class="mb-3">
+                    <input type="text" placeholder="Buscar" class="form-control" name="buscarAscensor" id="buscarAscensor">
+                    <input type="button" class="btn btn-primary" value="Filtrar" id="filtrar">
                 </div>
                 <div class="accordion" id="acordeonManuales">
                     @foreach($manuales as $manual)
