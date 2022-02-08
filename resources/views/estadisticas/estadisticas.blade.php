@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <html>
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -7,16 +10,14 @@
 
   </head>
   <body>
+    
     <div id="app">
       <Datepicker></Datepicker>
     </div>
-        <button type="button" id="cargarGrafica">Cargar</button>
-        <select name="tipoEstadistica" id="tipoEstadistica">
-          
-        </select>
-        <select name="id" id="id">
-          
-        </select>
+    
+    <button type="button" id="cargarGrafica">Cargar</button>
+    <select name="tipoEstadistica" class="" id="tipoEstadistica"></select>
+    <select name="id" id="id"></select>
     </div>
     <script src="{{ mix('/js/app.js') }}"></script>
 
@@ -28,3 +29,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script> 
     </body>
 </html>
+@endsection
