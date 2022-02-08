@@ -17,12 +17,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app gx-0">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light" style="--bs-bg-opacity: .8;">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top col-12" style="--bs-bg-opacity: .8;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -41,6 +42,19 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @auth
+                            @if(auth()->user()->rol=='operador')
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{{ route('incidencia.create') }}">
+                                        {{ __('Nueva incidencia') }}
+                                    </a>
+                            </li>
+                            @else
+                            <li class="nav-item">
+                                <a class="btn btn-link" href="{{ route('manuales.index') }}">
+                                        {{ __('Manuales') }}
+                                    </a>
+                            </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->email }}
@@ -63,6 +77,8 @@
                 </div>
             </div>
         </nav>
+
+        <div class="separador"></div>
 
         <main class="py-4 row justify-content-center gx-0">
             @yield('content')
