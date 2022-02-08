@@ -3929,6 +3929,7 @@ textarea.form-control-lg {
 }
 
 .nav {
+  z-index: 100;
   display: flex;
   flex-wrap: wrap;
   padding-left: 0;
@@ -11286,4 +11287,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.separador {
+  height: 40px;
 }

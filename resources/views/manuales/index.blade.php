@@ -21,5 +21,6 @@
                         
                     @endforeach
                 </div>
+                <a class="mt-3 btn btn-primary mb-3 col-4" href="{{ url()->previous() }}">Volver</a>
             </div>
 @endsection

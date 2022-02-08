@@ -17,12 +17,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app gx-0">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light" style="--bs-bg-opacity: .8;">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top col-12" style="--bs-bg-opacity: .8;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -76,6 +77,8 @@
                 </div>
             </div>
         </nav>
+
+        <div class="separador"></div>
 
         <main class="py-4 row justify-content-center gx-0">
             @yield('content')
