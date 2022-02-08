@@ -50,7 +50,7 @@
                         <tr>
                             <td class="text-center" colspan="5">
                                 <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#resueltas" aria-expanded="false" aria-controls="resueltas">    
-                                Mostrar/ocultar incidencias ya resueltas
+                                Mostrar/ocultar resueltas
                                 </button>
                             </td>
                         </tr>
