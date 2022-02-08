@@ -41,7 +41,7 @@
                 </div>
 
 
-                <form class="col-11 col-md-10" action="{{ route('incidencias.update',$incidencia->id) }}" method="post">  
+                <form class="col-12 col-md-11" action="{{ route('incidencias.update',$incidencia->id) }}" method="post">  
                     @csrf
                     @method("PUT")
                     <div class="col-12 ">
@@ -183,7 +183,7 @@
                     
                 </div>
 
-                <div  class="col-11 col-md-10">
+                <div  class="col-12 col-md-11">
                     <h1 class="mb-5">Cliente</h1>
                     <div class="row gy-5">
                         <label class="form-label position-relative">
@@ -212,9 +212,7 @@
                             <span class="p-2">Numero</span>
                         </label>
                     </div>
-                </div>
-                <div class="col-11 col-sm-11 col-md-10 border border-light my-3"></div>
-                
+                </div>                
                 <a class="btn btn-primary mb-3 col-4" href="{{ route('home') }}">Volver</a>
             </div>
 @endsection
