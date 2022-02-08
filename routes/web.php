@@ -28,6 +28,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
+Route::get('/manuales',[ManualController::class, 'index'])->name('manuales.index');
+Route::get('/manuales/buscar',[ManualController::class, 'filtrarNombre'])->name('manuales.filtrarNombre');
+
+
 
 
 Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'index']);
@@ -82,4 +86,7 @@ Route::get('/incidencias/{id}',[IncidenciaController::class, 'show'])->name('inc
 Route::put('/incidencias/{id}',[IncidenciaController::class, 'update'])->name('incidencias.update');
 
 Route::get('/incidencias/create/direccion',[IncidenciaController::class, 'firltarAscensores'])->name('webservice.ascensores');
-Route::get('/manuales',[ManualController::class, 'index'])->name('manuales.index');
+
+
+
+
