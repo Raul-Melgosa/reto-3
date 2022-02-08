@@ -23,5 +23,9 @@
         "vue": "^2.6.12",
         "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "cldr-data": "^36.0.0",
+        "vuejs-datepicker": "^1.6.2"
     }
 }
