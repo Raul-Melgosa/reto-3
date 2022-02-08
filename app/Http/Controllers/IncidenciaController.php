@@ -100,7 +100,7 @@ class IncidenciaController extends Controller
     {
         $incidencia=Incidencia::find($id);
         $equipo_id=$incidencia->tecnico->equipo_id;
-        $tecnicos=User::all()->where('equipo_id','=',$equipo_id)->orderBy('nombre');
+        $tecnicos=User::where('equipo_id','=',$equipo_id)->orderBy('nombre','ASC');
         $modelo=$incidencia->ascensor->modeloascensor;
         if(auth()->user()->rol=='tecnico'||auth()->user()->rol=='jde') {
             if ($incidencia->tecnico->equipo->zona->zona!=auth()->user()->equipo->zona->zona) {
