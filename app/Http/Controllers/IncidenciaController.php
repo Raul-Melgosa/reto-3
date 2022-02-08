@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Mockery\Undefined;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Carbon;
+use Exception;
 
 class IncidenciaController extends Controller
 {
@@ -100,7 +102,17 @@ class IncidenciaController extends Controller
         $equipo_id=$incidencia->tecnico->equipo_id;
         $tecnicos=User::all()->where('equipo_id','=',$equipo_id);
         $modelo=ModeloAscensor::find($incidencia->ascensor->modeloAscensor_id);
-        return view('incidencias.show', compact('incidencia','modelo','tecnicos'));
+        if(auth()->user()->rol=='tecnico'||auth()->user()->rol=='jde') {
+            if ($incidencia->tecnico->equipo->zona->zona!=auth()->user()->equipo->zona->zona) {
+                return view('errors.403');  
+            } else {
+                return view('incidencias.show', compact('incidencia','modelo','tecnicos'));
+            }
+        } else {
+            return view('incidencias.show', compact('incidencia','modelo','tecnicos'));
+        }
+        
+        
     }
 
     /**
@@ -124,8 +136,13 @@ class IncidenciaController extends Controller
     public function update($id)
     {
         $incidencia=Incidencia::find($id);
+        $incidencia->updated_at=Carbon::now()->toDateTimeString();
         if(Gate::allows('isJde')){
-            request('tecnicos');
+            $incidencia->tecnico_id=request('tecnicos');
+            $incidencia->save();
+        }
+        if(Gate::allows('isOperador')){
+            $incidencia->tecnico_id=request('tecnicos');
             $incidencia->save();
         }
         if (Gate::allows('isTecnico')) {
