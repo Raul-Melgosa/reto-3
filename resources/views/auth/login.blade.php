@@ -3,7 +3,7 @@
 @section('content')
 <div class="container d-flex justify-content-center">
 <img class="position-absolute m-auto" style="max-width: 100%; max-height: 100vh; top:0px; z-index: -1;" src="{{asset('/img/Abstract-3d-art-background.png')}}" alt="">
-    <div class="col-md-5 col-sm-6 col-8 row justify-content-center align-items-center m-auto shadow mb-5 rounded">
+    <div class="col-md-7 col-sm-8 col-11 row justify-content-center align-items-center m-auto shadow mb-5 rounded">
         <form class="col-12 m-auto justify-content-center bg-light py-5 rounded" style="--bs-bg-opacity: .6;" action="{{ route('login') }}" method="POST">
             @csrf
             <h3 class="display-6 mb-3 text-center fw-bold">Bienvenido</h3>

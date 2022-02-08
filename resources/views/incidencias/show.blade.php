@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-            <div class="row justify-content-center">
+            <div class="row col-12 justify-content-center">
                 <div  class="col-11 col-md-10 ">
                     <h1>Descripcion de la incidencia</h1>
                     <div class="table-responsive">
@@ -41,10 +41,10 @@
                 </div>
 
 
-                <form class="col-11 col-md-10" action="{{ route('incidencias.update',$incidencia->id) }}" method="post">  
+                <form class="row g-0 col-12 col-md-10" action="{{ route('incidencias.update',$incidencia->id) }}" method="post">  
                     @csrf
                     @method("PUT")
-                    <div class="col-12 ">
+                    <div class="col-12">
                         <h1>
                             Incidencia
                         </h1>
@@ -78,14 +78,14 @@
                         <label for="comentarioTecnico">Comentario Tecnico: </label>
                         @if(auth()->user()->rol=='tecnico') 
                             <textarea class="col-12 mb-3 form-control" name="comentarioTecnico" id="comentarioTecnico" cols="30" rows="10"
-                            @if($incidencia->estado='Resuelta')
+                            @if($incidencia->estado=='Resuelta')
                                 disabled
                             @endif
                             >{{  $incidencia->comentarioTecnico }}</textarea>
                             <div class="col-12 ms-3">     
                                 <label class="form-label me-3 " for="averia" >Tipo aver&iacute;a</label>
                                 <select class="form-select d-inlineblock col-4" name="averia" id="averia"
-                                @if($incidencia->estado='Resuelta')
+                                @if($incidencia->estado=='Resuelta')
                                     disabled
                                 @endif
                                 >
@@ -105,27 +105,27 @@
                                 <div class="row">
                                     <div class="col-12 col-sm-4 d-sm-inline-block m-1 m-sm-0">
                                         @if($incidencia->estado=='Pendiente')
-                                            <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="Pendiente" checked>
+                                            <input type="radio" class="btn-check d-none" name="estados" id="pendiente" autocomplete="off" value="Pendiente" checked>
                                         @else
-                                            <input type="radio" class="btn-check" name="estados" id="pendiente" autocomplete="off" value="Pendiente">
+                                            <input type="radio" class="btn-check d-none" name="estados" id="pendiente" autocomplete="off" value="Pendiente">
                                         @endif
                                         <label class="btn btn-outline-danger m-0 w-100" for="pendiente">Pendiente</label>
                                     </div>
 
                                     <div class="col-12 col-sm-4 d-sm-inline-block m-1 m-sm-0">
                                         @if($incidencia->estado=='En proceso')
-                                            <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso" checked>
+                                            <input type="radio" class="btn-check d-none" name="estados" id="proceso" autocomplete="off" value="En proceso" checked>
                                         @else
-                                            <input type="radio" class="btn-check" name="estados" id="proceso" autocomplete="off" value="En proceso">
+                                            <input type="radio" class="btn-check d-none" name="estados" id="proceso" autocomplete="off" value="En proceso">
                                         @endif
                                         <label class="btn btn-outline-warning m-0 w-100" for="proceso">En proceso</label>
                                     </div>
 
                                     <div class="col-12 col-sm-4 d-sm-inline-block m-1 m-sm-0">
                                         @if($incidencia->estado=='Resuelta')
-                                            <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="Resuelta" checked>
+                                            <input type="radio" class="btn-check d-none" name="estados" id="resuelta" autocomplete="off" value="Resuelta" checked>
                                         @else
-                                            <input type="radio" class="btn-check" name="estados" id="resuelta" autocomplete="off" value="Resuelta">
+                                            <input type="radio" class="btn-check d-none" name="estados" id="resuelta" autocomplete="off" value="Resuelta">
                                         @endif
                                         <label class="btn btn-outline-success m-0 w-100" for="resuelta">Resuelta</label>
                                     </div>
