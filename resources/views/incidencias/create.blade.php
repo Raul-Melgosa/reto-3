@@ -128,7 +128,7 @@
                     
                     <label for="comentarioOperador">Comentario Operador: </label>
                     <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10"></textarea>
-                    <input class="btn border mb-3" class="btn btn-primary" type="submit" id="btnSubmit" value="Añadir" disabled="true">
+                    <input class="btn btn-primary mb-3" type="submit" id="btnSubmit" value="Añadir" disabled="true">
                 </div>
                 <input type="hidden" id="idAscensor" name="idAscensor">
                 <input type="hidden" id="idTecnico" name="idTecnico">
