@@ -55,9 +55,9 @@ function gestionarSelectId(){
 //-----------Llamada webservice ids-------  problema con
 function llamadaAjaxIds(tipo){
   let url = new Array();
-  url['modelos']='http://igobideapp.test/estadisticas/getModelos';
-  url['equipos']='http://igobideapp.test/estadisticas/getEquipos';
-  url['zonas']='http://igobideapp.test/estadisticas/getZonas';
+  url['modelos']= window.location.href+"/getModelos';
+  url['equipos']= window.location.href+"/getEquipos';
+  url['zonas']= window.location.href+"/getZonas';
   $.ajax({
     type: "GET", 
     url:  url[tipo], // AQUI apuntamos al PHP
