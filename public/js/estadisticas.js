@@ -191,6 +191,8 @@ function rellenarSelectEstadisticas(){
       chart: {
         title: datos['titulo'],
         is3D: true,
+        width: '100%',
+        height: '500px',
       }
     };
   
@@ -261,6 +263,8 @@ function drawChartColumna(estadistica, datos) {
   var options = {
     chart: {
       title: datos['titulo'],
+      width: '100%',
+      height: '500px',
     }
   };
 
