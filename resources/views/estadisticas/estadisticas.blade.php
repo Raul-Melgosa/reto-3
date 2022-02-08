@@ -101,10 +101,10 @@
 
   customElements.define('date-picker',DatePicker);
 </script>
-    <date-picker></date-picker>
-    <button type="button" id="cargarGrafica">Cargar</button>
-    <select name="tipoEstadistica" class="" id="tipoEstadistica"></select>
-    <select name="id" id="id"></select>
+    <date-picker class="col-auto"></date-picker>
+    <button type="button" class="btn btn-primary" id="cargarGrafica">Cargar</button>
+    <select name="tipoEstadistica" class="form-select" id="tipoEstadistica"></select>
+    <select name="id" class="form-select" id="id"></select>
     </div>
     <script src="{{ mix('/js/app.js') }}"></script>
 
