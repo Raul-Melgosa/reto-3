@@ -7,6 +7,8 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\AscensorController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +30,7 @@ Route::get('/welcome', function () {
 Auth::routes();
 
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
+Route::post('/registro', [RegisterController::class, 'create'])->name('register');
 Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
 
 Route::get('/manuales',[ManualController::class, 'index'])->name('manuales.index');

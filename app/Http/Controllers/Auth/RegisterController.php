@@ -52,6 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'username' => ['required', 'string', 'max:255'],
             'nombre' => ['required', 'string', 'max:255'],
             'apellidos' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -70,14 +71,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'username' => $data['username'],
-            'nombre' => $data['name'],
-            'apellidos' => $data['apellidos'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'rol' => $data['rol']
-        ]);
+        $user = new User();
+
+        $user->username=request('username');
+        $user->nombre=request('nombre');
+        $user->apellidos=request('apellidos');
+        $user->email=request('email');
+        $user->password=Hash::make(request('password'));
+        $user->rol=request('rol');
+        $user->equipo_id = auth()->user()->id;
+
+        $user->save();
+       
         /*if (Gate::allows('isAdmin')) {
             if ($data['rol']=="operador") {
                 return User::create([
