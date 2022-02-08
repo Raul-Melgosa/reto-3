@@ -1,7 +1,16 @@
 $(document).ready(function(){
-    window.addEventListener('resize', function() {
+
+    var doit;
+    function resizedw(){
       document.getElementById('cargarGrafica').click();
-    })
+    }
+    window.onresize = function() {
+      clearTimeout(doit);
+      doit = setTimeout(function() {
+          resizedw();
+      }, 500);
+    };
+
     rellenarSelectEstadisticas();
     gestionarSelectId();
     $('#cargarGrafica').click(crearGrafica)
