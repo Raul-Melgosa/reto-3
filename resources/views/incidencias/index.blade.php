@@ -132,6 +132,7 @@
         
         <div class="col-12 col-sm-11">
         <div class="col-12">
+            <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -178,6 +179,7 @@
                     
                 </tbody>
             </table>
+            </div>
             <div class="d-flex justify-content-center">
                 {!! $incidencias->links() !!}
             </div>

@@ -89,7 +89,7 @@
             customElements.define('date-picker',DatePicker);
             </script>
             <script type="text/javascript" src=" {{ asset('js/filtro.js') }} "></script>
-@endsection
+            @endsection
 
 @section('content')
 <div class="accordion" id="accordionFlush">
