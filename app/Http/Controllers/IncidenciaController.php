@@ -11,7 +11,7 @@ use App\Models\ModeloAscensor;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Mockery\Undefined;
+use Illuminate\Support\Facades\DB;
 
 class IncidenciaController extends Controller
 {
@@ -26,6 +26,87 @@ class IncidenciaController extends Controller
         return view('incidencias.index', compact('incidencias'));
     }
 
+    public function filtrar()
+    {
+        $nombreTecnico=request('nombre');
+        $zona=request('zona');
+        $estado=request('estado');
+        $fechaInicio=request('fechainicio');
+        $fechaFin=request('fechafin');
+
+        $tipoFiltro=[               //Aqui se define en base a que se va a filtrar depende de los parametros recogidos
+                    "nombre" => 0,
+                    "zona" => 0,
+                    "estado" => 0,
+                    "fecha" => 0];
+        if($nombreTecnico!=""){
+            $tipoFiltro["nombre"]=1;
+        }
+        if($zona!=null){
+            $tipoFiltro["zona"]=1;
+        }
+        if($estado!=null){
+            $tipoFiltro["estado"]=1;
+        }
+        if(self::validarFecha($fechaInicio) && self::validarFecha($fechaFin)){
+            $tipoFiltro["fecha"]=1;
+        }
+        if($tipoFiltro['nombre']==0 && $tipoFiltro['zona']==0 && $tipoFiltro['estado']==0 && $tipoFiltro['fecha']==0)
+            redirect('/incidencias');
+
+        $incidencias=null;
+        $idTecnicosNombre=[];
+        $idTecnicosZona=[];     
+        $idTecnicos=[];
+
+        if($tipoFiltro["nombre"]==1){
+            $tecnicos=User::where('rol','tecnico')->where('nombre', 'LIKE', '%'.$nombreTecnico.'%')->get();
+
+            foreach($tecnicos as $tecnico){
+                array_push($idTecnicosNombre, $tecnico->id);
+            }
+        }
+        if($tipoFiltro["zona"]==1){
+            $zonaId=Zona::where('zona', $zona)->first();
+            $equipo=Equipo::where('zona_id', $zonaId->id)->first();
+            $tecnicos=User::where('rol', 'tecnico')->where('equipo_id', $equipo->id)->get();
+            foreach($tecnicos as $tecnico){
+                array_push($idTecnicosZona, $tecnico->id);
+            }
+        }
+
+        if($tipoFiltro["nombre"]==1 && $tipoFiltro["zona"]==1){
+            $idTecnicos=array_intersect($idTecnicosNombre, $idTecnicosZona);
+        }
+        elseif($tipoFiltro["nombre"]==1 && $tipoFiltro["zona"]==0){
+            $idTecnicos=$idTecnicosNombre;
+        }
+        elseif($tipoFiltro["nombre"]==0 && $tipoFiltro["zona"]==1){
+            $idTecnicos=$idTecnicosZona;
+        }
+
+
+        
+        if($tipoFiltro["estado"]==1 && $tipoFiltro["fecha"]==0){
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+        }
+        elseif($tipoFiltro["estado"]==0 && $tipoFiltro["fecha"]==1){
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->whereBetween('fecha_inicio', array($fechaInicio, $fechaFin))->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+
+        }
+        elseif($tipoFiltro["estado"]==1 && $tipoFiltro["fecha"]==1){
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->whereBetween('fecha_inicio', array($fechaInicio, $fechaFin))->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+
+        }
+        elseif($tipoFiltro["estado"]==0 && $tipoFiltro["fecha"]==0){
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+
+        }
+        return view('incidencias.index', compact('incidencias'));
+    }
+
+
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -214,5 +295,10 @@ class IncidenciaController extends Controller
             }
         }
         return $tecnicos;
+    }
+
+    public function validarFecha($fecha){
+        $regexFecha = '/^([0-9]{4})-([0-1][0-9])-([0-3][0-9])\s([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$/';
+        return preg_match($regexFecha, $fecha, $matches);
     }
 }

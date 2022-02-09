@@ -75,6 +75,7 @@ Route::get('/manuales/delete/{archivo}', [App\Http\Controllers\StorageController
 */
 
 Route::get('/incidencias',[IncidenciaController::class, 'index'])->name('incidencias.index');
+Route::get('/incidencias/filtrar',[IncidenciaController::class, 'filtrar'])->name('incidencias.filtro');
 Route::get('/incidencias/create',[IncidenciaController::class, 'create'])->name('incidencia.create');
 
 Route::post('/incidencias/create',[IncidenciaController::class, 'store'])->name('incidencia.store');
@@ -83,3 +84,4 @@ Route::put('/incidencias/{id}',[IncidenciaController::class, 'update'])->name('i
 
 Route::get('/incidencias/create/direccion',[IncidenciaController::class, 'firltarAscensores'])->name('webservice.ascensores');
 Route::get('/manuales',[ManualController::class, 'index'])->name('manual.index');
+
