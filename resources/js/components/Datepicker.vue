@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="d-flex flex-row">
-    <datepicker id="fechaInicio" :inline="true" :format="format"></datepicker>
+    <datepicker id="fechaInicio" :inline="true" :format="format">Fecha de Inicio</datepicker>
     <datepicker id="fechaFin" :inline="true" :format="format"></datepicker>
   </div>
 </template>

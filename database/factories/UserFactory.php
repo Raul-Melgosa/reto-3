@@ -20,11 +20,12 @@ class UserFactory extends Factory
         $nombre = $this->faker->firstName();
         $apellidos = $this->faker->lastName();
         $username = strtolower($nombre).'.'.strtolower($apellidos);
+        $email = strtolower($nombre).'.'.strtolower($apellidos).'@igobide.com';
         return [
             'nombre' => $nombre,
             'apellidos' => $apellidos,
             'username' => $username,
-            'email' => $this->faker->unique()->safeEmail(),
+            'email' => $email,
             'email_verified_at' => now(),
             'password' => Hash::make("12345678"), // password
             'remember_token' => Str::random(10)

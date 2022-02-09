@@ -10,19 +10,19 @@
                 <div  class="col-11 col-md-10 ">
                     <h2>Cliente</h2>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="nombreCliente" id="nombreCliente" placeholder=" ">
+                        <input class="form-control" required type="text" name="nombreCliente" id="nombreCliente" placeholder=" ">
                         <span class="p-2 ">Nombre</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="apellidoCliente" id="apellidoCliente" placeholder=" ">
+                        <input class="form-control" required type="text" name="apellidoCliente" id="apellidoCliente" placeholder=" ">
                         <span class="p-2">Apellido</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="emailCliente" id="emailCliente" placeholder=" ">
+                        <input class="form-control" required type="text" name="emailCliente" id="emailCliente" placeholder=" ">
                         <span class="p-2">Email</span>
                     </label>
                     <label class="form-label position-relative">
-                        <input class="form-control" type="text" name="telefono" id="telefono" placeholder=" ">
+                        <input class="form-control" required type="text" name="telefono" id="telefono" placeholder=" ">
                         <span class="p-2">Telefono</span>
                     </label>
                     <h3 class="fs-5">Direccion</h3>
@@ -118,7 +118,7 @@
 
                         <div class="form-check form-switch ms-5">
                             <label class="form-check-label fs-5 my-0" for="urgente">Urgente</label>
-                            <input class="form-check-input" value="1" type="checkbox" id="urgente">
+                            <input class="form-check-input" value="1" name="urgente" type="checkbox" id="urgente">
                         </div>
 
                     </div>
@@ -128,8 +128,7 @@
                     
                     <label for="comentarioOperador">Comentario Operador: </label>
                     <textarea class="col-12 mb-3" name="comentarioOperador" id="comentarioOperador" cols="30" rows="10"></textarea>
-                    <input class="btn border mb-3" type="submit" id="btnSubmit" value="Añadir" disabled="true">
-                </div>
+                    <input class="btn btn-primary mb-3" type="submit" id="btnSubmit" value="Añadir" disabled="true">                </div>
                 <input type="hidden" id="idAscensor" name="idAscensor">
                 <input type="hidden" id="idTecnico" name="idTecnico">
             </form>

@@ -10549,7 +10549,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\n  font-family: \"Helvetica Neue Light\", Helvetica, sans-serif;\n  padding: 1em 2em 2em;\n}\ninput,\nselect {\n  padding: 0.75em 0.5em;\n  font-size: 100%;\n  border: 1px solid #ccc;\n  width: 100%;\n}\nselect {\n  height: 2.5em;\n}\n.example {\n  background: #f2f2f2;\n  border: 1px solid #ddd;\n  padding: 0em 1em 1em;\n  margin-bottom: 2em;\n}\ncode,\npre {\n  margin: 1em 0;\n  padding: 1em;\n  border: 1px solid #bbb;\n  display: block;\n  background: #ddd;\n  border-radius: 3px;\n}\n.settings {\n  margin: 2em 0;\n  border-top: 1px solid #bbb;\n  background: #eee;\n}\nh5 {\n  font-size: 100%;\n  padding: 0;\n}\n.form-group {\n  margin-bottom: 1em;\n}\n.form-group label {\n  font-size: 80%;\n  display: block;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\r\n  font-family: \"Helvetica Neue Light\", Helvetica, sans-serif;\r\n  padding: 1em 2em 2em;\n}\ninput,\r\nselect {\r\n  padding: 0.75em 0.5em;\r\n  font-size: 100%;\r\n  border: 1px solid #ccc;\r\n  width: 100%;\n}\nselect {\r\n  height: 2.5em;\n}\n.example {\r\n  background: #f2f2f2;\r\n  border: 1px solid #ddd;\r\n  padding: 0em 1em 1em;\r\n  margin-bottom: 2em;\n}\ncode,\r\npre {\r\n  margin: 1em 0;\r\n  padding: 1em;\r\n  border: 1px solid #bbb;\r\n  display: block;\r\n  background: #ddd;\r\n  border-radius: 3px;\n}\n.settings {\r\n  margin: 2em 0;\r\n  border-top: 1px solid #bbb;\r\n  background: #eee;\n}\nh5 {\r\n  font-size: 100%;\r\n  padding: 0;\n}\n.form-group {\r\n  margin-bottom: 1em;\n}\n.form-group label {\r\n  font-size: 80%;\r\n  display: block;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28539,9 +28539,11 @@ var render = function () {
     "div",
     { staticClass: "d-flex flex-row", attrs: { id: "app" } },
     [
-      _c("datepicker", {
-        attrs: { id: "fechaInicio", inline: true, format: _vm.format },
-      }),
+      _c(
+        "datepicker",
+        { attrs: { id: "fechaInicio", inline: true, format: _vm.format } },
+        [_vm._v("Fecha de Inicio")]
+      ),
       _vm._v(" "),
       _c("datepicker", {
         attrs: { id: "fechaFin", inline: true, format: _vm.format },

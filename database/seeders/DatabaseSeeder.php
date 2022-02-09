@@ -133,16 +133,39 @@ class DatabaseSeeder extends Seeder
             'rol' => 'operador'
         ]);
 
+        User::factory()->count(25)->create([
+            'rol' => 'operador',
+            'username' => 'operador'
+        ]);
+
         $equipos = (new Equipo)->all();
         foreach ($equipos as $equipo) {
-            User::factory()->count(10)->create([
+            if($equipo->id==1) {
+                User::factory()->count(9)->create([
+                    'rol' => 'tecnico',
+                    'equipo_id' => $equipo->id
+                ]);
+                User::factory()->count(1)->create([
+                    'rol' => 'tecnico',
+                    'username' => 'tecnico',
+                    'equipo_id' => $equipo->id
+                ]);
+                User::factory()->count(1)->create([
+                    'rol' => 'jde',
+                    'username' => 'jefe',
+                    'equipo_id' => $equipo->id
+                ]);
+            } else {
+                User::factory()->count(10)->create([
                 'rol' => 'tecnico',
                 'equipo_id' => $equipo->id
-            ]);
-            User::factory()->count(1)->create([
-                'rol' => 'jde',
-                'equipo_id' => $equipo->id
-            ]);
+                ]);
+                User::factory()->count(1)->create([
+                    'rol' => 'jde',
+                    'equipo_id' => $equipo->id
+                ]);
+            }
+            
         }
 
         Cliente::factory()->count(5)->create();

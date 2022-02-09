@@ -11,7 +11,10 @@ use App\Models\ModeloAscensor;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Mockery\Undefined;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Carbon;
+use Exception;
 
 class IncidenciaController extends Controller
 {
@@ -164,8 +167,8 @@ class IncidenciaController extends Controller
         $tecnico=User::find(request('idTecnico'));
         (new MailControler)->sendEmail($tecnico->email,'Nueva incidencia asignada','Este correo es meramente informativo, por favor no responda, se le ha asignado una nueva incidencia; mire la app para obtener más información');
         
-        $incidencias=Incidencia::orderBy('urgente','DESC')->orderBy('created_at','DESC')->get();
-        return view('incidencias.index', compact('incidencias'));
+        $incidencias=Incidencia::orderBy('urgente','DESC')->orderBy('created_at','DESC')->paginate(20);
+        return redirect(route('incidencias.index'));
     }
 
     /**
@@ -178,9 +181,19 @@ class IncidenciaController extends Controller
     {
         $incidencia=Incidencia::find($id);
         $equipo_id=$incidencia->tecnico->equipo_id;
-        $tecnicos=User::all()->where('equipo_id','=',$equipo_id);
-        $modelo=ModeloAscensor::find($incidencia->ascensor->modeloAscensor_id);
-        return view('incidencias.show', compact('incidencia','modelo','tecnicos'));
+        $tecnicos=User::where('equipo_id','=',$equipo_id)->orderBy('nombre','ASC')->get();
+        $modelo=$incidencia->ascensor->modeloascensor;
+        if(auth()->user()->rol=='tecnico'||auth()->user()->rol=='jde') {
+            if ($incidencia->tecnico->equipo->zona->zona!=auth()->user()->equipo->zona->zona) {
+                return view('errors.403');  
+            } else {
+                return view('incidencias.show', compact('incidencia','modelo','tecnicos'));
+            }
+        } else {
+            return view('incidencias.show', compact('incidencia','modelo','tecnicos'));
+        }
+        
+        
     }
 
     /**
@@ -204,21 +217,26 @@ class IncidenciaController extends Controller
     public function update($id)
     {
         $incidencia=Incidencia::find($id);
-        if(auth()->user()->rol=='jde'){
-            request('tecnicos');
+        $incidencia->updated_at=Carbon::now()->toDateTimeString();
+        if(Gate::allows('isJde')){
+            $incidencia->tecnico_id=request('tecnicos');
+            $incidencia->save();
         }
-        
-
-        if(request('estado')!=""){
-            $incidencia->estado = request('estado');
+        if(Gate::allows('isOperador')){
+            $incidencia->tecnico_id=request('tecnicos');
+            $incidencia->save();
         }
-        $incidencia->tipoaveria=request('averia');
-        $incidencia->comentarioTecnico=request('comentarioTecnico');
+        if (Gate::allows('isTecnico')) {
+            $incidencia->estado = request('estados');
+            
+            $incidencia->tipoaveria=request('averia');
+            $incidencia->comentarioTecnico=request('comentarioTecnico');
 
-        $incidencia->save();
-        if(request('estado')=="Resuelta"){
-            $cliente=Cliente::find(request('cliente'));
-            (new MailControler)->sendEmail($cliente->email,'Incidencia Resuelta','');
+            $incidencia->save();
+            if(request('estados')=="Resuelta"){
+                $cliente=Cliente::find(request('cliente'));
+                (new MailControler)->sendEmail($cliente->email,'Incidencia Resuelta','La incidencia con su ascensor ha sido resuelta, que tenga un buen dia');
+            }
         }
         
         return redirect(route('home'));
@@ -245,7 +263,7 @@ class IncidenciaController extends Controller
         if(strlen($nSerie)>12) {
             $ascensoresNum = Ascensor::where('numeroserie','=',$nSerie)->get();
             foreach ($ascensoresNum as $ascensor) {
-                $ascensor->modelo = ModeloAscensor::find($ascensor->modeloAscensor_id);
+                $ascensor->modelo = $ascensor->modeloascensor;
             }
             $tecnicos = $this->getTecnicos($ascensoresNum[0]->zona_id);
             array_push($datos,$ascensoresNum);
@@ -255,7 +273,7 @@ class IncidenciaController extends Controller
         else {
             $ascensores = Ascensor::where('calle','like','%'.$calle.'%')->get();
             foreach ($ascensores as $ascensor) {
-                $ascensor->modelo = ModeloAscensor::find($ascensor->modeloAscensor_id);
+                $ascensor->modelo = $ascensor->modeloascensor;
             }
             if(count($ascensores)>0){
                 $ascensor=$ascensores->where('bloque',$numero);

@@ -1,4 +1,16 @@
-$(document).ready(function(){ 
+$(document).ready(function(){
+
+    var recarga;
+    function resizedw(){
+      document.getElementById('cargarGrafica').click();
+    }
+    window.onresize = function() {
+      clearTimeout(recarga);
+      recarga = setTimeout(function() {
+        resizedw();
+      }, 500);
+    };
+
     rellenarSelectEstadisticas();
     gestionarSelectId();
     $('#cargarGrafica').click(crearGrafica)
@@ -55,9 +67,9 @@ function gestionarSelectId(){
 //-----------Llamada webservice ids-------  problema con
 function llamadaAjaxIds(tipo){
   let url = new Array();
-  url['modelos']= window.location.href+"/getModelos';
-  url['equipos']= window.location.href+"/getEquipos';
-  url['zonas']= window.location.href+"/getZonas';
+  url['modelos']= window.location.href+'/getModelos';
+  url['equipos']= window.location.href+'/getEquipos';
+  url['zonas']= window.location.href+'/getZonas';
   $.ajax({
     type: "GET", 
     url:  url[tipo], // AQUI apuntamos al PHP
@@ -97,8 +109,8 @@ function rellenarSelectEstadisticas(){
 
   //---------Estadisticas -------------
   function crearGrafica(){
-    let fechaInicio=$('#fechaInicio').val();
-    let fechaFin=$('#fechaFin').val();
+    let fechaInicio = document.getElementById('fechas').shadowRoot.getElementById('fechaInicio').value + ' 00:00:00';
+    let fechaFin = document.getElementById('fechas').shadowRoot.getElementById('fechaFin').value + ' 23:59:59';
     let tipoEstadistica=$('#tipoEstadistica').val()
     let id=$('#id').val()
     let tipoGrafico="";
@@ -191,6 +203,8 @@ function rellenarSelectEstadisticas(){
       chart: {
         title: datos['titulo'],
         is3D: true,
+        width: '100%',
+        height: '500px',
       }
     };
   
@@ -261,6 +275,8 @@ function drawChartColumna(estadistica, datos) {
   var options = {
     chart: {
       title: datos['titulo'],
+      width: '100%',
+      height: '500px',
     }
   };
 
