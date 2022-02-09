@@ -26,15 +26,6 @@ class IncidenciaController extends Controller
         return view('incidencias.index', compact('incidencias'));
     }
 
-    public function filtroWhereInIds($item, $list){
-        foreach($list as $listItem){
-            if($item->id==$listItem){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public function filtrar()
     {
         $nombreTecnico=request('nombre');
