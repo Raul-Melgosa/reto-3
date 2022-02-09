@@ -60,13 +60,24 @@
                                     </a>
                             </li>
                             @endif
+                            
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->email }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Registrar usuarios</a></li>
+                                    @if(Auth::user()->rol=='jde' || Auth::user()->rol=='admin')
+                                    <li>
+                                        <a class="dropdown-item" href="#">Registrar usuarios</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#modalRol" data-bs-toggle="modal" data-bs-target="#modalRol">
+                                            Cambiar de rol
+                                        </a>
+                                    </li>
                                     <li><hr class="dropdown-divider"></li>
+                                    @endif
+                                    
                                     <li>
                                         <a class="dropdown-item " href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -85,6 +96,60 @@
                 </div>
             </div>
         </nav>
+
+        <div class="modal fade" id="modalRol" tabindex="-1" aria-labelledby="modalRolLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalRolLabel">Selecciona un rol</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li class="list-group-item border-0 p-0 my-1">
+                        <input type="radio" class="btn-check" name="roles" id="inputAdmin" autocomplete="off" value="admin"
+                        @if(Auth::user()->rol=='admin')
+                            checked
+                        @endif
+                        >
+                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputAdmin">Admin</label>
+                    </li>
+
+                    <li class="list-group-item border-0 p-0 my-1">
+                        <input type="radio" class="btn-check" name="roles" id="inputJde" autocomplete="off" value="jde"
+                        @if(Auth::user()->rol=='jde')
+                            checked
+                        @endif
+                        >
+                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputJde">Jefe de Equipo</label>
+                    </li>
+
+                    <li class="list-group-item border-0 p-0 my-1">
+                        <input type="radio" class="btn-check" name="roles" id="inputTecnico" autocomplete="off" value="tecnico"
+                        @if(Auth::user()->rol=='tecnico')
+                            checked
+                        @endif
+                        >
+                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputTecnico">T&eacute;cnico</label>
+                    </li>
+
+                    <li class="list-group-item border-0 p-0 my-1">
+                        <input type="radio" class="btn-check" name="roles" id="inputOperador" autocomplete="off" value="operador"
+                        @if(Auth::user()->rol=='admin')
+                            operador
+                        @endif
+                        >
+                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputOperador">Operador</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Aplicar</button>
+            </div>
+            </div>
+        </div>
+        </div>
 
         
         <div class="separador"></div>

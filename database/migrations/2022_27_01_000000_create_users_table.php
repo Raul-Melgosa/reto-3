@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('rol');
+            $table->boolean('admin')->default(false);
             $table->unsignedBigInteger('equipo_id')->nullable();
             $table->foreign('equipo_id')->references('id')->on('equipos');
         });

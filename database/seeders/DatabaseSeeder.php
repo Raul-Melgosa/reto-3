@@ -127,6 +127,7 @@ class DatabaseSeeder extends Seeder
             'email'=>"admin@igobide.org",
             'password'=>Hash::make("admin"),
             'rol'=>"admin",
+            'admin'=>true,
         ]);
 
         User::factory()->count(25)->create([
