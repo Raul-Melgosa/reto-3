@@ -15,7 +15,7 @@ $(document).ready(function(){
     gestionarSelectId();
     $('#cargarGrafica').click(crearGrafica)
     $('#tipoEstadistica').change(gestionarSelectId)
-    crearGrafica("numIncidenciasPorZona");
+    crearGrafica("numIncidenciasPorModelo");
   });
                                             //Como los datos depende de la grafica reciben un tratamiento diferente
   var rutasDatosEstadisticasColumnas ={     //los calsifico aqui depende en que array estan
@@ -34,9 +34,9 @@ $(document).ready(function(){
 
 
   var nombreEstadisticas ={     //El nombre para meter en la select
+    "numIncidenciasPorModelo" : "Numero tipo de incidencias por modelo",
     "numIncidenciasPorZona" : "Numero de incidencias por zona",
     "numTipoIncidenciasPorZona" : "Numero tipo de incidencias por zona",
-    "numIncidenciasPorModelo" : "Numero tipo de incidencias por modelo",
     "tiempoMedioIncidenciaEquipo" : "Tiempo medio incidencias equipo",
     "tiempoMedioIncidenciaTecnico" : "Tiempo medio incidencias tecnicos por equipo",
     "tipoDeIncidenciasPorZona" : "Tipo de incidencias por zona",
