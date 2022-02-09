@@ -31,22 +31,22 @@ class UserController extends Controller
                 $query->select('id')
                 ->from(with(new User())->getTable())
                 ->where('equipo_id', auth()->user()->equipo_id);
-            })->where('estado','!=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            })->where('estado','!=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
 
             $resueltas=Incidencia::whereIn('tecnico_id', function($query){
                 $query->select('id')
                 ->from(with(new User())->getTable())
                 ->where('equipo_id', auth()->user()->equipo_id);
-            })->where('estado','=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            })->where('estado','=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
             return view('jefeDeEquipo.home', compact('pendientes','resueltas'));
         }
         elseif (Gate::allows('isTecnico')) {
-            $pendientes=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','!=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->paginate(20);
-            $resueltas=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->paginate(20);
+            $pendientes=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','!=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->simplePaginate(20);
+            $resueltas=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->simplePaginate(20);
             return view('tecnico.home', compact('pendientes','resueltas'));
         }
         elseif (Gate::allows('isOperador')) {
-            $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
             return view('incidencias.index', compact('incidencias'));
         }
     }

@@ -180,7 +180,7 @@
                 </tbody>
             </table>
             </div>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex col-12 justify-content-center">
                 {!! $incidencias->links() !!}
             </div>
         </div>

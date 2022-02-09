@@ -25,7 +25,7 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
-        $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+        $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
         return view('incidencias.index', compact('incidencias'));
     }
 
@@ -96,18 +96,18 @@ class IncidenciaController extends Controller
 
         
         if($tipoFiltro["estado"]==1 && $tipoFiltro["fecha"]==0){
-            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
         }
         elseif($tipoFiltro["estado"]==0 && $tipoFiltro["fecha"]==1){
-            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->whereBetween('fecha_inicio', [$fechaInicio, $fechaFin])->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->whereBetween('fecha_inicio', [$fechaInicio, $fechaFin])->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
 
         }
         elseif($tipoFiltro["estado"]==1 && $tipoFiltro["fecha"]==1){
-            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->whereBetween('fecha_inicio', array($fechaInicio, $fechaFin))->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->whereBetween('fecha_inicio', array($fechaInicio, $fechaFin))->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
 
         }
         elseif($tipoFiltro["estado"]==0 && $tipoFiltro["fecha"]==0){
-            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
 
         }
         return view('incidencias.index', compact('incidencias'));
@@ -172,7 +172,7 @@ class IncidenciaController extends Controller
         $tecnico=User::find(request('idTecnico'));
         (new MailControler)->sendEmail($tecnico->email,'Nueva incidencia asignada','Este correo es meramente informativo, por favor no responda, se le ha asignado una nueva incidencia; mire la app para obtener más información');
         
-        $incidencias=Incidencia::orderBy('urgente','DESC')->orderBy('created_at','DESC')->paginate(20);
+        $incidencias=Incidencia::orderBy('urgente','DESC')->orderBy('created_at','DESC')->simplePaginate(20);
         return redirect(route('incidencias.index'));
     }
 
