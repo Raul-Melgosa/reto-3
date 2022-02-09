@@ -116,7 +116,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <ul>
+                    <ul class="p-0">
                         <li class="list-group-item border-0 p-0 my-1">
                             <input type="radio" class="btn-check" name="roles" id="inputAdmin" autocomplete="off" value="admin"
                             @if(Auth::user()->rol=='admin')
