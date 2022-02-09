@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('crearUsuario') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -94,14 +94,39 @@
 
                             <div class="col-md-6">
                                 <select name="rol" id="rol" class="form-select">
-                                    <option value="admin">Administrador</option>
-                                    <option value="tecnico">T&eacute;cnico</option>
+                                    @if(auth()->user()->rol!='jde')
                                     <option value="operador">Operador/a</option>
                                     <option value="jde">Jefe de equipo</option>
+                                    @endif
+                                    <option value="tecnico">T&eacute;cnico</option>
+                                    
                                 </select>
                             </div>
                         </div>
+                        @if(auth()->user()->rol=='admin')
+                        <div class="row mb-3">
+                            <label for="equipo" class="col-md-4 col-form-label text-md-end">{{ __('Equipo') }}</label>
 
+                            <div class="col-md-6">
+                                <select name="equipo_id" id="equipo" class="form-select">
+                                    @foreach($equipos as $equipo)
+                                        <option value="{{ $equipo->id }}">Equipo {{ $equipo->id }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="equipo" class="col-md-4 col-form-label text-md-end">{{ __('Zona del equipo') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="zona" id="rol" class="form-select">
+                                    @foreach($zonas as $zona)
+                                        <option value="{{ $zona->id }}"> {{ $zona->zona }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        @endif
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

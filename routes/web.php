@@ -7,6 +7,9 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\AscensorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +29,8 @@ Route::get('/welcome', function () {
 });
 
 Auth::routes();
+Route::post('/registro', [RegistroController::class, 'create'])->name('crearUsuario');
+Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 
 Route::get('/home', [UserController::class, 'home'])->name('home');
 Route::put('/users/update',[UserController::class, 'cambiarRol'])->name('users.cambiarrol');
