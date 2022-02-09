@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+                    @if(isset($error))
+                        <div class="text-danger">Mensaje de error: {{ $errorMessage }}</div>
+                    @endif
                     <form method="POST" action="{{ route('registrar') }}">
                         @csrf
 
