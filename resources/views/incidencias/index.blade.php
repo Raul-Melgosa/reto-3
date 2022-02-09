@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('content')
-        <script>
+@section('assets')
+<script>
             class DatePicker extends HTMLElement {
                 constructor() {
                     super()
@@ -88,6 +88,10 @@
             }
             customElements.define('date-picker',DatePicker);
             </script>
+            <script type="text/javascript" src=" {{ asset('js/filtro.js') }} "></script>
+@endsection
+
+@section('content')
         <div class="accordion" id="accordionFlush">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
@@ -178,7 +182,7 @@
                 {!! $incidencias->links() !!}
             </div>
         </div>
-        <script type="text/javascript" src=" {{ asset('js/filtro.js') }} "></script>
+        
         <script>
             document.querySelectorAll('.tr-enlace').forEach(element => {
                 element.addEventListener('click',() => {window.location=element.getAttribute('data-href');})

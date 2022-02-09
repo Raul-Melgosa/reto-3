@@ -55,7 +55,7 @@
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="btn btn-link" href="{{ route('manuales.index') }}">
+                                <a class="btn btn-link" href="/manuales"> <!--Con route('manuales.index') no estaba funcionando-->
                                         {{ __('Manuales') }}
                                     </a>
                             </li>
