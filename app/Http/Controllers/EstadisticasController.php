@@ -8,6 +8,7 @@ use App\Models\ModeloAscensor;
 use App\Models\Incidencia;
 use App\Models\Equipo;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 class EstadisticasController extends Controller
 {
@@ -18,7 +19,12 @@ class EstadisticasController extends Controller
 
 
     public function index(){
-        return view('estadisticas.estadisticas');
+        if (Gate::allows('isAdmin') || Gate::allows('isJde')) {
+            return view('estadisticas.estadisticas');
+        } else {
+            return view('errors.403');
+        }
+        
     }
 
 
