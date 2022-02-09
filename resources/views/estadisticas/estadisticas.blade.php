@@ -99,7 +99,6 @@
       <select name="tipoEstadistica" class="form-select" id="tipoEstadistica"></select>
       <select name="id" class="form-select" id="id"></select>
     </div>
-    <script src="{{ mix('/js/app.js') }}"></script>
 
     <div class="col-12">
       <div id="contenedor_estadistica" style="width: 100%; height: 500px;"></div>
