@@ -36,7 +36,6 @@ class IncidenciaController extends Controller
         $estado=request('estado');
         $fechaInicio=request('fechainicio');
         $fechaFin=request('fechafin');
-
         $tipoFiltro=[               //Aqui se define en base a que se va a filtrar depende de los parametros recogidos
                     "nombre" => 0,
                     "zona" => 0,
@@ -78,6 +77,12 @@ class IncidenciaController extends Controller
             }
         }
 
+        if($tipoFiltro["nombre"]==0 && $tipoFiltro["zona"]==0){
+            $tecnicos=User::all();
+            foreach($tecnicos as $tecnico){
+                array_push($idTecnicos, $tecnico->id);
+            }
+        }
         if($tipoFiltro["nombre"]==1 && $tipoFiltro["zona"]==1){
             $idTecnicos=array_intersect($idTecnicosNombre, $idTecnicosZona);
         }
@@ -94,7 +99,7 @@ class IncidenciaController extends Controller
             $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
         }
         elseif($tipoFiltro["estado"]==0 && $tipoFiltro["fecha"]==1){
-            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->whereBetween('fecha_inicio', array($fechaInicio, $fechaFin))->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->whereBetween('fecha_inicio', [$fechaInicio, $fechaFin])->orderBy('urgente','DESC','created_at','DESC')->paginate(20);
 
         }
         elseif($tipoFiltro["estado"]==1 && $tipoFiltro["fecha"]==1){

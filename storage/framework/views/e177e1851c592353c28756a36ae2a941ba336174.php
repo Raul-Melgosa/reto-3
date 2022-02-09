@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title><?php echo e(config('app.name', 'Igobideapp')); ?></title>
+    <title>IgobideApp</title>
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
@@ -18,16 +18,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app gx-0">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light" style="--bs-bg-opacity: .8;">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top col-12" style="--bs-bg-opacity: .8;">
             <div class="container">
                 <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                    <?php echo e(config('app.name', 'Laravel')); ?>
-
+                    IgobideApp
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#layoutNavbar" aria-controls="layoutNavbar" aria-expanded="false" aria-label="Mostrar más">
                     <p class="navbar-toggler-icon m-0"></p>
@@ -43,6 +43,21 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         <?php if(auth()->guard()->check()): ?>
+                            <?php if(auth()->user()->rol=='operador'): ?>
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="<?php echo e(route('incidencia.create')); ?>">
+                                        <?php echo e(__('Nueva incidencia')); ?>
+
+                                    </a>
+                            </li>
+                            <?php else: ?>
+                            <li class="nav-item">
+                                <a class="btn btn-link" href="<?php echo e(route('manuales.index')); ?>">
+                                        <?php echo e(__('Manuales')); ?>
+
+                                    </a>
+                            </li>
+                            <?php endif; ?>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <?php echo e(Auth::user()->email); ?>
@@ -67,6 +82,8 @@
                 </div>
             </div>
         </nav>
+
+        <div class="separador"></div>
 
         <main class="py-4 row justify-content-center gx-0">
             <?php echo $__env->yieldContent('content'); ?>
