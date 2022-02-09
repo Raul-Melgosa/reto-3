@@ -46,7 +46,7 @@ class EstadisticasController extends Controller
             foreach($tecnicos as $tecnico){
                 if($fechaMin!=null && $fechaMax!=null){
                     $incidencias=array_merge($incidencias, Incidencia::where('tecnico_id', $tecnico->id)
-                                                                ->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->get()->toArray());
+                                                                ->whereBetween('created_at', [$fechaMin, $fechaMax])->get()->toArray());
                 }
                 else{
                     $incidencias=array_merge($incidencias, Incidencia::where('tecnico_id', $tecnico->id)->get()->toArray());
@@ -76,7 +76,7 @@ class EstadisticasController extends Controller
             foreach($tecnicos as $tecnico){
                 if($fechaMin!=null && $fechaMax!=null){
                     $incidencias=array_merge($incidencias,  Incidencia::where('tecnico_id', $tecnico->id)
-                                                                        ->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->get()->toArray());
+                                                                        ->whereBetween('created_at', [$fechaMin, $fechaMax])->get()->toArray());
                 }
                 else{
                     $incidencias=array_merge($incidencias, Incidencia::where('tecnico_id', $tecnico->id)->get()->toArray());
@@ -125,7 +125,7 @@ class EstadisticasController extends Controller
             $ascensores=$modelo->ascensores;
             foreach($ascensores as $ascensor){
                 if($fechaMin!=null && $fechaMax!=null){
-                    $incidencias=array_merge($incidencias, $ascensor->incidencias->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->toArray());
+                    $incidencias=array_merge($incidencias, $ascensor->incidencias->whereBetween('created_at', [$fechaMin, $fechaMax])->toArray());
                 }
                 else{
                     $incidencias=array_merge($incidencias, $ascensor->incidencias->toArray());
@@ -171,7 +171,7 @@ class EstadisticasController extends Controller
             $ascensores=$modelo->ascensores;
             foreach($ascensores as $ascensor){
                 if($fechaMin!=null && $fechaMax!=null){
-                    $incidencias=array_merge($incidencias, $ascensor->incidencias->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->toArray());
+                    $incidencias=array_merge($incidencias, $ascensor->incidencias->whereBetween('created_at', [$fechaMin, $fechaMax])->toArray());
                 }
                 else{
                     $incidencias=array_merge($incidencias, $ascensor->incidencias->toArray());
@@ -223,7 +223,7 @@ class EstadisticasController extends Controller
             $tecnicos=$equipo->tecnicos();
             foreach($tecnicos as $tecnico){
                 if($fechaMin!=null && $fechaMax!=null){
-                    $incidenciasTecnico=array_merge($incidenciasTecnico, Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])
+                    $incidenciasTecnico=array_merge($incidenciasTecnico, Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('created_at', [$fechaMin, $fechaMax])
                                                                                                 ->whereNotNull('fecha_fin')->get()->toArray());
                 }
                 else{
@@ -235,7 +235,7 @@ class EstadisticasController extends Controller
             $contador=0; // numero de incidencias para sacar la media
             $tiempoIncidencias=0;
             foreach($incidenciasTecnico as $incidencia){      
-                $tiempoIncidencias+=(strtotime($incidencia['fecha_fin']) - strtotime($incidencia['fecha_inicio']));
+                $tiempoIncidencias+=(strtotime($incidencia['fecha_fin']) - strtotime($incidencia['created_at']));
                 $contador++;
             }
             $tiempoMedioIncidencia=($tiempoIncidencias/$contador)/(60 * 60); //devuelve horas
@@ -261,12 +261,12 @@ class EstadisticasController extends Controller
         $tiempoMedioIncidenciaTecnicos=[];
         foreach($tecnicos as $tecnico){
             if($fechaMin!=null && $fechaMax!=null){
-                $incidenciasTecnico=Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])
+                $incidenciasTecnico=Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('created_at', [$fechaMin, $fechaMax])
                                                             ->whereNotNull('fecha_fin')->get();
                 $tiempoIncidencias=0;
                 $contador=0;
                 foreach($incidenciasTecnico as $incidencia){ 
-                    $tiempoIncidencias+=(strtotime($incidencia->fecha_fin) - strtotime($incidencia->fecha_inicio));
+                    $tiempoIncidencias+=(strtotime($incidencia->fecha_fin) - strtotime($incidencia->created_at));
                     $contador++;
                 }
                 if($contador==0){
@@ -281,7 +281,7 @@ class EstadisticasController extends Controller
                 $contador=0;
                 if(count($incidenciasTecnico)>0){
                     foreach($incidenciasTecnico as $incidencia){ 
-                        $tiempoIncidencias+=(strtotime($incidencia->fecha_fin) - strtotime($incidencia->fecha_inicio));
+                        $tiempoIncidencias+=(strtotime($incidencia->fecha_fin) - strtotime($incidencia->created_at));
                         $contador++;
                     }
                     $tiempoMedioIncidencia=($tiempoIncidencias/$contador)/(60 * 60); //devuelve horas
@@ -319,7 +319,7 @@ class EstadisticasController extends Controller
                 foreach($tecnicos as $tecnico){
                     if($fechaMin!=null && $fechaMax!=null){
                         if(count(Incidencia::where('tecnico_id', $tecnico->id)->get()->toArray())>=1){
-                            $incidencias=array_merge($incidencias,Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->get()->toArray());
+                            $incidencias=array_merge($incidencias,Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('created_at', [$fechaMin, $fechaMax])->get()->toArray());
                         }
                     }
                     else{
@@ -387,7 +387,7 @@ class EstadisticasController extends Controller
                 foreach($tecnicos as $tecnico){
                     if($fechaMin!=null && $fechaMax!=null){
                         if(count(Incidencia::where('tecnico_id', $tecnico->id)->get()->toArray())>=1){
-                            $incidencias=array_merge($incidencias, Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('fecha_inicio', [$fechaMin, $fechaMax])->get()->toArray());
+                            $incidencias=array_merge($incidencias, Incidencia::where('tecnico_id', $tecnico->id)->whereBetween('created_at', [$fechaMin, $fechaMax])->get()->toArray());
                         }
                     }
                     else{

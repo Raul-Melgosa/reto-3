@@ -23,7 +23,7 @@ class UserController extends Controller
     public function home()
     {
         if (Gate::allows('isAdmin')) {
-            return view('estadisticas.estadisticas');
+            return redirect(route('estadisticas.index'));
         }
         elseif (Gate::allows('isJde')) {
             //select id from incidencias where tecnico_id IN (SELECT );

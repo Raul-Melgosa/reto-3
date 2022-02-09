@@ -34,7 +34,7 @@ Route::get('/manuales/buscar',[ManualController::class, 'filtrarNombre'])->name(
 
 
 
-Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'index']);
+Route::get('/estadisticas', [App\Http\Controllers\EstadisticasController::class, 'index'])->name('estadisticas.index');
 //Rutas webservice-datos-estadisticas
 Route::get('/estadisticas/numIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numIncidenciasPorZona']);
 Route::get('/estadisticas/numTipoIncidenciasPorZona', [App\Http\Controllers\EstadisticasController::class, 'numTipoIncidenciasPorZona']);
