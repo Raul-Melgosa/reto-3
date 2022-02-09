@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ManualController;
 use App\Http\Controllers\AscensorController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,8 @@ Route::get('/welcome', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\UserController::class, 'home'])->name('home');
+Route::get('/home', [UserController::class, 'home'])->name('home');
+Route::put('/users/update',[UserController::class, 'cambiarRol'])->name('users.cambiarrol');
 
 Route::get('/manuales',[ManualController::class, 'index'])->name('manuales.index');
 Route::get('/manuales/buscar',[ManualController::class, 'filtrarNombre'])->name('manuales.filtrarNombre');
