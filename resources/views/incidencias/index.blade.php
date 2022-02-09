@@ -88,30 +88,46 @@
             }
             customElements.define('date-picker',DatePicker);
             </script>
-        <div id="filtros">
-            <date-picker id="fechas" class="col-12 d-flex justify-content-center"></date-picker>
-            <label for="inputNombre">Nombre técnico:</label>
-            <input type="text" id="inputNombre" name="inputNombre" value="{{ request('nombre') }}"/>
-            <label for="selectZonas">Zona:</label>
-            <select id="selectZonas" name="selectZonas">
-                <option selected value="undefined">--Selecciona una zona--</option>
-                <option value="norte">norte</option>
-                <option value="sur">sur</option>
-                <option value="este">este</option>
-                <option value="oeste">oeste</option>
-                <option value="centro">centro</option>
-            </select>
-            <label for="selectEstado">Estados:</label>
-            <select id="selectEstado" name="selectEstado">
-                <option value="undefined">--Estado--</option>
-                <option value="En proceso">En proceso</option>
-                <option value="Resuelta">Resuelta</option>
-                <option value="Pendiente">Pendiente</option>
-            </select>
-            <button type="button" id="bFiltar">Filtar</button>
+        <div class="accordion" id="accordionFlush">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Filtros
+                </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
+                <div class="accordion-body">
+                    <div id="filtros" class="d-flex flex-column col-12 justify-content-center align-items-center">
+                        <date-picker id="fechas" class="col-12 d-flex justify-content-center"></date-picker>
+                        <div class="row gx-0 gy-3 my-3 col-12 col-md-6">
+                            <label for="inputNombre">Nombre técnico:</label>
+                            <input class="form-control" type="text" id="inputNombre" name="inputNombre" value="{{ request('nombre') }}"/>
+                            <label for="selectZonas">Zona:</label>
+                            <select class="form-select" id="selectZonas" name="selectZonas">
+                                <option selected value="undefined">--Selecciona una zona--</option>
+                                <option value="norte">norte</option>
+                                <option value="sur">sur</option>
+                                <option value="este">este</option>
+                                <option value="oeste">oeste</option>
+                                <option value="centro">centro</option>
+                            </select>
+                            <label for="selectEstado">Estados:</label>
+                            <select class="form-select" id="selectEstado" name="selectEstado">
+                                <option value="undefined">--Estado--</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Resuelta">Resuelta</option>
+                                <option value="Pendiente">Pendiente</option>
+                            </select>
+                            <button type="button" class="btn btn-primary" id="bFiltar">Filtrar</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
-        <div class="col-11">
+        
         <div class="col-12 col-sm-11">
+        <div class="col-12">
             <table class="table table-hover">
                 <thead>
                     <tr>
