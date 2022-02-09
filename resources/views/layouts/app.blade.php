@@ -141,7 +141,7 @@
                         <li class="list-group-item border-0 p-0 my-1">
                             <input type="radio" class="btn-check" name="roles" id="inputOperador" autocomplete="off" value="operador"
                             @if(Auth::user()->rol=='operador')
-                                operador
+                                checked
                             @endif
                             >
                             <label class="btn btn-outline-primary text-center m-0 w-100" for="inputOperador">Operador</label>
