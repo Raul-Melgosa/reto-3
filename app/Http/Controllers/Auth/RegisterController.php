@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Equipo;
+use App\Models\Zona;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -25,6 +27,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
 
     /**
      * Where to redirect users after registration.
@@ -69,9 +72,20 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function register(Request $request)
     {
-        $user = new User();
+        $user = new User($request->all());
+        $user->save();
+        /*
+        return User::create([
+            'username' => $data['username'],
+            'nombre' => $data['name'],
+            'apellidos' => $data['apellidos'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'rol' => $data['rol']
+        ])->save();
+        /*$user = new User();
 
         $user->username=request('username');
         $user->nombre=request('nombre');
@@ -83,7 +97,7 @@ class RegisterController extends Controller
 
         $user->save();
        
-        /*if (Gate::allows('isAdmin')) {
+        if (Gate::allows('isAdmin')) {
             if ($data['rol']=="operador") {
                 return User::create([
                     'username' => $data['username'],

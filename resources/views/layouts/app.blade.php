@@ -67,12 +67,12 @@
                                         {{ __('Cerrar sesión') }}
                                     </a>
                                     @if(auth()->user()->rol=='jde')
-                                    <a class="dropdown-item " href="{{ route('registro') }}">
+                                    <a class="dropdown-item " href="{{ route('register') }}">
                                         Registar usuarios
                                     </a>
                                     @endif
                                     @if(auth()->user()->rol=='admin')
-                                    <a class="dropdown-item " href="{{ route('registro') }}">
+                                    <a class="dropdown-item " href="{{ route('register') }}">
                                         Registar usuarios
                                     </a>
                                     @endif
