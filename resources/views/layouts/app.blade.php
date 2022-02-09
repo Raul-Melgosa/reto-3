@@ -66,15 +66,17 @@
                                     {{ Auth::user()->email }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @if(Auth::user()->rol=='jde' || Auth::user()->rol=='admin')
+                                    @if(Auth::user()->rol=='jde' || Auth::user()->rol=='admin' || Auth::user()->admin==1)
                                     <li>
                                         <a class="dropdown-item" href="#">Registrar usuarios</a>
                                     </li>
+                                    @if(Auth::user()->admin==1)
                                     <li>
                                         <a class="dropdown-item" href="#modalRol" data-bs-toggle="modal" data-bs-target="#modalRol">
                                             Cambiar de rol
                                         </a>
                                     </li>
+                                    @endif
                                     <li><hr class="dropdown-divider"></li>
                                     @endif
                                     
@@ -100,53 +102,57 @@
         <div class="modal fade" id="modalRol" tabindex="-1" aria-labelledby="modalRolLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalRolLabel">Selecciona un rol</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul>
-                    <li class="list-group-item border-0 p-0 my-1">
-                        <input type="radio" class="btn-check" name="roles" id="inputAdmin" autocomplete="off" value="admin"
-                        @if(Auth::user()->rol=='admin')
-                            checked
-                        @endif
-                        >
-                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputAdmin">Admin</label>
-                    </li>
+            <form action="{{route('users.cambiarrol')}}" method="post">
+                @csrf
+                @method("PUT")
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalRolLabel">Selecciona un rol</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li class="list-group-item border-0 p-0 my-1">
+                            <input type="radio" class="btn-check" name="roles" id="inputAdmin" autocomplete="off" value="admin"
+                            @if(Auth::user()->rol=='admin')
+                                checked
+                            @endif
+                            >
+                            <label class="btn btn-outline-primary text-center m-0 w-100" for="inputAdmin">Admin</label>
+                        </li>
 
-                    <li class="list-group-item border-0 p-0 my-1">
-                        <input type="radio" class="btn-check" name="roles" id="inputJde" autocomplete="off" value="jde"
-                        @if(Auth::user()->rol=='jde')
-                            checked
-                        @endif
-                        >
-                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputJde">Jefe de Equipo</label>
-                    </li>
+                        <li class="list-group-item border-0 p-0 my-1">
+                            <input type="radio" class="btn-check" name="roles" id="inputJde" autocomplete="off" value="jde"
+                            @if(Auth::user()->rol=='jde')
+                                checked
+                            @endif
+                            >
+                            <label class="btn btn-outline-primary text-center m-0 w-100" for="inputJde">Jefe de Equipo</label>
+                        </li>
 
-                    <li class="list-group-item border-0 p-0 my-1">
-                        <input type="radio" class="btn-check" name="roles" id="inputTecnico" autocomplete="off" value="tecnico"
-                        @if(Auth::user()->rol=='tecnico')
-                            checked
-                        @endif
-                        >
-                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputTecnico">T&eacute;cnico</label>
-                    </li>
+                        <li class="list-group-item border-0 p-0 my-1">
+                            <input type="radio" class="btn-check" name="roles" id="inputTecnico" autocomplete="off" value="tecnico"
+                            @if(Auth::user()->rol=='tecnico')
+                                checked
+                            @endif
+                            >
+                            <label class="btn btn-outline-primary text-center m-0 w-100" for="inputTecnico">T&eacute;cnico</label>
+                        </li>
 
-                    <li class="list-group-item border-0 p-0 my-1">
-                        <input type="radio" class="btn-check" name="roles" id="inputOperador" autocomplete="off" value="operador"
-                        @if(Auth::user()->rol=='admin')
-                            operador
-                        @endif
-                        >
-                        <label class="btn btn-outline-primary text-center m-0 w-100" for="inputOperador">Operador</label>
-                    </li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Aplicar</button>
-            </div>
+                        <li class="list-group-item border-0 p-0 my-1">
+                            <input type="radio" class="btn-check" name="roles" id="inputOperador" autocomplete="off" value="operador"
+                            @if(Auth::user()->rol=='operador')
+                                operador
+                            @endif
+                            >
+                            <label class="btn btn-outline-primary text-center m-0 w-100" for="inputOperador">Operador</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="btn btn-primary" value="Aplicar"></input>
+                </div>
+            </form>
             </div>
         </div>
         </div>

@@ -5,24 +5,25 @@
 <div class="container">
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">Agregar archivos</div>
-        <div class="panel-body">
+  <div class="col-12">
+    <div class="panel panel-default col-12">
+      <div class="panel-heading col-12"><h3 class="text-center">Agregar archivos</h3></div>
+        <div class="panel-body col-12 d-flex justify-content-center">
           <form method="POST" action="{{route('manuales.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">
             
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             
-            <div class="form-group">
-              <label class="col-md-4 control-label">Nuevo Archivo</label>
-              <div class="col-md-6">
-                <input type="file" class="form-control" name="file" >
+            <div class="form-group col-12">
+              <div class="col-12">
+                <input type="file" required accept="application/pdf, application/vnd.ms-excel" class="form-control" name="file" >
               </div>
             </div>
 
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+            <div class="form-group col-12">
+              <div class="col-12 col-md-offset-4 d-flex flex-row justify-content-evenly">
+                <button type="submit" class="btn btn-primary">Subir</button>
+                <button type="reset" class="btn btn-danger">Limpiar formulario</button>
+                <a class="btn btn-primary" href="/manuales">Volver</a>
               </div>
             </div>
           </form>

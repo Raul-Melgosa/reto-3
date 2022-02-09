@@ -5,8 +5,11 @@
 
             <div class="row justify-content-center">
                 <div class="mb-3">
-                    <input type="text" placeholder="Buscar" class="form-control" name="buscarAscensor" id="buscarAscensor">
-                    <input type="button" class="btn btn-primary" value="Filtrar" id="filtrar">
+                    <input type="text" placeholder="Buscar" class="form-control mb-2" name="buscarAscensor" id="buscarAscensor">
+                    <input type="button" class="btn btn-primary mb-2" value="Filtrar" id="filtrar">
+                    @if(Auth::user()->rol=='jde'||Auth::user()->rol=='admin')
+                        <a class="btn btn-primary w-100" href="{{ route('manuales.create') }}">Subir manuales</a>
+                    @endif
                 </div>
                 <div class="accordion" id="acordeonManuales">
                     @foreach($manuales as $manual)

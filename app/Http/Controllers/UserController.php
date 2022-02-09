@@ -6,6 +6,7 @@ use App\Models\Incidencia;
 use App\Models\User;
 use App\Models\Indicencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
@@ -115,5 +116,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function cambiarRol()
+    {
+        $user=User::find(Auth::user()->id);
+        $user->rol = request('roles');
+        $user->save();
+        return redirect(route('home'));
     }
 }
