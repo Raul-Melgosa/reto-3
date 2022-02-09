@@ -120,15 +120,7 @@ class DatabaseSeeder extends Seeder
         ]);
         llamadaFactoryAscensor($zonaId);
 
-        DB::table('users')->insert([
-            'nombre'=>"admin",
-            'apellidos' => "admin",
-            'username' => 'admin',
-            'email'=>"admin@igobide.org",
-            'password'=>Hash::make("admin"),
-            'rol'=>"admin",
-            'admin'=>true,
-        ]);
+        
 
         User::factory()->count(25)->create([
             'rol' => 'operador'
@@ -171,8 +163,17 @@ class DatabaseSeeder extends Seeder
 
         Cliente::factory()->count(5)->create();
 
-        Incidencia::factory()->count(1000)->create();
+        Incidencia::factory()->count(600)->create();
 
-        //Ascensor::factory()->count(5)->create();
+        DB::table('users')->insert([
+            'nombre'=>"admin",
+            'apellidos' => "admin",
+            'username' => 'admin',
+            'email'=>"admin@igobide.org",
+            'password'=>Hash::make("admin"),
+            'rol'=>"admin",
+            'admin'=>true,
+            'equipo_id' => 1,
+        ]);
     }
 }
