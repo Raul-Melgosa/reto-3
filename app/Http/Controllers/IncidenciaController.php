@@ -15,6 +15,7 @@ use Mockery\Undefined;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Carbon;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
@@ -25,6 +26,21 @@ class IncidenciaController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->rol=='jde') {
+            $pendientes=Incidencia::whereIn('tecnico_id', function($query){
+            $query->select('id')
+                ->from(with(new User())->getTable())
+                ->where('equipo_id', auth()->user()->equipo_id);
+            })->where('estado','!=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
+
+            $resueltas=Incidencia::whereIn('tecnico_id', function($query){
+                $query->select('id')
+                ->from(with(new User())->getTable())
+                ->where('equipo_id', auth()->user()->equipo_id);
+            })->where('estado','=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
+            return view('jefeDeEquipo.home', compact('pendientes','resueltas'));
+        }
+        
         $incidencias=Incidencia::orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
         return view('incidencias.index', compact('incidencias'));
     }
@@ -226,6 +242,7 @@ class IncidenciaController extends Controller
         if(Gate::allows('isJde')){
             $incidencia->tecnico_id=request('tecnicos');
             $incidencia->save();
+            return redirect(route('incidencias.show',$incidencia->id));
         }
         if(Gate::allows('isOperador')){
             $incidencia->tecnico_id=request('tecnicos');

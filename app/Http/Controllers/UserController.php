@@ -28,19 +28,8 @@ class UserController extends Controller
             return redirect(route('estadisticas.index'));
         }
         elseif (Gate::allows('isJde')) {
+            return redirect(route('estadisticas.index'));
             //select id from incidencias where tecnico_id IN (SELECT );
-            $pendientes=Incidencia::whereIn('tecnico_id', function($query){
-                $query->select('id')
-                ->from(with(new User())->getTable())
-                ->where('equipo_id', auth()->user()->equipo_id);
-            })->where('estado','!=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
-
-            $resueltas=Incidencia::whereIn('tecnico_id', function($query){
-                $query->select('id')
-                ->from(with(new User())->getTable())
-                ->where('equipo_id', auth()->user()->equipo_id);
-            })->where('estado','=','Resuelta')->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
-            return view('jefeDeEquipo.home', compact('pendientes','resueltas'));
         }
         elseif (Gate::allows('isTecnico')) {
             $pendientes=Incidencia::where('tecnico_id','=',auth()->user()->id)->where('estado','!=','Resuelta')->orderBy('urgente','DESC')->orderBy('created_at','ASC')->orderBy('estado','DESC')->simplePaginate(20);

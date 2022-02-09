@@ -71,6 +71,11 @@
                                     <li>
                                         <a class="dropdown-item" href="{{ route('registro') }}">Registrar usuarios</a>
                                     </li>
+                                    @if(Auth::user()->rol=='jde')
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('incidencias.index') }}">Ver incidencias del equipo</a>
+                                    </li>
+                                    @endif
                                     @if(Auth::user()->admin==1)
                                     <li>
                                         <a class="dropdown-item" href="#modalRol" data-bs-toggle="modal" data-bs-target="#modalRol">
