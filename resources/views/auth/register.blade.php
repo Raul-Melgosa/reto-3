@@ -4,7 +4,7 @@
 <div class="container d-flex justify-content-center">
 <img class="position-absolute m-auto" style="max-width: 100%; max-height: 100vh; top:0px; z-index: -1;" src="{{asset('/img/Abstract-3d-art-background.png')}}" alt="">
     <div class="col-md-7 col-sm-8 col-11 row justify-content-center align-items-center m-auto shadow mb-5 rounded">
-                    <form class="col-12 m-auto justify-content-center bg-light py-5 rounded" style="--bs-bg-opacity: .6;" method="POST" action="{{ route('crearUsuario') }}">
+                    <form class="col-12 m-auto justify-content-center bg-light py-5 rounded" style="--bs-bg-opacity: .6;" method="POST" action="{{ route('registrar') }}">
                         @csrf
                         <h1 class="text-center"><b>Registrar Usuarios</b></h1>
                         <div class="row mb-3">

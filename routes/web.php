@@ -8,7 +8,7 @@ use App\Http\Controllers\ManualController;
 use App\Http\Controllers\AscensorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistroController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +29,9 @@ Route::get('/welcome', function () {
 });
 
 Auth::routes();
-Route::post('/registro', [RegistroController::class, 'create'])->name('crearUsuario')->middleware('auth');
-Route::get('/registro', [RegistroController::class, 'index'])->name('registro')->middleware('auth');
+
+Route::get('/register', [RegistroController::class, 'index'])->name('register');
+Route::post('/register/guardar', [RegistroController::class, 'create'])->name('registrar');
 
 Route::get('/home', [UserController::class, 'home'])->name('home')->middleware('auth');
 Route::put('/users/update',[UserController::class, 'cambiarRol'])->name('users.cambiarrol');
