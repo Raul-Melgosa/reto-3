@@ -115,11 +115,11 @@ class IncidenciaController extends Controller
             $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
         }
         elseif($tipoFiltro["estado"]==0 && $tipoFiltro["fecha"]==1){
-            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->whereBetween('fecha_inicio', [$fechaInicio, $fechaFin])->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->whereBetween('created_at', [$fechaInicio, $fechaFin])->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
 
         }
         elseif($tipoFiltro["estado"]==1 && $tipoFiltro["fecha"]==1){
-            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->whereBetween('fecha_inicio', array($fechaInicio, $fechaFin))->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
+            $incidencias=Incidencia::whereIn('tecnico_id', $idTecnicos)->where('estado', $estado)->whereBetween('created_at', array($fechaInicio, $fechaFin))->orderBy('urgente','DESC','created_at','DESC')->simplePaginate(20);
 
         }
         elseif($tipoFiltro["estado"]==0 && $tipoFiltro["fecha"]==0){
