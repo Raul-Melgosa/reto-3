@@ -52,7 +52,7 @@
                             @if(auth()->user()->rol!='tecnico')
                             
                             <div class="col-12 mb-3 row g-0 ms-4">     
-                                <label for="teccnicos">T&eacute;cnicos</label>
+                                <label for="tecnicos">T&eacute;cnicos</label>
                                 <select class="form-select" name="tecnicos" id="tecnicos">
                                     @foreach($tecnicos as $tecnico)
                                         @if($incidencia->tecnico->id == $tecnico->id)

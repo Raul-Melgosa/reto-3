@@ -75,7 +75,7 @@ class RegistroController extends Controller
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
                     'rol' => $data['rol'],
-                    'equipo_id' => auth()->user()->id
+                    'equipo_id' => auth()->user()->equipo_id
                 ]);
                 
             }

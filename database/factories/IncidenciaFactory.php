@@ -45,13 +45,14 @@ class IncidenciaFactory extends Factory
         if($estado=='En proceso' || $estado=='Resuelta') {
             $comentarioTecnico = $this->faker->realTextBetween('200','300');
         }
-
+        $created_at = $this->faker->dateTimeBetween('-1460 days', 'now');
         if ($urgente == 1) { //Es urgente
             if($estado == 'Resuelta') { //Es urgente y ha finalizado
                 return [
                     'urgente' => true,
                     'estado' => $estado,
                     'fecha_inicio' => date('Y-m-d', time()),
+                    'created_at' => $created_at,
                     'fecha_fin' => $this->faker->dateTimeBetween('0 week', '+1 week'),
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
@@ -65,6 +66,7 @@ class IncidenciaFactory extends Factory
                     'urgente' => true,
                     'estado' => $estado,
                     'fecha_inicio' => date('Y-m-d', time()),
+                    'created_at' => $created_at,
                     'tipoaveria' => $tipo,
                     'cliente_id' => $cliente->id,
                     'ascensor_id' => $ascensor->id,
@@ -78,6 +80,7 @@ class IncidenciaFactory extends Factory
             if($estado == 'Resuelta') { //No es urgente y esta finalizada
                 return [
                     'urgente' => false,
+                    'created_at' => $created_at,
                     'estado' => $estado,
                     'fecha_inicio' => date('Y-m-d', time()),
                     'fecha_fin' => $this->faker->dateTimeBetween('0 week', '+1 week'),
@@ -91,6 +94,7 @@ class IncidenciaFactory extends Factory
             } else { // No es urgente y esta sin finalizar
                 return [
                     'urgente' => false,
+                    'created_at' => $created_at,
                     'estado' => $estado,
                     'fecha_inicio' => date('Y-m-d', time()),
                     'tipoaveria' => $tipo,

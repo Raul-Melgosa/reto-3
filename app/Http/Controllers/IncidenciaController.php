@@ -242,7 +242,6 @@ class IncidenciaController extends Controller
         if(Gate::allows('isJde')){
             $incidencia->tecnico_id=request('tecnicos');
             $incidencia->save();
-            return redirect(route('incidencias.show',$incidencia->id));
         }
         if(Gate::allows('isOperador')){
             $incidencia->tecnico_id=request('tecnicos');
@@ -261,7 +260,7 @@ class IncidenciaController extends Controller
             }
         }
         
-        return redirect(route('home'));
+        return redirect(route('incidencias.show',$incidencia->id));
         
     }
 
