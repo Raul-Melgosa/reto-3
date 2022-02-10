@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
 
         Cliente::factory()->count(5)->create();
 
-        Incidencia::factory()->count(600)->create();
+        Incidencia::factory()->count(5000)->create();
 
         DB::table('users')->insert([
             'nombre'=>"admin",
