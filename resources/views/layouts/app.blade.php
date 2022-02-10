@@ -69,7 +69,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->rol=='jde' || Auth::user()->rol=='admin' || Auth::user()->admin==1)
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('registro') }}">Registrar usuarios</a>
+                                        <a class="dropdown-item" href="{{ route('register') }}">Registrar usuarios</a>
                                     </li>
                                     @if(Auth::user()->rol=='jde')
                                     <li>
