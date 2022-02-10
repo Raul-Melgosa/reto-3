@@ -10,7 +10,7 @@
       <div class="panel-heading col-12"><h3 class="text-center">Agregar archivos</h3></div>
         <div class="panel-body col-12 d-flex justify-content-center">
           <form method="POST" action="{{route('manuales.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">
-            
+          @csrf
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             
             <div class="form-group col-12">
