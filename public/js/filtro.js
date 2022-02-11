@@ -9,7 +9,7 @@ function filtrarIncidencias(){
     let zona = $('#selectZonas').val();
     let estado = $('#selectEstado').val();
     let fechaInicio = document.getElementById('fechas').shadowRoot.getElementById('fechaInicio').value+" 00:00:00";
-    let fechaFin = document.getElementById('fechas').shadowRoot.getElementById('fechaFin').value+" 00:00:00";
+    let fechaFin = document.getElementById('fechas').shadowRoot.getElementById('fechaFin').value+" 23:59:59";
     console.log(fechaInicio);
     let nombreRegex = /^([A-Z a-z]{2}[a-zñáéíóú]+[\s]*)+$/;
     let fechaRegex = /^([0-9]{4})-([0-1][0-9])-([0-3][0-9])\s([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$/;
